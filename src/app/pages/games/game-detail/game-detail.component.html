@@ -1,0 +1,39 @@
+<div class="game-detail">
+  <div class="wrapper">
+    <div class="game-title">
+      <app-game-title></app-game-title>
+    </div>
+    <div class="game-content">
+      <div class="wrapper">
+        <div class="links">
+          <a
+            routerLink="description"
+            routerLinkActive="active"
+            [routerLinkActiveOptions]="{ exact: true }"
+            >Description</a
+          >
+          <a
+            routerLink="creator"
+            routerLinkActive="active"
+            [routerLinkActiveOptions]="{ exact: true }"
+            >Creator</a
+          >
+          <a
+            routerLink="creators-wall"
+            routerLinkActive="active"
+            [routerLinkActiveOptions]="{ exact: true }"
+            >Creator’s Wall</a
+          >
+        </div>
+        <div class="content">
+          <router-outlet></router-outlet>
+        </div>
+      </div>
+    </div>
+    <app-recommendation></app-recommendation>
+  </div>
+</div>
+
+<div class="chat-component">
+  <app-chat></app-chat>
+</div>

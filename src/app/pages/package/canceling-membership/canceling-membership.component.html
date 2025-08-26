@@ -1,0 +1,78 @@
+<div class="canceling-membership">
+  <div class="inner">
+    <div class="back-btn">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="18"
+        height="24"
+        viewBox="0 0 18 24"
+        fill="none"
+        routerLink="../"
+      >
+        <path
+          d="M6 12.8L18 24L12 24L9.79135e-07 12.8L12 -5.24537e-07L18 0L6 12.8Z"
+          fill="#5460CB"
+        />
+      </svg>
+      <span>Back to Package</span>
+    </div>
+    <div class="content">
+      <div class="title">
+        <h3>We are sad to see you go</h3>
+        <p>
+          By ending your membership you will lose access to your Subscribtion
+          benefits. If you want to avoid service interruption, you have to
+          manually renew it before Dec 16, 2023. What do you want to do next?
+        </p>
+      </div>
+      <div class="line line1"></div>
+      <div class="cancel">
+        <h3 class="title">Please select your cancel for canceling</h3>
+        <form
+          class="cancel-form"
+          [formGroup]="cancelForm"
+          (ngSubmit)="handleSubmit()"
+        >
+          <div class="cancel-wrapper">
+            <div class="item" *ngFor="let item of cancelList">
+              <input
+                type="radio"
+                [id]="item?.value"
+                [value]="item?.value"
+                formControlName="cancel"
+                (change)="handleSubmit()"
+              />
+              <label [for]="item?.value">{{ item?.title }}</label>
+            </div>
+          </div>
+
+          <div class="reason" *ngIf="cancel.value === '8'">
+            <label for="reason">Share any additional thoughts</label>
+            <textarea
+              id="reason"
+              placeholder="Please share any additional thoughts"
+              formControlName="reason"
+            ></textarea>
+          </div>
+
+          <!-- <div class="error-msg" *ngIf="cancel.invalid && cancel.touched">
+            <small class="text-error" *ngIf="cancel.errors?.['required']"
+              >The field is required.</small
+            >
+          </div> -->
+        </form>
+      </div>
+      <div class="line line2"></div>
+      <div class="btn">
+        <div class="btn-wrapper">
+          <button class="linear-btn-grandora cancel">
+            <span>Cancel Subscribtion</span>
+          </button>
+          <button class="linear-btn-grandora stay">
+            <span>Stay Subscribtion</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

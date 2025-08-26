@@ -1,0 +1,188 @@
+#sign-up-closebeta {
+  min-height: 100vh;
+  padding: 120px 0;
+  background: url("/assets/images/setting/setting-bg.jpg") no-repeat;
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  font-size: 14px;
+
+  .inner {
+    padding: 0 25px;
+  }
+  .form-group-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+
+  .grandora-form {
+    padding: 36px 90px;
+    textarea {
+      width: 100%;
+      height: 100px;
+      resize: none;
+    }
+    .title {
+      margin-bottom: 16px;
+      span {
+        display: block;
+      }
+      span:nth-of-type(1) {
+        color: #000;
+        font-size: 20px;
+      }
+      span:nth-of-type(2) {
+        color: #000;
+        font-size: 45px;
+        font-weight: bold;
+      }
+    }
+
+    .form-group-grandora {
+      margin-bottom: 20px;
+      label {
+        span {
+          color: #ef4444;
+        }
+      }
+    }
+
+    .form-group-grandora.checkbox {
+      .wrapper {
+        display: grid;
+        grid-template-columns: auto 1fr;
+        gap: 12px;
+      }
+
+      margin-bottom: 36px;
+    }
+    .form-group-grandora.genre {
+      margin-bottom: 20px;
+      .genre-wrapper {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 3px;
+        .wrapper {
+          align-items: center;
+          gap: 8px;
+          p {
+            position: relative;
+            top: -1px;
+          }
+        }
+      }
+    }
+    .form-group-grandora.cbt-terms {
+      font-family: "Prompt-Regular";
+      margin: 30px 0 20px 0;
+
+      app-grandora-select::ng-deep {
+        width: 70px;
+        .arrow-icon {
+          right: 12px;
+        }
+        .active-icon {
+          right: 7px;
+        }
+      }
+      
+      .title-wrapper {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        .title {
+          margin-bottom: -5px;
+          font-weight: bold;
+        }
+      }
+
+      .content-wrapper {
+        ol {
+          padding-left: 20px;
+          li {
+            margin-bottom: 10px;
+          }
+        }
+      }
+
+      .checkbox-wrapper {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        p {
+          position: relative;
+          top: -1.5px;
+        }
+      }
+    }
+
+    .group-wrapper4 {
+      .title {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+    }
+    .signin-wrapper {
+      margin-top: 24px;
+      font-size: 18px;
+      span {
+        color: #1e232c;
+        margin-right: 5px;
+      }
+      a {
+        font-family: "Poppins-SemiBold";
+        color: #ffb900;
+      }
+    }
+
+    .btn-wrapper {
+      text-align: center;
+      button {
+        font-size: 18px;
+        font-family: "Poppins-SemiBold";
+        border: none;
+        border-radius: 32px;
+        background: #757fef;
+        width: 100%;
+        height: 56px;
+        color: white;
+      }
+    }
+  }
+  mat-spinner::ng-deep {
+    width: 30px !important;
+    height: 30px !important;
+    circle {
+      stroke: white;
+    }
+  }
+
+
+
+  @media (max-width: 768px) {
+    .grandora-form {
+      padding: 36px 25px;
+    }
+  }
+
+  @media (max-width: 576px) {
+    .grandora-form {
+      padding: 36px 15px;
+    }
+    .form-group-grandora.date {
+      grid-template-columns: 1fr !important;
+    }
+  }
+
+  @media (max-width: 400px) {
+    .form-group-grandora.date {
+      .group1 {
+        .select-wrapper {
+          grid-template-columns: 1fr !important;
+        }
+      }
+    }
+  }
+}

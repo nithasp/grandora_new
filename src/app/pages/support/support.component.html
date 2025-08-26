@@ -1,0 +1,170 @@
+<section id="support">
+  <div class="inner">
+    <div class="support-section1">
+      <div class="text">
+        <div class="sub-title">Lorem ipsum dolor</div>
+        <div class="title">Welcome to Grandora Player Support</div>
+      </div>
+    </div>
+    <div class="support-section2">
+      <div class="quick-questions">
+        <div class="wrapper">
+          <h1>Choose a category to find the help you need</h1>
+          <div class="content">
+            <div class="item" *ngFor="let item of quickQuestions" (click)="toSupportRequestPage()">
+              <div class="content-header">
+                <div class="question">
+                  {{ item.question }}
+                </div>
+                <div class="answer">
+                  {{ item.answer }}
+                </div>
+              </div>
+              <div class="content-footer">
+                <span>{{ item.footer }}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="support-section3">
+      <div class="wrapper">
+        <h1>Frequently Encountered Issues</h1>
+        <div class="faq">
+          <mat-accordion>
+            <mat-expansion-panel
+              (opened)="panelOpenState = true"
+              (closed)="panelOpenState = false"
+              *ngFor="let item of faq"
+            >
+              <mat-expansion-panel-header [@.disabled]="true">
+                <mat-panel-title>{{ item.title }}</mat-panel-title>
+              </mat-expansion-panel-header>
+              <p>{{ item.description }}</p>
+            </mat-expansion-panel>
+          </mat-accordion>
+        </div>
+      </div>
+    </div>
+    <div class="support-section4">
+      <div class="wrapper">
+        <h3 class="title">Tutorial</h3>
+        <div class="content">
+          <div class="sidebar">
+            <div class="item-wrapper">
+              <div class="item active" type="grandora">About Grandora</div>
+              <div class="item" type="land">What is Land</div>
+              <div class="item" type="build-your-own-game">
+                Build your own game
+              </div>
+              <div class="item" type="wallet-and-coins">Wallet and coins</div>
+              <div class="item" type="market">Market</div>
+            </div>
+          </div>
+          <div class="answer">
+            <div class="grandora" *ngIf="answerType === 'grandora'">
+              <div class="info">
+                <div class="wrapper">
+                  <mat-accordion>
+                    <mat-expansion-panel
+                      (opened)="panelOpenState = true"
+                      (closed)="panelOpenState = false"
+                      *ngFor="let item of grandoraAnswer"
+                    >
+                      <mat-expansion-panel-header [@.disabled]="true">
+                        <mat-panel-title>{{ item.title }}</mat-panel-title>
+                      </mat-expansion-panel-header>
+                      <p>{{ item.description }}</p>
+                    </mat-expansion-panel>
+                  </mat-accordion>
+                </div>
+              </div>
+            </div>
+            <div class="land" *ngIf="answerType === 'land'">
+              <div class="info">
+                <div class="wrapper">
+                  <mat-accordion>
+                    <mat-expansion-panel
+                      (opened)="panelOpenState = true"
+                      (closed)="panelOpenState = false"
+                      *ngFor="let item of landAnswer"
+                    >
+                      <mat-expansion-panel-header [@.disabled]="true">
+                        <mat-panel-title>{{ item.title }}</mat-panel-title>
+                      </mat-expansion-panel-header>
+                      <p>{{ item.description }}</p>
+                    </mat-expansion-panel>
+                  </mat-accordion>
+                </div>
+              </div>
+            </div>
+            <div
+              class="build-your-own-game"
+              *ngIf="answerType === 'build-your-own-game'"
+            >
+              <div class="info">
+                <div class="wrapper">
+                  <mat-accordion>
+                    <mat-expansion-panel
+                      (opened)="panelOpenState = true"
+                      (closed)="panelOpenState = false"
+                      *ngFor="let item of yourOwnGameAnswer"
+                    >
+                      <mat-expansion-panel-header [@.disabled]="true">
+                        <mat-panel-title>{{ item.title }}</mat-panel-title>
+                      </mat-expansion-panel-header>
+                      <p>{{ item.description }}</p>
+                    </mat-expansion-panel>
+                  </mat-accordion>
+                </div>
+              </div>
+            </div>
+            <div
+              class="wallet-and-coins"
+              *ngIf="answerType === 'wallet-and-coins'"
+            >
+              <div class="info">
+                <div class="wrapper">
+                  <mat-accordion>
+                    <mat-expansion-panel
+                      (opened)="panelOpenState = true"
+                      (closed)="panelOpenState = false"
+                      *ngFor="let item of walletAndCoinsAnswer"
+                    >
+                      <mat-expansion-panel-header [@.disabled]="true">
+                        <mat-panel-title>{{ item.title }}</mat-panel-title>
+                      </mat-expansion-panel-header>
+                      <p>{{ item.description }}</p>
+                    </mat-expansion-panel>
+                  </mat-accordion>
+                </div>
+              </div>
+            </div>
+            <div class="market" *ngIf="answerType === 'market'">
+              <div class="info">
+                <div class="wrapper">
+                  <mat-accordion>
+                    <mat-expansion-panel
+                      (opened)="panelOpenState = true"
+                      (closed)="panelOpenState = false"
+                      *ngFor="let item of marketAnswer"
+                    >
+                      <mat-expansion-panel-header [@.disabled]="true">
+                        <mat-panel-title>{{ item.title }}</mat-panel-title>
+                      </mat-expansion-panel-header>
+                      <p>{{ item.description }}</p>
+                    </mat-expansion-panel>
+                  </mat-accordion>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="community">
+      <app-community></app-community>
+    </div>
+  </div>
+</section>

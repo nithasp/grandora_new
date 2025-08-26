@@ -1,0 +1,241 @@
+#contact {
+  margin-top: -12px;
+
+  .contact-section1 {
+    position: relative;
+    height: 140vh;
+    background: url("/assets/images/background/Group 26086600.png") no-repeat;
+    background-size: cover;
+    background-position: top;
+    background-color: #f1e9f8 !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .text {
+      text-align: center;
+      .sub-title {
+        color: #fff;
+        font-size: 26px;
+        letter-spacing: 2.86px;
+        text-transform: uppercase;
+        margin-bottom: 24px;
+      }
+      .title {
+        font-family: "Poppins-SemiBold";
+        color: #fff;
+        font-size: 84px;
+        letter-spacing: -3.78px;
+      }
+    }
+  }
+
+  .contact-section2 {
+    padding: 95px 22px 183px 22px;
+    background: url("/assets/images/contact/group1.jpg") no-repeat;
+    background-size: cover;
+    background-position: top;
+    .wrapper {
+      max-width: 1060px;
+      margin: 0 auto;
+    }
+    h1 {
+      font-family: "Poppins-SemiBold";
+      font-size: 52px;
+      line-height: 110%;
+      letter-spacing: -2.34px;
+      margin-bottom: 71.82px;
+    }
+    .content {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 16px;
+
+      .item {
+        background: #fff;
+        border-radius: 12px 12px 0 0;
+        .content-header {
+          padding: 34px 38px 45px 38px;
+          display: flex;
+          flex-direction: column;
+          box-shadow: 10px 10px 50px 3px rgba(39, 92, 141, 0.1);
+          height: 100%;
+          .role {
+            font-weight: bold;
+            color: #23242a;
+            font-size: 28px;
+
+            line-height: 110%;
+            letter-spacing: -0.84px;
+
+            flex-grow: 1;
+          }
+          .email {
+            color: #5460cb;
+            font-size: 18px;
+            line-height: 130%;
+            letter-spacing: -0.36px;
+            margin: 0px 0 30px 0;
+          }
+          .name {
+            font-weight: bold;
+            color: #23242a;
+            font-size: 18px;
+
+            line-height: 21px;
+          }
+        }
+        .content-footer {
+          height: 55.82px;
+          background: #fff;
+          box-shadow: 10px 10px 50px 3px rgba(39, 92, 141, 0.1);
+          border-radius: 0 0 12px 12px;
+        }
+      }
+    }
+  }
+
+  .contact-section3 {
+    background: url("/assets/images/contact/group2.jpg") no-repeat;
+    background-size: cover;
+    background-position: top;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 103px 25px 83px 25px;
+    min-height: 310px;
+    text-align: center;
+    color: #fff;
+    font-weight: bold;
+    .content {
+      max-width: 482px;
+      .title {
+        font-size: 28px;
+        margin-bottom: 16px;
+      }
+      p {
+        font-size: 20px;
+        line-height: 21px;
+      }
+    }
+  }
+
+  @media (max-width: 1024px) {
+    margin-top: -16px;
+    .contact-section1 {
+      height: 93vh;
+      background: url("/assets/images/contact/bg-header-tablet.png") no-repeat;
+      background-size: cover !important;
+      background-position: center !important;
+      .text {
+        .sub-title {
+          font-size: 18px;
+          letter-spacing: 1.98px;
+        }
+        .title {
+          font-size: 44px;
+          letter-spacing: -1.98px;
+        }
+      }
+    }
+    .contact-section2 {
+      h1 {
+        font-size: 40px;
+      }
+      .content-header {
+        padding: 14px 25px 15px 25px !important;
+        .role {
+          font-size: 18px !important;
+          letter-spacing: -0.54px !important;
+        }
+        .email {
+          font-size: 14px !important;
+        }
+        .name {
+          font-size: 14px !important;
+        }
+      }
+      .content-footer {
+        height: 36px !important;
+      }
+    }
+    .contact-section3 {
+      .content {
+        .title {
+          font-size: 20px;
+        }
+        p {
+          font-size: 16px;
+        }
+      }
+    }
+  }
+
+  @media (max-width: 768px) {
+    .contact-section2 {
+      padding: 54px 25px 65px 25px;
+      .content {
+        display: block;
+        .item {
+          margin-bottom: 14px;
+        }
+      }
+    }
+  }
+
+  @media (max-width: 576px) {
+    .contact-section2 {
+      h1 {
+        br {
+          display: none;
+        }
+      }
+    }
+  }
+
+  @media (max-width: 450px) {
+    .contact-section1 {
+      background: url("/assets/images/contact/bg-header-mobile.png") no-repeat;
+      height: 58.8vh;
+      .text {
+        .sub-title {
+          font-size: 14px;
+          letter-spacing: 1.54px;
+        }
+        .title {
+          font-size: 24px;
+          letter-spacing: -1.08px;
+        }
+      }
+    }
+    .contact-section2 {
+      background: url("/assets/images/contact/group1-mobile.jpg") no-repeat;
+      background-size: cover;
+      background-position: center;
+      .item {
+        max-width: 224px;
+        margin: 0 auto 50px auto;
+      }
+      h1 {
+        font-size: 32px;
+        line-height: 110%;
+        letter-spacing: -1.44px;
+      }
+      .role {
+        margin-bottom: 32px !important;
+      }
+    }
+    .contact-section3 {
+      padding: 50px 25px;
+      min-height: 202px;
+      .content {
+        .title {
+          font-size: 18px;
+        }
+        p {
+          font-size: 12px;
+        }
+      }
+    }
+  }
+}

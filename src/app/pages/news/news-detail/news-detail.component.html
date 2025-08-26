@@ -1,0 +1,126 @@
+<div class="news-detail">
+  <div class="inner">
+    <div
+      class="news-detail-section1"
+      [style.background]="'url(' + item.image + ')'"
+    >
+      <div class="title">
+        <h1>News</h1>
+      </div>
+    </div>
+    <div class="news-detail-section2">
+      <div class="news-detail-section2-inner">
+        <div class="content">
+          <div class="title">
+            <h1>{{ item?.title }}</h1>
+          </div>
+          <div class="info">
+            <div class="tag">
+              <h3>Tag</h3>
+              <div class="wrapper">
+                <div class="item" *ngFor="let item of item?.tags">
+                  {{ item }}
+                </div>
+              </div>
+            </div>
+            <div class="author">
+              <h3>Author</h3>
+              <div class="wrapper">
+                <div class="item">{{ item?.author }}</div>
+              </div>
+            </div>
+          </div>
+          <div class="text">
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magnam
+              rem maxime vel eum perspiciatis deserunt rerum adipisci sit,
+              pariatur dolorem doloribus minus iusto saepe? Minus eum sequi
+              ipsum explicabo amet! Inventore est totam ad ducimus. Officia unde
+              quasi blanditiis rerum maiores aspernatur iure, vitae hic porro
+              sapiente debitis aliquam quibusdam, distinctio quod consequuntur
+              ab possimus, voluptas nobis sunt laboriosam facilis.
+            </p>
+
+            <p>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Est
+              eligendi voluptate tempore. Dolorem, quisquam. Quaerat nam quam
+              sequi nesciunt, tenetur minima impedit, dolorem eos consequatur
+              omnis laudantium possimus quas recusandae?
+            </p>
+
+            <p>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores
+              nemo quia sed velit, est totam! Pariatur dolorum in impedit, unde
+              cumque, minus illo fugiat sit quam tempore, cupiditate blanditiis
+              officiis.
+            </p>
+
+            <p>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Officia
+              nisi provident explicabo sit possimus nihil inventore quam, veniam
+              labore dignissimos veritatis officiis repudiandae accusantium.
+              Nisi autem soluta consequuntur reiciendis nesciunt? Dignissimos
+              deleniti maiores eaque, minima quaerat laborum laboriosam, maxime
+              totam voluptates asperiores delectus aperiam repudiandae
+              doloremque a ex commodi possimus cupiditate rerum esse sunt. Cum
+              nesciunt quos repellat modi dicta? Voluptate veritatis a ipsam
+              eaque unde, eos error non ratione, beatae voluptatibus tempora,
+              quos doloremque. Optio quos ipsa architecto consequatur alias,
+              iusto similique natus assumenda quidem, praesentium repellat
+              fugiat quam!
+            </p>
+          </div>
+        </div>
+        <div class="recommended-lists">
+          <div class="title">
+            <h1>Recommended lists</h1>
+          </div>
+          <div class="sub-blog">
+            <div class="item" *ngFor="let item of blogs"  (click)="getRecommendedListItem(item.id)">
+              <div class="blog-image">
+                <img [src]="item?.image" />
+              </div>
+
+              <div class="tags-name">
+                <div class="name" *ngFor="let tag of item?.tags">
+                  {{ tag }}
+                </div>
+              </div>
+
+              <div class="blog-title">{{ item?.title }} {{ item?.id }}</div>
+
+              <p class="blog-content">
+                {{ item?.content }}
+              </p>
+
+              <div class="blog-footer">
+                <div class="icon">
+                  <img src="/assets/images/news/game-icon.png" />
+                </div>
+                <div class="info">
+                  <div class="game-name">
+                    {{ item?.game }}
+                  </div>
+                  <div class="date">
+                    <span class="date-value">
+                      {{ getDateFormat(item?.date, "subBlog") }}</span
+                    >
+                    <span class="dot">·</span>
+                    <span class="avg-time"
+                      >{{ item?.avg_read_time }} min read</span
+                    >
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="btn-wrapper">
+          <button type="button" class="secondary-btn" routerLink="../">
+            <span>View more</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

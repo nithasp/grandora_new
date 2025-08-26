@@ -1,0 +1,133 @@
+<div class="game-title">
+  <div class="wrapper">
+    <div class="game-picture">
+      <div class="main-slide">
+        <swiper-container init="false" #mainSlide>
+          <swiper-slide *ngFor="let item of mainSlideItems; index as i">
+            <div
+              class="item"
+              (click)="handleChangeMainImage(item)"
+              style="background: url('{{ item.image }}') no-repeat;     
+              height: 100%;
+              background-position: center;
+              background-size: cover;"
+            ></div>
+          </swiper-slide>
+        </swiper-container>
+       
+          <div class="slidePrev-btn">
+            <img
+              src="/assets/images/community/prev-button.png"
+              alt="prev-button"
+            />
+          </div>
+          <div class="slideNext-btn">
+            <img
+              src="/assets/images/community/next-button.png"
+              alt="next-button"
+            />
+          </div>
+       
+      </div>
+      <div class="main-image">
+        <img src="{{ mainImage }}" />
+      </div>
+    </div>
+    <div class="game-info">
+      <div class="game-info-section1">
+        <div class="info1">All Ages (Suitable for everyone)</div>
+        <h1 class="title">Game Title</h1>
+        <div class="info2">
+          <div class="author">By @cratername</div>
+          <div class="age">Age +6</div>
+        </div>
+        <div class="info3">
+          <div class="like">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="20"
+              height="19"
+              viewBox="0 0 20 19"
+              fill="none"
+            >
+              <path
+                d="M17.6881 7.10646H12.2L13.2235 3.64924C13.3908 3.0597 13.3687 2.43793 13.1598 1.85977C12.9508 1.28161 12.5643 0.771908 12.0471 0.392838C11.5697 0.0411017 10.9412 -0.083642 10.3493 0.0560649C9.75741 0.195753 9.27092 0.583736 9.03534 1.10378L8.30001 2.75371C7.53211 4.45428 6.36956 5.97903 4.89423 7.22058C4.5997 6.82166 4.11137 6.58213 3.58823 6.5801H1.59416C1.17241 6.5801 0.76778 6.73432 0.46901 7.00896C0.170241 7.28361 0.00155672 7.65632 0 8.04549V16.7292C0.00311842 17.1174 0.172448 17.4887 0.471046 17.7622C0.769636 18.0357 1.17348 18.1892 1.59416 18.1892H3.58823C3.93625 18.1879 4.27414 18.081 4.54948 17.8848C4.82484 17.6886 5.02256 17.4141 5.11173 17.1036L5.5823 17.4293H5.58246C6.29032 17.9192 7.15039 18.1856 8.03524 18.1892H15.347C16.2899 18.1898 17.1842 17.8041 17.7883 17.1363C19.2176 15.5531 20.0002 13.5578 20 11.4972V9.24494C20 8.67871 19.7566 8.13565 19.3231 7.73485C18.8899 7.3339 18.3019 7.10804 17.6882 7.1066L17.6881 7.10646ZM3.99975 16.7237C3.99975 16.9335 3.81545 17.1035 3.58798 17.1035H1.5939C1.36657 17.1035 1.18213 16.9334 1.18213 16.7237V8.04005C1.18541 7.83146 1.36783 7.66301 1.5939 7.66014H3.58798C3.8164 7.66301 3.99975 7.83478 3.99975 8.04539V16.7237ZM18.8233 11.4971C18.8236 13.3041 18.1366 15.0537 16.8822 16.4412C16.5021 16.861 15.9397 17.1034 15.3468 17.1033H8.03508C7.39878 17.1033 6.7796 16.913 6.27052 16.5607L5.17627 15.7954V8.41982C7.02549 7.01056 8.47838 5.21019 9.41173 3.17184L10.1588 1.50567H10.1589C10.2534 1.29995 10.4474 1.14717 10.6823 1.09323C10.9156 1.03396 11.1655 1.08244 11.353 1.22343C11.6919 1.47374 11.9443 1.8101 12.0792 2.1909C12.2139 2.5717 12.2253 2.98053 12.1118 3.36722L10.8824 7.50815C10.8342 7.67143 10.8711 7.84594 10.9823 7.98044C11.0947 8.11494 11.2689 8.19335 11.4529 8.19205H17.6881C17.9898 8.19349 18.2786 8.30498 18.4913 8.50236C18.7041 8.69959 18.8234 8.96658 18.8234 9.24496L18.8233 11.4971Z"
+                fill="#5460CB"
+              />
+            </svg>
+            <span>60 likes</span>
+          </div>
+          <div class="player">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="28"
+              height="28"
+              viewBox="0 0 28 28"
+              fill="none"
+            >
+              <g filter="url(#filter0_d_1_405)">
+                <circle
+                  cx="13"
+                  cy="12"
+                  r="9.5"
+                  stroke="#5460CB"
+                  shape-rendering="crispEdges"
+                />
+              </g>
+              <path
+                d="M16.8054 11.5671C17.1388 11.7596 17.1388 12.2407 16.8054 12.4331L11.4721 15.5123C11.1388 15.7048 10.7221 15.4642 10.7221 15.0793L10.7221 8.92094C10.7221 8.53603 11.1388 8.29547 11.4721 8.48792L16.8054 11.5671Z"
+                stroke="#5460CB"
+              />
+              <defs>
+                <filter
+                  id="filter0_d_1_405"
+                  x="0"
+                  y="0"
+                  width="28"
+                  height="28"
+                  filterUnits="userSpaceOnUse"
+                  color-interpolation-filters="sRGB"
+                >
+                  <feFlood flood-opacity="0" result="BackgroundImageFix" />
+                  <feColorMatrix
+                    in="SourceAlpha"
+                    type="matrix"
+                    values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
+                    result="hardAlpha"
+                  />
+                  <feOffset dx="1" dy="2" />
+                  <feGaussianBlur stdDeviation="2" />
+                  <feComposite in2="hardAlpha" operator="out" />
+                  <feColorMatrix
+                    type="matrix"
+                    values="0 0 0 0 0.835294 0 0 0 0 0.878431 0 0 0 0 0.92549 0 0 0 0.7 0"
+                  />
+                  <feBlend
+                    mode="normal"
+                    in2="BackgroundImageFix"
+                    result="effect1_dropShadow_1_405"
+                  />
+                  <feBlend
+                    mode="normal"
+                    in="SourceGraphic"
+                    in2="effect1_dropShadow_1_405"
+                    result="shape"
+                  />
+                </filter>
+              </defs>
+            </svg>
+            <span>120 players</span>
+          </div>
+        </div>
+      </div>
+      <div class="game-info-section2">
+        <div class="btn-wrapper">
+          <button class="primary-btn" type="button">
+            <span>Save</span>
+          </button>
+          <img src="/assets/images/games/heart.png" />
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,199 @@
+footer {
+  background: #fff;
+  box-shadow: -1px -2px 4px 0px rgba(213, 224, 236, 0.7);
+  padding: 30px 40px 15px 40px;
+  .inner {
+    max-width: 72.875vw;
+    margin: 0 auto;
+  }
+
+  .footer-item1 {
+    display: flex;
+    gap: 5vw;
+    border-bottom: 1px solid #d2dded;
+    padding-bottom: 35px;
+    .footer-item1-1 {
+      display: grid;
+      grid-template-columns: 226px 1fr;
+      gap: 5.139vw;
+    }
+    .socials {
+      h3 {
+        margin: 22px 0 0 4px;
+      }
+      .wrapper {
+        display: flex;
+        gap: 8px;
+        svg {
+          cursor: pointer;
+        }
+      }
+    }
+    .address {
+      display: flex;
+      gap: 8px;
+      margin-top: 25px;
+      p {
+        font-size: 12px;
+      }
+    }
+    .footer-item1-2 {
+      display: flex;
+      gap: 2.986vw;
+      justify-content: space-between;
+      a {
+        display: block;
+        margin-bottom: 10px;
+      }
+      a:last-of-type {
+        margin-bottom: 0;
+      }
+      h3 {
+        display: inline-block;
+        position: relative;
+        font-family: "Poppins-Bold";
+        margin-bottom: 24px;
+        &::after {
+          content: "";
+          position: absolute;
+          bottom: -12px;
+          left: 0;
+          background: #4e4e4e;
+          height: 1px;
+          width: 100%;
+        }
+      }
+      .contact {
+        .person {
+          margin-bottom: 16px;
+          .role {
+            color: #4e4e4e;
+            font-size: 14px;
+            line-height: 19.2px;
+            text-transform: uppercase;
+            font-family: "Poppins-SemiBold";
+            margin-bottom: 6px;
+          }
+          .email {
+            display: flex;
+            gap: 11px;
+            align-items: center;
+            a {
+              text-decoration: underline;
+            }
+            .icon {
+              display: flex;
+            }
+          }
+        }
+        .person:last-of-type {
+          margin-bottom: 0;
+        }
+      }
+    }
+  }
+  .footer-item2 {
+    display: flex;
+    justify-content: space-between;
+    padding-top: 28px;
+    .info {
+      .terms {
+        display: flex;
+        gap: 16px;
+        margin-bottom: 9px;
+        .privacy {
+          display: flex;
+          gap: 8px;
+        }
+      }
+    }
+    .wrapper {
+      display: flex;
+      gap: 24px;
+      align-items: center;
+      .store-icons {
+        display: flex;
+        gap: 24px;
+        .google-play,
+        .app-store {
+          position: relative;
+          top: 3px;
+        }
+      }
+      .language {
+        img {
+          height: auto;
+        }
+      }
+    }
+  }
+
+  @media (max-width: 1500px) {
+    .footer-item1 {
+      .footer-item1-2 {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    .footer-item2 {
+      display: block;
+      .wrapper {
+        margin-top: 31.62px;
+        .language {
+          display: flex;
+          justify-content: flex-end;
+          width: 100%;
+        }
+      }
+    }
+  }
+
+  @media (max-width: 1200px) {
+    .inner {
+      max-width: none;
+    }
+  }
+
+  @media (max-width: 992px) {
+    .footer-item1 {
+      display: block;
+      .footer-item1-2 {
+        margin-top: 24px;
+      }
+    }
+  }
+
+  @media (max-width: 576px) {
+    padding: 36px 25px;
+    .footer-item1 {
+      .footer-item1-2 {
+        grid-template-columns: 1fr;
+      }
+    }
+    .footer-item2 {
+      .wrapper {
+        display: block;
+        .language {
+          justify-content: flex-start;
+          margin-top: 24px;
+        }
+      }
+    }
+  }
+
+  @media (max-width: 400px) {
+    .footer-item2 {
+      display: block;
+      .wrapper {
+        margin-top: 31.62px;
+        .store-icons {
+          display: block;
+          .app-store {
+            margin-top: 20px;
+          }
+        }
+      }
+    }
+  }
+}

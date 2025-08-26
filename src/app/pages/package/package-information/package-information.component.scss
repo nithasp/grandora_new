@@ -1,0 +1,238 @@
+.package-information {
+  .inner {
+    max-width: 1060px;
+    margin: 0 auto 104px auto;
+    padding: 0 22px;
+  }
+  .title {
+    font-family: "Poppins-SemiBold";
+    color: #5460cb;
+  }
+  h1.title {
+    font-size: 32px;
+    letter-spacing: -0.704px;
+    margin-bottom: 31px;
+  }
+  .package-container {
+    display: grid;
+    grid-template-columns: 340px 1fr;
+    gap: 20px;
+    .package-information-section1 {
+      .balance {
+        padding: 20px;
+        background: white;
+        filter: drop-shadow(1px 2px 4px rgba(213, 224, 236, 0.7));
+        border-radius: 16px;
+
+        .title {
+          display: flex;
+          align-items: center;
+          gap: 13px;
+          margin-bottom: 26px;
+          span {
+            color: #5460cb;
+            font-size: 20px;
+            letter-spacing: -0.34px;
+          }
+        }
+        .point {
+          .item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 9px;
+            .name {
+              font-size: 14px;
+            }
+            .number {
+              font-family: "Poppins-SemiBold";
+              font-size: 16px;
+            }
+          }
+          .item:last-of-type {
+            margin-bottom: 0;
+          }
+        }
+      }
+    }
+
+    .package-information-section2 {
+      padding: 27px 0;
+      background: white;
+      filter: drop-shadow(1px 2px 4px rgba(213, 224, 236, 0.7));
+      border-radius: 16px;
+      h3.title {
+        padding: 0 39px;
+      }
+      .content {
+        height: 689px;
+        border-radius: 16px;
+        border: 1px solid #d5e0ec;
+        padding: 14px;
+        margin: 21px 27px 0 27px;
+        overflow: auto;
+        .title {
+          font-family: "Poppins-Light";
+          font-size: 18px;
+        }
+        .subscription {
+          .subscription-wrapper {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 16px;
+            margin-top: 11px;
+          }
+          .info {
+            margin-left: -22px;
+          }
+          .item {
+            position: relative;
+            background: #fff;
+            border: 1px solid #e6e6e6;
+            filter: drop-shadow(10px 10px 50px rgba(39, 92, 141, 0.1));
+            border-radius: 16px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            .recommended {
+              font-family: "Poppins-SemiBold";
+              position: absolute;
+              top: 0;
+              left: 0;
+              background: url("/assets/images/package/recommended-bg.png")
+                no-repeat;
+              background-size: contain;
+              color: #212121;
+              font-size: 11px;
+              text-transform: uppercase;
+              width: 131px;
+              height: 20px;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+            }
+            .wrapper {
+              padding: 20px 22px;
+            }
+            .subscription-name {
+              font-family: "Poppins-SemiBold";
+              color: #5460cb;
+              font-size: 24px;
+              line-height: 110%;
+              letter-spacing: -0.72px;
+            }
+            .permanently {
+              font-family: "Poppins-SemiBold";
+              color: #5460cb;
+              font-size: 21px;
+              letter-spacing: -0.21px;
+              text-align: center;
+              flex-grow: 1;
+            }
+            .renew-date {
+              color: #83bd96;
+              font-size: 12px;
+              text-align: center;
+            }
+            .btn-wrapper {
+              padding: 7px;
+              button {
+                width: 100%;
+                height: 41px;
+                border: none;
+                border-radius: 4px 4px 12px 12px;
+                box-shadow: 10px 10px 50px 3px rgba(39, 92, 141, 0.1);
+                color: #fff;
+                font-size: 18px;
+                letter-spacing: -0.18px;
+              }
+              .sub-btn {
+                background: #5460cb;
+              }
+
+              .main-btn {
+                background: linear-gradient(93deg, #5561cc 0%, #b587e1 100%);
+              }
+            }
+          }
+        }
+        .package {
+          .title {
+            margin: 16px 0;
+          }
+          .package-wrapper {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            .item {
+              cursor: pointer;
+              img {
+                max-width: 200px;
+                max-height: 144px;
+              }
+            }
+          }
+        }
+      }
+      .content::-webkit-scrollbar {
+        display: none;
+      }
+    }
+  }
+
+  @media (max-width: 1200px) {
+    .package-information-section2 {
+      .subscription-wrapper {
+        grid-template-columns: 1fr 1fr !important;
+      }
+    }
+  }
+
+  @media (max-width: 992px) {
+    .package-container {
+      grid-template-columns: auto 1fr;
+    }
+    .package-information-section2 {
+      .package-wrapper {
+        grid-template-columns: 1fr 1fr !important;
+      }
+    }
+  }
+
+  @media (max-width: 768px) {
+    .package-container {
+      grid-template-columns: 1fr;
+    }
+    .package-information-section2 {
+      h3.title {
+        padding: 0 20px !important;
+      }
+      .content {
+        height: auto !important;
+        overflow: unset !important;
+        border: none !important;
+        margin: 50px 0 0 0 !important;
+        padding: 0 30px !important;
+      }
+    }
+  }
+
+  @media (max-width: 576px) {
+    .package-information-section2 {
+      .subscription-wrapper {
+        grid-template-columns: 1fr !important;
+      }
+      .package-wrapper {
+        grid-template-columns: 1fr !important;
+        gap: 12px;
+        img {
+          width: 100%;
+        }
+      }
+    }
+  }
+
+  @media (max-width: 450px) {
+    .inner {
+      padding: 0 25px;
+    }
+  }
+}

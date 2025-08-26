@@ -1,0 +1,110 @@
+#community-component {
+  position: relative;
+}
+
+.community {
+  position: relative;
+  min-height: 648px;
+  border-bottom: 1px solid #ac9377;
+  border-top: 1px solid #ac9377;
+  .inner {
+    max-width: 1146px;
+    width: 100%;
+
+    margin: 0 auto;
+    padding: 0 35px;
+  }
+  .content {
+    position: absolute;
+    top: 49%;
+    left: 13vw;
+    transform: translateY(-50%);
+
+    h1 {
+      color: #fff;
+      font-size: 48px;
+    }
+  }
+  button {
+    position: relative;
+    width: 181px;
+    height: 30px;
+    margin-top: 24px;
+    border-radius: 70px;
+    border: 1px solid #5460cb;
+    background: #fff;
+    box-shadow: 0px 2px 2px 0px rgba(95, 95, 95, 0.25);
+    color: #5460cb;
+    span {
+      position: relative;
+      right: 10px;
+    }
+    &::after {
+      content: "";
+      background: url("/assets/images/home/Discord 1.png") no-repeat;
+      background-size: contain;
+      width: 70px;
+      height: 50px;
+      display: block;
+      position: absolute;
+      top: -12px;
+      right: -17px;
+    }
+  }
+}
+
+.discord {
+  background: url("/assets/images/community/discord-desktop-bg.jpg") no-repeat;
+  background-size: cover;
+  background-position: 83%;
+}
+.reddit {
+  background: url("/assets/images/community/reddit-desktop-bg.jpg") no-repeat;
+  background-size: cover;
+  background-position: 83%;
+  h1 {
+    color: #d27055 !important;
+  }
+  button {
+    &::after {
+      content: "";
+      background: url("/assets/images/community/reddit-icon.png") no-repeat;
+      background-size: contain;
+      width: 52px;
+      height: 52px;
+      top: -11px;
+      right: -2px;
+    }
+  }
+}
+
+.pagination-wrapper {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  padding: 0 25px;
+}
+
+@media (max-width: 450px) {
+  .community {
+    background-size: cover !important;
+    background-position: right !important;
+    min-height: 636px;
+    .content {
+      top: 78%;
+      left: 5%;
+      h1 {
+        font-size: 34px;
+        letter-spacing: 0.25px;
+      }
+    }
+  }
+  .discord {
+    background: url("/assets/images/community/discord-mobile-bg.jpg") no-repeat;
+  }
+}

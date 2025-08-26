@@ -1,0 +1,55 @@
+<div class="interest" *ngIf="isInterestDisplay">
+  <div class="close-btn" (click)="isInterestDisplay = false">
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="29"
+      height="29"
+      viewBox="0 0 29 29"
+      fill="none"
+    >
+      <rect
+        x="6.48145"
+        y="7.66046"
+        width="2"
+        height="20"
+        rx="1"
+        transform="rotate(-45 6.48145 7.66046)"
+        fill="white"
+      />
+      <rect
+        x="20.625"
+        y="6.48309"
+        width="2"
+        height="20"
+        rx="1"
+        transform="rotate(45 20.625 6.48309)"
+        fill="white"
+      />
+    </svg>
+  </div>
+  <div class="wrapper">
+    <h1>Pick your interests</h1>
+    <h3>This will customize your topic your interested</h3>
+    <div class="interest-item">
+      <div class="item" *ngFor="let item of interestItemMockup">
+        <img src="/assets/images/mockup/interest/Image Large.png" />
+        <div class="detail">
+          <label class="grandora-checkbox-container">
+            <input type="checkbox" [checked]="item.isChecked" />
+            <span class="checkmark"></span>
+          </label>
+          <span>{{ item.title }}</span>
+        </div>
+      </div>
+    </div>
+    <div class="btn-wrapper">
+      <button
+        class="secondary-btn"
+        type="button"
+        (click)="isInterestDisplay = false"
+      >
+        <span>Skip</span>
+      </button>
+    </div>
+  </div>
+</div>

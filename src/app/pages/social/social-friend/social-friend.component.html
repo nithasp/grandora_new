@@ -1,0 +1,131 @@
+<div class="social-friend">
+  <div class="social-friend-wrapper">
+    <div class="social-friend-section1">
+      <div class="wrapper">
+        <div class="title">
+          <img src="/assets/images/social/arrow.png" routerLink="../"/>
+          <span>My Friends</span>
+        </div>
+        <div class="types">
+          <div class="type friends active">Friends (240)</div>
+          <div class="type follower">Follower (240)</div>
+          <div class="type following">Following (640)</div>
+        </div>
+      </div>
+    </div>
+    <div class="social-friend-section2">
+      <div class="wrapper">
+        <div class="info">
+          <div class="friend-lists">
+            <div class="search">
+              <input type="text" placeholder="Search friend" />
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="25"
+                height="25"
+                viewBox="0 0 25 25"
+                fill="none"
+              >
+                <circle
+                  cx="9"
+                  cy="9"
+                  r="5.61396"
+                  transform="rotate(-45 9 9)"
+                  stroke="#5460CB"
+                  stroke-width="1.5"
+                />
+                <rect
+                  x="13.066"
+                  y="14.6572"
+                  width="0.75"
+                  height="8.25"
+                  rx="0.375"
+                  transform="rotate(-45 13.066 14.6572)"
+                  fill="#5460CB"
+                  stroke="#5460CB"
+                  stroke-width="0.75"
+                />
+              </svg>
+            </div>
+            <div class="friend-lists-wrapper">
+              <div
+                class="item"
+                *ngFor="let item of friend_lists; index as i"
+                (click)="handleFriend(i + 1)"
+              >
+                <div class="friend-icon">
+                  <img
+                    src="assets/images/mockup/social/friend/Group 28491.png"
+                  />
+                </div>
+                <div class="friend-info">
+                  <div class="name">{{ item.name }}</div>
+                  <div class="username">{{ item.username }}</div>
+
+                  <div class="footer">
+                    <span routerLink="./{{item.id}}">View Profile</span>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="24"
+                      height="24"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                    >
+                      <circle cx="12" cy="12" r="12" fill="#5460CB" />
+                      <path
+                        d="M19.7711 6.91123L12.8369 2.8997C12.396 2.6389 11.8349 2.6389 11.3939 2.8997L4.43974 6.91123C3.99884 7.17202 3.71826 7.65347 3.71826 8.15491V16.178C3.71826 16.6994 3.99883 17.1809 4.43974 17.4215L11.3739 21.433C11.5944 21.5534 11.8348 21.6337 12.0954 21.6337C12.356 21.6337 12.5964 21.5735 12.8169 21.433L19.751 17.4215C20.1919 17.1607 20.4725 16.6794 20.4725 16.178V8.15491C20.4924 7.65347 20.212 7.17205 19.7711 6.91123ZM16.0635 14.9744C16.1236 15.0146 16.1436 15.0747 16.1436 15.1349C16.1436 15.195 16.0835 15.2552 16.0234 15.2552C15.7628 15.3154 15.5223 15.3555 15.3019 15.3555C14.7208 15.3555 14.3199 15.1549 14.0794 14.9946C13.438 15.3355 12.6766 15.5362 11.8748 15.5362C9.53003 15.536 7.6061 13.8512 7.6061 11.7854C7.6061 9.69945 9.50995 8.03459 11.8748 8.03459C14.2396 8.03459 16.1435 9.7194 16.1435 11.7854C16.1435 12.6278 15.8229 13.41 15.3018 14.0318C15.5623 14.6535 16.0633 14.9745 16.0633 14.9745L16.0635 14.9744Z"
+                        fill="white"
+                      />
+                    </svg>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="chat">
+            <div class="start-chatting" *ngIf="!isChatStarted">
+              <div class="wrapper">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="64"
+                  height="64"
+                  viewBox="0 0 64 64"
+                  fill="none"
+                >
+                  <circle cx="32" cy="32" r="32" fill="white" />
+                  <path
+                    d="M52.7225 18.4299L34.2314 7.73252C33.0557 7.03708 31.5593 7.03708 30.3835 7.73252L11.839 18.4299C10.6632 19.1254 9.91504 20.4093 9.91504 21.7464V43.1413C9.91504 44.5318 10.6632 45.8156 11.839 46.4574L30.3301 57.1548C30.918 57.4757 31.5592 57.6898 32.254 57.6898C32.9489 57.6898 33.5901 57.5294 34.178 57.1548L52.6691 46.4574C53.8448 45.7619 54.593 44.4784 54.593 43.1413V21.7464C54.646 20.4093 53.8983 19.1255 52.7225 18.4299ZM42.8357 39.9318C42.996 40.0388 43.0493 40.1993 43.0493 40.3597C43.0493 40.5201 42.889 40.6806 42.7287 40.6806C42.0338 40.841 41.3926 40.9481 40.8047 40.9481C39.2551 40.9481 38.186 40.4131 37.5447 39.9855C35.8344 40.8947 33.8039 41.4297 31.6659 41.4297C25.4131 41.4294 20.2826 36.9365 20.2826 31.4277C20.2826 25.8652 25.3595 21.4256 31.6659 21.4256C37.9719 21.4256 43.0491 25.9184 43.0491 31.4277C43.0491 33.6741 42.194 35.76 40.8045 37.4181C41.499 39.0761 42.8351 39.932 42.8351 39.932L42.8357 39.9318Z"
+                    fill="#FFB900"
+                  />
+                </svg>
+                <h1>Start chating</h1>
+                <p>Select friend from the list to start coversation</p>
+              </div>
+            </div>
+            <div class="messages" *ngIf="isChatStarted">
+              <div class="header">Chat - {{chatName}}</div>
+              <div class="content">
+                <div class="message" *ngFor="let item of messages">
+                  <div class="profile-icon">
+                    <img src="{{ item.image }}" />
+                  </div>
+                  <div class="text">
+                    <div class="textarea">
+                      {{ item.text }}
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="footer">
+                <input type="text" placeholder="Message" />
+                <button class="primary-btn" type="button">
+                  <span>Send</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

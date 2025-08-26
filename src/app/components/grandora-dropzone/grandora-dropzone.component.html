@@ -1,0 +1,52 @@
+<div class="wrapper">
+  <div
+    class="dropzone"
+    [dropzone]="config"
+    (error)="onUploadError($event)"
+    (success)="onUploadSuccess($event)"
+    (error)="onUploadError($event)"
+    (success)="onUploadSuccess($event)"
+    (sending)="handleSending()"
+    totalUploadProgress=""
+    (addedFile)="handleDrop($event)"
+    (removedFile)="handleRemove($event)"
+    (maxFilesExceeded)="maxFilesExceeded($event)"
+    *ngIf="type === 'support'"
+  >
+    <div class="content">
+      <div class="image">
+        <img src="/assets/images/dropzone/cloud.png" alt="" />
+      </div>
+      <div class="text">
+        <span>Upload file</span> or drag it here JPG, JPEG, PNG, BMP, PDF, NFO,
+        TXT, XML, MP4, MPEG, LOG, DMP, HEIC, max {{ this.maxFileNumber }} files,
+        9.5 MB upload limit in total
+      </div>
+    </div>
+  </div>
+
+  <div
+    class="dropzone feed"
+    [dropzone]="config"
+    (error)="onUploadError($event)"
+    (success)="onUploadSuccess($event)"
+    (error)="onUploadError($event)"
+    (success)="onUploadSuccess($event)"
+    (sending)="handleSending()"
+    totalUploadProgress=""
+    (addedFile)="handleDrop($event)"
+    (removedFile)="handleRemove($event)"
+    (maxFilesExceeded)="maxFilesExceeded($event)"
+    *ngIf="type === 'feed'"
+  >
+    <div class="content">
+      <div class="image">
+        <img src="/assets/images/dropzone/cloud.png" alt="" />
+      </div>
+      <div class="text">
+        <p>Add Photos and Videos</p>
+        <p>or drag and drop</p>
+      </div>
+    </div>
+  </div>
+</div>

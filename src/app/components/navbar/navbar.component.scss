@@ -1,0 +1,350 @@
+nav {
+  position: fixed;
+  width: 100%;
+  top: 0;
+  left: 0;
+  background: #5460cb;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.1);
+  padding: 12px 40px;
+  z-index: 10;
+  a {
+    color: white;
+  }
+  svg {
+    cursor: pointer;
+  }
+  .logo {
+    cursor: pointer;
+  }
+  .inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .navbar-item1 {
+    .desktop {
+      display: flex;
+      align-items: center;
+      gap: 55px;
+      .grandora-icon {
+        width: 241px;
+        height: auto;
+        cursor: pointer;
+      }
+      .pages {
+        a {
+          position: relative;
+          font-size: 16px;
+          margin-right: 46px;
+          &::after {
+            display: none;
+            content: "";
+            position: absolute;
+            bottom: -18.5px;
+            left: 50%;
+            width: 164%;
+            height: 4px;
+            background: #ffb900;
+            transform: translateX(-50%);
+          }
+        }
+        a.active {
+          &::after {
+            display: block;
+          }
+        }
+      }
+    }
+    .mobile {
+      display: none;
+      align-items: center;
+      gap: 17px;
+      .hamburger-menu {
+        cursor: pointer;
+        z-index: 9001;
+        .line:nth-child(1) {
+          animation: line1AnimationReverse 0.3s forwards;
+        }
+        .line:nth-child(2) {
+          animation: line2AnimationReverse 0.3s forwards;
+        }
+        .line:nth-child(3) {
+          animation: line3AnimationReverse 0.3s forwards;
+        }
+        .line {
+          width: 18px;
+          height: 2px;
+          background: #ffb900;
+          margin-top: 4px;
+          border-radius: 4px;
+        }
+        .line:first-child {
+          margin-top: 0;
+        }
+      }
+      .hamburger-menu.active {
+        .line:nth-child(1) {
+          animation: line1Animation 0.3s forwards;
+        }
+        .line:nth-child(2) {
+          animation: line2Animation 0.3s forwards;
+        }
+        .line:nth-child(3) {
+          animation: line3Animation 0.3s forwards;
+        }
+      }
+    }
+  }
+
+  .navbar-item2 {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    .package {
+      position: relative;
+      .icon-wrapper {
+        display: flex;
+        align-items: center;
+        position: relative;
+        cursor: pointer;
+        svg {
+          transition: 0.3s;
+        }
+        svg:nth-of-type(2) {
+          opacity: 0;
+          visibility: hidden;
+          width: 49px;
+          height: 49px;
+          position: absolute;
+          top: -2px;
+          left: -5px;
+        }
+        &:hover {
+          svg:nth-of-type(1) {
+            opacity: 0;
+            visibility: hidden;
+          }
+          svg:nth-of-type(2) {
+            opacity: 1;
+            visibility: visible;
+          }
+        }
+      }
+    }
+    .package.active {
+      .icon-wrapper {
+        svg:nth-of-type(1) {
+          opacity: 0;
+          visibility: hidden;
+        }
+        svg:nth-of-type(2) {
+          opacity: 1;
+          visibility: visible;
+        }
+      }
+    }
+    .profile-menu {
+      position: relative;
+    }
+    .profile-icon {
+      cursor: pointer;
+      display: flex;
+    }
+    .menu-list {
+      position: absolute;
+      right: -15px;
+      background: white;
+      font-size: 12px;
+      border-radius: 16px;
+      width: 160px;
+      overflow: hidden;
+
+      .item {
+        display: grid;
+        grid-template-columns: 16px 1fr;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        padding: 13px 15px;
+        border-bottom: 2px solid #d5e0ec;
+        transition: 0.2s;
+        cursor: pointer;
+        .item-icon {
+          position: relative;
+          top: 2px;
+        }
+        .item-name {
+          position: relative;
+          top: 1px;
+        }
+        &:hover {
+          background: #5460cb;
+          .item-icon:not([class*="setting"]) {
+            path {
+              fill: white;
+            }
+          }
+          .item-icon.setting {
+            path {
+              stroke: white;
+            }
+          }
+          .item-name {
+            color: white;
+          }
+        }
+      }
+      .item:last-of-type {
+        border-bottom: none;
+      }
+    }
+  }
+
+  .responsive-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    transition: 0.3s;
+    display: flex;
+    flex-direction: column;
+    opacity: 0;
+    visibility: hidden;
+    //padding: 0 5px;
+    background: white;
+    filter: drop-shadow(1px 2px 4px rgba(213, 224, 236, 0.7));
+    border-radius: 0 0px 20px 0px;
+    overflow: hidden;
+    a {
+      position: relative;
+      color: #5460cb;
+      font-size: 16px;
+      line-height: 24px;
+      letter-spacing: -0.176px;
+      width: 100%;
+      padding: 16px 24px 16px 20px;
+      //border-bottom: 1px solid #d5e0ec;
+      transition: 0.2s;
+      &:hover {
+        background: #5460cb;
+        color: white;
+      }
+      &::after {
+        content: "";
+        position: absolute;
+        left: 50%;
+        bottom: 0;
+        background: #d5e0ec;
+        height: 1px;
+        width: 100%;
+        transform: translateX(-50%);
+      }
+    }
+    a:last-of-type {
+      border-bottom: none;
+    }
+  }
+
+  .responsive-menu.active {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  @media (max-width: 992px) {
+    .navbar-item1 {
+      .desktop {
+        display: none;
+      }
+
+      .mobile {
+        display: flex;
+      }
+    }
+  }
+  @media (max-width: 768px) {
+    padding: 12px 25px;
+  }
+}
+
+app-add-coin {
+  position: fixed !important;
+  top: 80px;
+  right: 105px;
+
+  transition: 0.2s;
+  opacity: 0;
+  visibility: hidden;
+  position: relative;
+  z-index: 12;
+
+  @media (max-width: 576px) {
+    top: 0 !important;
+    right: 0 !important;
+  }
+}
+app-add-coin.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+// Hamburger Menu Animation
+@keyframes line1Animation {
+  0% {
+    transform: translate(0, 0);
+  }
+  50% {
+    transform: translate(0px, 7px);
+  }
+  100% {
+    transform: rotate(45deg) translate(5px, 6.5px);
+  }
+}
+@keyframes line2Animation {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+@keyframes line3Animation {
+  0% {
+    transform: translate(0, 0);
+  }
+  50% {
+    transform: translate(0px, -4px);
+  }
+  100% {
+    transform: rotate(-45deg) translate(2px, -4px);
+  }
+}
+
+@keyframes line1AnimationReverse {
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(0.9rem);
+  }
+  0% {
+    transform: translateY(0.9rem) rotate(45deg);
+  }
+}
+@keyframes line2AnimationReverse {
+  100% {
+    opacity: 1;
+  }
+  0% {
+    opacity: 0;
+  }
+}
+@keyframes line3AnimationReverse {
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-0.7rem);
+  }
+  0% {
+    transform: translateY(-0.7rem) rotate(-45deg);
+  }
+}

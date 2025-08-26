@@ -1,0 +1,295 @@
+.purchase-method {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.8);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 22px;
+  z-index: 10;
+  .inner {
+    max-width: 953px;
+    width: 100%;
+    margin: 0 auto;
+    border-radius: 16px;
+    overflow: hidden;
+    transform: scale(0);
+    transition: 0.3s;
+  }
+  .inner.display {
+    transform: scale(1);
+  }
+  .method {
+    background: white;
+  }
+  .method.step1 {
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      background: #5460cb;
+      padding: 16px 24px;
+      span {
+        color: #fff;
+        font-size: 16px;
+        letter-spacing: -0.176px;
+      }
+      .close-btn {
+        display: flex;
+        cursor: pointer;
+      }
+    }
+    .content {
+      padding: 24px 24px 0px 24px;
+      overflow: auto;
+      .purchase-summary {
+        h4.title {
+          font-family: "Poppins-Bold";
+          color: #000;
+          font-size: 18px;
+          letter-spacing: -0.108px;
+        }
+        ul {
+          margin: 11px 0;
+          li {
+            color: #000;
+            font-size: 14px;
+            line-height: 20px;
+            letter-spacing: -0.084px;
+          }
+        }
+        .time {
+          margin-top: 11px;
+          color: #6f6f6f;
+          font-size: 14px;
+          letter-spacing: -0.084px;
+        }
+        .vat {
+          margin-top: 11px;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          font-family: "Poppins-Bold";
+          color: #000;
+          font-size: 18px;
+          letter-spacing: -0.108px;
+        }
+      }
+      .method1 {
+        border-top: 1px solid #d2dded;
+        border-bottom: 1px solid #d2dded;
+        padding: 11px 0 31px 0;
+        margin-top: 11px;
+        h4.title {
+          margin-bottom: 11px;
+
+          font-size: 14px;
+
+          letter-spacing: -0.084px;
+        }
+        .wrapper {
+          display: grid;
+          grid-template-columns: 1fr 1fr 1fr 1fr;
+          gap: 11px;
+          .method {
+            .icon {
+              cursor: pointer;
+              border: 1px solid #d5e0ec;
+              border-radius: 16px;
+              padding: 8px 12px;
+              width: 100%;
+              height: 36px;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              margin-top: 4px;
+              img {
+                width: 40px;
+                height: 30px;
+              }
+              .paypal-icon {
+                width: 42px;
+                height: 24px;
+              }
+              .visa-icon {
+                width: 45px;
+                height: 34px;
+              }
+              .mastercard-icon {
+                width: 40px;
+                height: 29px;
+              }
+            }
+          }
+        }
+      }
+      .method2 {
+        margin-top: 11px;
+        h4.title {
+          font-size: 14px;
+          letter-spacing: -0.084px;
+        }
+        .error-msg {
+          margin-top: 11px;
+          display: flex;
+          align-items: center;
+          gap: 11px;
+          span {
+            position: relative;
+            top: 1px;
+            color: #fa5353;
+
+            font-size: 14px;
+
+            letter-spacing: -0.084px;
+          }
+        }
+        form {
+          label {
+            color: black;
+          }
+          input {
+            box-shadow: none;
+          }
+          .info1 {
+            display: grid;
+            grid-template-columns: 0.95fr auto;
+            .group {
+              .error-msg {
+                margin-bottom: 11px;
+              }
+              .wrapper {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                column-gap: 11px;
+              }
+            }
+
+            .card-placeholder-icon {
+              position: relative;
+              left: 40px;
+            }
+          }
+          .info2 {
+            .group {
+              display: grid;
+              grid-template-columns: repeat(4, 1fr);
+              gap: 11px;
+              margin-top: 11px;
+            }
+          }
+        }
+      }
+    }
+    .footer {
+      padding: 28px 24px 12px 0;
+      .btn-wrapper {
+        display: flex;
+        justify-content: flex-end;
+
+        button {
+          max-width: 224px;
+          width: 100%;
+          font-family: "Poppins-Regular";
+
+          margin: 0;
+          border: none;
+          background: (
+            linear-gradient(118deg, #5460cb 29.93%, #cc90e6 107.01%)
+          );
+          span {
+            -webkit-text-fill-color: white;
+          }
+        }
+      }
+    }
+  }
+
+  .method.step2 {
+    cursor: pointer;
+    img {
+      margin: 0 auto;
+    }
+  }
+
+  @media (max-width: 992px) {
+    .method2 {
+      .info1 {
+        display: flex !important;
+        flex-direction: column-reverse;
+        .card-placeholder-icon {
+          left: 0 !important;
+        }
+      }
+    }
+  }
+
+  @media (max-width: 768px) {
+    .vat {
+      flex-direction: column;
+      align-items: start !important;
+    }
+
+    .method.step1 {
+      .content {
+        height: calc(70vh - 60px);
+        .method1 {
+          .wrapper {
+            grid-template-columns: repeat(2, 1fr) !important;
+          }
+        }
+        .method2 {
+          .info1 {
+            .group {
+              .wrapper {
+                grid-template-columns: 1fr !important;
+              }
+            }
+          }
+
+          .info2 {
+            margin-top: 20px;
+            .group {
+              grid-template-columns: 1fr !important;
+            }
+          }
+        }
+      }
+      .footer {
+        padding: 28px 0px 12px 0;
+        .btn-wrapper {
+          justify-content: center !important;
+        }
+      }
+    }
+  }
+
+  @media (max-width: 450px) {
+    padding: 0 25px;
+    .method1 {
+      .wrapper {
+        grid-template-columns: 1fr !important;
+      }
+    }
+  }
+
+  @media (max-width: 400px) {
+    .method.step1 {
+      .content {
+        ul {
+          padding-left: 20px;
+        }
+        .method1 {
+          .wrapper {
+            grid-template-columns: 1fr !important;
+          }
+        }
+      }
+    }
+  }
+}

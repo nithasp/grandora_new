@@ -1,0 +1,29 @@
+.sponsored {
+  max-width: 160px;
+  background: #fff;
+  stroke-width: 1px;
+  stroke: #eef2f7;
+  filter: drop-shadow(1px 2px 4px rgba(213, 224, 236, 0.7));
+  padding: 10px;
+  h1.title {
+    color: #5460cb;
+    font-size: 16px;
+    margin-bottom: 16px;
+  }
+  .item {
+    border-bottom: 1px solid #d5e0ec;
+    padding: 16px 0 8px 0;
+    .description {
+      margin-top: 6px;
+      color: #263238;
+      font-size: 12px;
+      line-height: 16px;
+    }
+  }
+  .item:first-of-type {
+    padding: 0 0 8px 0;
+  }
+  .item:last-of-type {
+    border-bottom: 0;
+  }
+}

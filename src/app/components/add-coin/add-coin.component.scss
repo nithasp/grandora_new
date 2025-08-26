@@ -1,0 +1,119 @@
+.add-coin {
+  width: 440px;
+  .add-coin-header {
+    background: #5460cb;
+    filter: drop-shadow(1px 2px 4px rgba(213, 224, 236, 0.7));
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 27px 16px 27px;
+    border-radius: 15px 0 0 0;
+    h1 {
+      color: #fff;
+      font-size: 20px;
+      line-height: 28px;
+      letter-spacing: -0.34px;
+    }
+    .close-btn {
+      display: flex;
+      cursor: pointer;
+    }
+  }
+  .add-coin-content {
+    background: white;
+    padding: 25px;
+
+    h3 {
+      color: #2b2b2b;
+
+      font-size: 16px;
+
+      line-height: 20px;
+      letter-spacing: -0.096px;
+      margin-bottom: 10px;
+    }
+    .package {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      .item {
+        cursor: pointer;
+        img {
+          width: 100%;
+        }
+      }
+    }
+    .category {
+      margin-top: 20px;
+    }
+  }
+  .add-coin-footer {
+    display: flex;
+    justify-content: space-between;
+    background: #5460cb;
+    filter: drop-shadow(1px 2px 4px rgba(213, 224, 236, 0.7));
+    padding: 16px 25px;
+    border-radius: 0 0 0 15px;
+    .point {
+      display: flex;
+      gap: 24px;
+      .item {
+        display: flex;
+        align-items: center;
+        span {
+          color: #fff;
+          font-size: 16px;
+          letter-spacing: -0.176px;
+        }
+      }
+      .item1 {
+        gap: 12px;
+        img {
+          width: 32px;
+          height: 32px;
+        }
+      }
+      .item2 {
+        img {
+          width: 36px;
+          height: 36px;
+        }
+      }
+    }
+    .btn-wrapper {
+      span {
+        box-shadow: none;
+      }
+    }
+  }
+
+  @media (max-width: 576px) {
+    width: 95vw;
+
+    .add-coin-content {
+      .package {
+        height: calc(40vh - 60px);
+        overflow: auto;
+        grid-template-columns: 1fr;
+
+        .item {
+          height: 144px;
+        }
+      }
+    }
+    .add-coin-footer {
+      display: block;
+      .point {
+        display: block;
+        .item1 {
+          margin-bottom: 2vw;
+        }
+      }
+      .btn-wrapper {
+        margin-top: 2vw;
+        button {
+          width: 100%;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,6 @@
+<app-navbar *ngIf="!isSignUpBetaPage"></app-navbar>
+<router-outlet></router-outlet>
+<app-footer *ngIf="!isSignUpBetaPage"></app-footer>
+
+<app-purchase-method *ngIf="!isSignUpBetaPage"></app-purchase-method>
+<app-interest  ></app-interest>

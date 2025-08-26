@@ -1,0 +1,205 @@
+<div class="purchase-method" *ngIf="isPackageContainerDisplay">
+  <div class="inner" [ngClass]="isPackageContentDisplay ? 'display' : ''">
+    <div class="method step1" *ngIf="step === 1">
+      <div class="header">
+        <span>Complete Purchase</span>
+        <div class="close-btn" (click)="handleClose()">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="20"
+            height="20"
+            viewBox="0 0 20 20"
+            fill="none"
+          >
+            <g clip-path="url(#clip0_3158_82224)">
+              <rect
+                x="2.48145"
+                y="3.51953"
+                width="2"
+                height="20"
+                rx="1"
+                transform="rotate(-45 2.48145 3.51953)"
+                fill="white"
+              />
+              <rect
+                x="16.6255"
+                y="2.33984"
+                width="2"
+                height="20"
+                rx="1"
+                transform="rotate(45 16.6255 2.33984)"
+                fill="white"
+              />
+            </g>
+            <defs>
+              <clipPath id="clip0_3158_82224">
+                <rect width="20" height="20" fill="white" />
+              </clipPath>
+            </defs>
+          </svg>
+        </div>
+      </div>
+      <div class="content">
+        <div class="purchase-summary">
+          <h4 class="title">Purchase Summary</h4>
+          <ul>
+            <li>
+              {{ packageInfo?.name }} ({{ packageInfo?.point | number }} Grando
+              & {{ packageInfo?.ticket | number }} ticket)
+            </li>
+          </ul>
+          <div class="time">One-time charge on Dec 1, 2023.</div>
+          <div class="vat">
+            <span>Total including VAT </span>
+            <span>THB 115.00</span>
+          </div>
+        </div>
+        <!-- <div class="method1">
+          <h4 class="title">Pay with</h4>
+          <div class="wrapper">
+            <div class="method paypal">
+              <div class="name">PayPal</div>
+              <div class="icon">
+                <img
+                  class="paypal-icon"
+                  src="/assets/images/purchase-summary/paypal.png"
+                  alt="paypal"
+                />
+              </div>
+            </div>
+            <div class="method visa">
+              <div class="name">Visa</div>
+              <div class="icon">
+                <img
+                  class="visa-icon"
+                  src="/assets/images/purchase-summary/visa.png"
+                  alt="visa"
+                />
+              </div>
+            </div>
+            <div class="method mastercard">
+              <div class="name">Mastercard</div>
+              <div class="icon">
+                <img
+                  class="mastercard-icon"
+                  src="/assets/images/purchase-summary/mastercard.png"
+                  alt="mastercard"
+                />
+              </div>
+            </div>
+            <div class="method other">
+              <div class="name">Payment Methods</div>
+              <div class="icon">See more</div>
+            </div>
+          </div>
+        </div>
+        <div class="method2">
+          <h4 class="title">Pay with Payment Card</h4>
+
+          <form [formGroup]="cardForm" (ngSubmit)="handleSubmit()">
+            <div class="info1">
+              <div class="group">
+                <div class="error-msg">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="16"
+                    height="16"
+                    viewBox="0 0 16 16"
+                    fill="none"
+                  >
+                    <path
+                      d="M8 1C4.15 1 1 4.15 1 8C1 11.85 4.15 15 8 15C11.85 15 15 11.85 15 8C15 4.15 11.85 1 8 1ZM7.45 4H8.55V9.5H7.45V4ZM8 12.5C7.6 12.5 7.25 12.15 7.25 11.75C7.25 11.35 7.6 11 8 11C8.4 11 8.75 11.35 8.75 11.75C8.75 12.15 8.4 12.5 8 12.5Z"
+                      fill="#FA5353"
+                    />
+                  </svg>
+                  <span
+                    >Please enter valid credentials in the highlighted areas and
+                    try again.</span
+                  >
+                </div>
+                <div class="wrapper">
+                  <div class="form-group-grandora firstname">
+                    <label for="">First Name</label>
+                    <div class="input-wrapper">
+                      <input type="text" formControlName="firstname" />
+                    </div>
+                  </div>
+                  <div class="form-group-grandora lastname">
+                    <label for="">Last Name </label>
+                    <div class="input-wrapper">
+                      <input type="text" formControlName="lastname" />
+                    </div>
+                  </div>
+                  <div class="form-group-grandora country">
+                    <label for="">Country</label>
+                    <div class="input-wrapper">
+                      <input type="text" formControlName="country" />
+                    </div>
+                  </div>
+                  <div class="form-group-grandora firstname">
+                    <label for="">First Name</label>
+                    <div class="input-wrapper">
+                      <input type="text" formControlName="firstname" />
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="card-placeholder-image">
+                <img
+                  class="card-placeholder-icon"
+                  src="/assets/images/purchase-summary/card-placeholder.png"
+                  alt="card-placeholder"
+                />
+              </div>
+            </div>
+            <div class="info2">
+              <h4 class="title">Card Information</h4>
+              <div class="group">
+                <div class="form-group-grandora card-number">
+                  <label for="">Card Number</label>
+                  <div class="input-wrapper">
+                    <input type="text" formControlName="card_number" />
+                  </div>
+                </div>
+                <div class="form-group-grandora expiry-date">
+                  <label for="">Expiry Date </label>
+                  <div class="input-wrapper">
+                    <input type="text" formControlName="expiry_date" />
+                  </div>
+                </div>
+                <div class="form-group-grandora year">
+                  <label for="">Year</label>
+                  <div class="input-wrapper">
+                    <input type="text" formControlName="year" />
+                  </div>
+                </div>
+                <div class="form-group-grandora cvv">
+                  <label for="">CVV </label>
+                  <div class="input-wrapper">
+                    <input type="text" formControlName="cvv" />
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </form>
+        </div> -->
+      </div>
+      <div class="footer">
+        <div class="btn-wrapper">
+          <button
+            class="linear-btn-grandora"
+            type="submit"
+            (click)="step = step + 1"
+          >
+            <span>Purchase</span>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="step2" *ngIf="step === 2" (click)="handleClose()">
+      <img src="/assets/images/mockup/purchase/mockup-completed-purchase.png" />
+    </div>
+  </div>
+</div>

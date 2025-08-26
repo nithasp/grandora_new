@@ -1,0 +1,245 @@
+<section id="sign-up-closebeta">
+  <div class="inner">
+    <form
+      class="signup-form grandora-form"
+      [formGroup]="signUpCloseBetaForm"
+      (ngSubmit)="handleSubmit()"
+    >
+      <div class="title">
+        <span>Welcome to Grandora</span>
+        <span>Sign Up Close Beta</span>
+      </div>
+
+      <div class="wrapper">
+        <div class="form-group-grandora firstname">
+          <label for="firstname">First name</label>
+          <div
+            class="input-wrapper"
+            [ngClass]="firstname.invalid && firstname.touched ? 'invalid' : ''"
+          >
+            <input
+              type="text"
+              id="firstname"
+              placeholder="Your firstname"
+              formControlName="firstname"
+            />
+          </div>
+
+          <div class="error-msg" *ngIf="firstname.invalid && firstname.touched">
+            <small class="text-error" *ngIf="firstname.errors?.['required']"
+              >The field is required.</small
+            >
+          </div>
+        </div>
+        <div class="form-group-grandora lastname">
+          <label for="lastname">Last name</label>
+          <div
+            class="input-wrapper"
+            [ngClass]="lastname.invalid && lastname.touched ? 'invalid' : ''"
+          >
+            <input
+              type="text"
+              id="lastname"
+              placeholder="Your lastname"
+              formControlName="lastname"
+            />
+          </div>
+
+          <div class="error-msg" *ngIf="lastname.invalid && lastname.touched">
+            <small class="text-error" *ngIf="lastname.errors?.['required']"
+              >The field is required.</small
+            >
+          </div>
+        </div>
+        <div class="form-group-grandora age">
+          <label for="age">Age</label>
+          <div
+            class="input-wrapper"
+            [ngClass]="age.invalid && age.touched ? 'invalid' : ''"
+          >
+            <input
+              type="number"
+              id="age"
+              placeholder="Your age"
+              formControlName="age"
+            />
+          </div>
+
+          <div class="error-msg" *ngIf="age.invalid && age.touched">
+            <small class="text-error" *ngIf="age.errors?.['required']"
+              >The field is required.</small
+            >
+            <small class="text-error" *ngIf="age.errors?.['max']"
+              >Age must not be more than 100.</small
+            >
+          </div>
+        </div>
+        <div class="form-group-grandora email">
+          <label for="email">Email</label>
+          <div
+            class="input-wrapper"
+            [ngClass]="email.invalid && email.touched ? 'invalid' : ''"
+          >
+            <input
+              type="text"
+              id="email"
+              placeholder="Your email address"
+              formControlName="email"
+            />
+          </div>
+
+          <div class="error-msg" *ngIf="email.invalid && email.touched">
+            <small class="text-error" *ngIf="email.errors?.['required']"
+              >The field is required.</small
+            >
+            <small class="text-error" *ngIf="email.errors?.['pattern']"
+              >Please enter a valid email address.</small
+            >
+          </div>
+        </div>
+        <div class="form-group-grandora region">
+          <label for="">Region</label>
+          <div class="select">
+            <app-grandora-select
+              *ngIf="isSelectRegionDisplay"
+              class="select-region"
+              [optionPlaceholder]="region.value"
+              [optionItems]="regions"
+              (changeTopic)="handleRegionValue($event)"
+              [status]="region.invalid && region.touched ? 'invalid' : ''"
+            ></app-grandora-select>
+            <input type="text" class="hide" formControlName="region" />
+          </div>
+          <div class="error-msg" *ngIf="region.invalid && region.touched">
+            <small class="text-error" *ngIf="region.errors?.['required']"
+              >The field is required.</small
+            >
+          </div>
+        </div>
+
+        <div class="form-group-grandora checkbox genre">
+          <label for="">Most Favorite Game Genre</label>
+          <div class="genre-wrapper">
+            <div class="wrapper" *ngFor="let item of gameGenreList">
+              <div class="checkbox-wrapper">
+                <label
+                  class="grandora-checkbox-container"
+                  [ngClass]="item.isChecked ? 'active' : ''"
+                >
+                  <input
+                    type="checkbox"
+                    [checked]="item.isChecked"
+                    (change)="changeSelection(item)"
+                  />
+                  <span class="checkmark"></span>
+                </label>
+              </div>
+              <p>{{ item.label }}</p>
+            </div>
+          </div>
+          <input type="text" class="hide" formControlName="genre" />
+          <div class="error-msg" *ngIf="genre.invalid && genre.touched">
+            <small class="text-error" *ngIf="genre.errors?.['required']"
+              >The field is required.</small
+            >
+          </div>
+        </div>
+
+        <div class="form-group-grandora most-favorite-game">
+          <label for="most-favorite-game">Most Favorite Game</label>
+          <div
+            class="input-wrapper textarea"
+            [ngClass]="
+              most_favorite_game.invalid && most_favorite_game.touched
+                ? 'invalid'
+                : ''
+            "
+          >
+            <textarea
+              id="most-favorite-game"
+              placeholder="Your most favorite game"
+              formControlName="most_favorite_game"
+            >
+            </textarea>
+          </div>
+
+          <div
+            class="error-msg"
+            *ngIf="most_favorite_game.invalid && most_favorite_game.touched"
+          >
+            <small
+              class="text-error"
+              *ngIf="most_favorite_game.errors?.['required']"
+              >The field is required.</small
+            >
+          </div>
+        </div>
+        <div class="form-group-grandora channel">
+          <label for="channel">Your Channel</label>
+          <div
+            class="input-wrapper"
+            [ngClass]="channel.invalid && channel.touched ? 'invalid' : ''"
+          >
+            <input
+              type="text"
+              id="channel"
+              placeholder="Your channel"
+              formControlName="channel"
+            />
+          </div>
+        </div>
+        <div class="form-group-grandora cbt-terms">
+          <div class="content-wrapper">
+            <div class="title-wrapper">
+              <h3 class="title">เงื่อนไขการเข้าร่วม CBT</h3>
+            </div>
+
+            <ol>
+              <li>
+                ไม่อนุญาตให้เผยแพร่ข้อมูลเกมในช่วง CBT ไม่ว่าจะเป็นการ Live
+                Stream, Video, Short video, Content หรือกรณีใด ๆ
+                ที่ทำให้บุคคลที่ไม่เกี่ยวข้องสามารถเข้าถึงเนื้อหาได้อย่างสาธารณะ
+              </li>
+              <li>
+                สามารถบันทึกหน้าจอเพื่อเป็นข้อมูลหรือฟุตเทจสำหรับรอเผยแพร่บนช่องทางสาธารณะได้
+                แต่การเผยแพร่จะกระทำได้เมื่อได้รับอนุญาตเป็นลายลักษณ์อักษรเท่านั้น
+                โดยจะแจ้งให้ทราบในช่องทางดิสคอร์ด
+              </li>
+              <li>
+                ผู้เข้าร่วม CBT จะต้องเข้าร่วมดิสคอร์ด
+                เพื่อสื่อสารกับผู้เข้าร่วม CBT ด้วยกัน
+                โดยไม่อนุญาตให้นำลิงก์นี้เผยแพร่ไปยังบุคคลอื่น
+                (ทีมงานจะส่งลิงก์ไปยังอีเมลของท่าน)
+              </li>
+              <li>
+                ผู้เข้าร่วม CBT
+                เข้าใจเงื่อนไขและตระหนักถึงมูลค่าความเสียหายหากมีการละเมิดไม่ว่าข้อใดข้อหนึ่ง
+                จะถูกดำเนินการตามมูลค่าความเสียหายที่เกิดขึ้น
+              </li>
+            </ol>
+          </div>
+
+          <div class="checkbox-wrapper">
+            <label class="grandora-checkbox-container">
+              <input type="checkbox" formControlName="policy" />
+              <span class="checkmark"></span>
+            </label>
+            <p>ฉันยอมรับข้อตกลงนี้</p>
+          </div>
+
+          <div class="error-msg" *ngIf="policy.invalid && policy.touched">
+            <small class="text-error" *ngIf="policy.errors?.['required']"
+              >The field is required.</small
+            >
+          </div>
+        </div>
+        <div class="btn-wrapper">
+          <button [disabled]="isLoading">
+            <span *ngIf="!isLoading">Register</span>
+            <mat-spinner *ngIf="isLoading"></mat-spinner>
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+</section>

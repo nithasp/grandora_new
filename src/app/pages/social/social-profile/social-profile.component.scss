@@ -1,0 +1,554 @@
+.social-profile {
+  background: url("/assets/images/mockup/social/profile/Group 26086647.jpg")
+    no-repeat;
+  background-size: cover;
+  background-position: center;
+  .wrapper {
+    max-width: 1057px;
+    margin: 0 auto;
+  }
+  .title {
+    h3 {
+      color: #5460cb;
+      font-size: 20px;
+      letter-spacing: -0.34px;
+    }
+  }
+  .social-profile-section1 {
+    height: 542px;
+    background: url("/assets/images/mockup/social/profile/Screenshot 2022-12-30 at 18.50 1.jpg")
+      no-repeat;
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    .content {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      max-width: 1057px;
+      width: 100%;
+      margin: 0 auto;
+      h1 {
+        color: #fff;
+        font-size: 96px;
+        letter-spacing: -1.5px;
+      }
+    }
+  }
+  .social-profile-section2 {
+    padding: 50px 0;
+    margin-top: -165px;
+    .wrapper {
+      display: grid;
+      grid-template-columns: 340px 1fr;
+      gap: 38px;
+    }
+    .feed {
+      .post {
+        background: #d5e0ec;
+        filter: drop-shadow(1px 2px 4px rgba(213, 224, 236, 0.7));
+        padding: 17px;
+        border-radius: 16px;
+        margin-bottom: 24px;
+
+        .description {
+          background: white;
+          border-radius: 16px;
+          padding: 23px;
+          .post-description {
+            display: flex;
+            gap: 10px;
+            width: 100%;
+            img {
+              position: relative;
+              top: -2.5px;
+            }
+          }
+          .text {
+            width: 100%;
+            textarea {
+              border-radius: 4px;
+              border: 1px solid #d5e0ec;
+              box-shadow: none;
+              background: #fff;
+              width: 100%;
+              height: 60px;
+              resize: none;
+            }
+            textarea::placeholder {
+              color: #d5e0ec;
+            }
+          }
+
+          .etc {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 12px;
+            .etc-item1 {
+              display: flex;
+              gap: 15px;
+              .add-media {
+                display: flex;
+                align-items: center;
+                gap: 8px;
+              }
+              svg {
+                cursor: pointer;
+              }
+            }
+            .btn-wrapper {
+              display: flex;
+              align-items: center;
+              justify-content: flex-end;
+
+              gap: 8px;
+              button {
+                padding: 8px 16px;
+                height: 40px;
+              }
+              .primary-btn {
+                border: 1px solid transparent;
+              }
+              button:disabled {
+                opacity: 1;
+
+                border: 1px solid #e0e0e0;
+                background: #ededed;
+                box-shadow: none;
+                span {
+                  color: #9e9e9e;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+    .info {
+      .profile {
+        justify-content: space-between;
+        width: 100%;
+        img {
+          margin: 0 auto;
+        }
+
+        .info {
+          border-radius: 16px;
+          padding: 24px 20px 16px 20px;
+          background: #fff;
+          stroke-width: 1px;
+          stroke: #eef2f7;
+          filter: drop-shadow(1px 2px 4px rgba(213, 224, 236, 0.7));
+          .info1 {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+
+            .profile-text {
+              .name {
+                font-family: "Poppins-SemiBold";
+                font-size: 16px;
+                letter-spacing: -0.176px;
+              }
+              .social1 {
+                font-size: 12px;
+              }
+            }
+          }
+          .info2 {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 24px;
+            border-radius: 10px;
+            background: #7ebfee;
+            box-shadow: 1px 2px 4px 0px rgba(213, 224, 236, 0.7);
+            padding: 12px 18px;
+            h3 {
+              font-family: "Poppins-Regular";
+              font-size: 12px;
+              margin-bottom: 8px;
+            }
+            .item {
+              position: relative;
+              cursor: pointer;
+              &::after {
+                content: "";
+                position: absolute;
+                top: 50%;
+                right: -60%;
+                transform: translateY(-50%);
+                background: white;
+                width: 1px;
+                height: 110%;
+              }
+            }
+            .item:last-of-type {
+              &::after {
+                content: none;
+              }
+            }
+          }
+        }
+      }
+    }
+    .balance {
+      padding: 20px;
+      margin-top: 24px;
+      background: white;
+      filter: drop-shadow(1px 2px 4px rgba(213, 224, 236, 0.7));
+      border-radius: 16px;
+
+      .title {
+        display: flex;
+        align-items: center;
+        gap: 13px;
+        margin-bottom: 26px;
+        h3 {
+          color: #5460cb;
+          font-size: 20px;
+          letter-spacing: -0.34px;
+        }
+      }
+      .point {
+        .item {
+          display: flex;
+          justify-content: space-between;
+          margin-bottom: 9px;
+          .name {
+            font-size: 14px;
+          }
+          .number {
+            font-family: "Poppins-SemiBold";
+            font-size: 16px;
+          }
+        }
+        .item:last-of-type {
+          margin-bottom: 0;
+        }
+      }
+
+      .btn-wrapper {
+        margin-top: 14px;
+        button {
+          margin: 0 auto;
+          padding: 8px 16px;
+          height: 40px;
+        }
+      }
+    }
+    .avatar {
+      padding: 20px;
+      margin-top: 24px;
+      background: white;
+      filter: drop-shadow(1px 2px 4px rgba(213, 224, 236, 0.7));
+      border-radius: 16px;
+      .title {
+        display: flex;
+        justify-content: space-between;
+        .edit {
+          display: flex;
+          align-items: center;
+          gap: 8px;
+          span {
+            color: #5460cb;
+            font-size: 14px;
+            letter-spacing: 0.1px;
+          }
+        }
+      }
+      .img-wrapper {
+        margin-top: 3px;
+        img {
+          margin: 0 auto;
+        }
+      }
+    }
+    .land {
+      margin-top: 24px;
+      background: white;
+      filter: drop-shadow(1px 2px 4px rgba(213, 224, 236, 0.7));
+      border-radius: 16px;
+      overflow: hidden;
+      .land-wrapper {
+        padding: 20px;
+      }
+      .title {
+        display: flex;
+        justify-content: space-between;
+
+        span {
+          color: #5460cb;
+          font-size: 14px;
+          letter-spacing: 0.1px;
+        }
+      }
+      .img-wrapper {
+        margin-top: 3px;
+        img {
+          margin: 0 auto;
+        }
+      }
+      .footer {
+        font-family: "Poppins-SemiBold";
+        background: #ffb900;
+        color: #000;
+        font-size: 14px;
+        letter-spacing: -0.084px;
+        padding: 15px 35px;
+      }
+    }
+    .games {
+      margin-top: 24px;
+      background: white;
+      filter: drop-shadow(1px 2px 4px rgba(213, 224, 236, 0.7));
+      border-radius: 16px;
+      overflow: hidden;
+      .games-wrapper {
+        padding: 20px;
+      }
+      .title {
+        display: flex;
+        justify-content: space-between;
+
+        span {
+          color: #5460cb;
+          font-size: 14px;
+          letter-spacing: 0.1px;
+        }
+      }
+      .img-wrapper {
+        margin-top: 3px;
+        img {
+          margin: 0 auto;
+        }
+      }
+      .footer {
+        font-family: "Poppins-SemiBold";
+        background: #ffb900;
+        color: #000;
+        font-size: 14px;
+        letter-spacing: -0.084px;
+        padding: 15px 10px;
+      }
+    }
+    .favorite-games {
+      margin-top: 24px;
+      background: white;
+      filter: drop-shadow(1px 2px 4px rgba(213, 224, 236, 0.7));
+      border-radius: 16px;
+      overflow: hidden;
+      .favorite-games-wrapper {
+        padding: 20px;
+
+        .title {
+          display: flex;
+          justify-content: space-between;
+          margin-bottom: 16px;
+          span {
+            color: #5460cb;
+            font-size: 14px;
+            letter-spacing: 0.1px;
+          }
+        }
+
+        .list {
+          .item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 8px;
+            .icon {
+              img {
+                width: 60px;
+                height: 60px;
+              }
+            }
+            .info {
+              p {
+                font-size: 14px;
+                letter-spacing: -0.084px;
+              }
+              .like {
+                display: flex;
+                gap: 4px;
+                span {
+                  position: relative;
+                  top: 3px;
+                  font-size: 12px;
+                }
+              }
+            }
+          }
+          .item:last-of-type {
+            margin-bottom: 0;
+          }
+        }
+
+        .see-all {
+          font-family: "Poppins-SemiBold";
+          margin-top: 8px;
+          text-align: right;
+          color: #5460cb;
+        }
+      }
+
+      .img-wrapper {
+        margin-top: 3px;
+        img {
+          margin: 0 auto;
+        }
+      }
+      .footer {
+        font-family: "Poppins-SemiBold";
+        background: #ffb900;
+        color: #000;
+        font-size: 14px;
+        letter-spacing: -0.084px;
+        padding: 15px 10px;
+      }
+    }
+  }
+}
+
+.add-media-section {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 22px;
+  z-index: 10;
+
+  .add-media-wrapper {
+    max-width: 784px;
+    width: 100%;
+    border-radius: 16px;
+    overflow: hidden;
+    background: white;
+  }
+  .header {
+    display: flex;
+    justify-content: space-between;
+    background: #5460cb;
+    filter: drop-shadow(1px 2px 4px rgba(213, 224, 236, 0.7));
+    padding: 14px 24px;
+    color: white;
+    .close-btn {
+      cursor: pointer;
+    }
+  }
+  .content {
+    padding: 24px 24px 0 24px;
+
+    .post {
+      background: #d5e0ec;
+      filter: drop-shadow(1px 2px 4px rgba(213, 224, 236, 0.7));
+      padding: 13px 20px 20px 13px;
+      border-radius: 16px;
+      margin-bottom: 24px;
+      h1.title {
+        color: #5460cb;
+        font-size: 28px;
+        font-family: "Poppins-SemiBold";
+        margin-bottom: 16px;
+      }
+      .description {
+        background: white;
+        border-radius: 16px;
+        padding: 23px;
+        .post-description {
+          display: flex;
+          gap: 10px;
+          width: 100%;
+          img {
+            position: relative;
+            top: -2.5px;
+          }
+        }
+        .text {
+          width: 100%;
+          textarea {
+            border-radius: 4px;
+            border: 1px solid #d5e0ec;
+            box-shadow: none;
+            background: #fff;
+            width: 100%;
+            height: 60px;
+            resize: none;
+          }
+          textarea::placeholder {
+            color: #d5e0ec;
+          }
+        }
+
+        .etc {
+          display: flex;
+          justify-content: space-between;
+          margin-top: 12px;
+          .etc-item1 {
+            display: flex;
+            gap: 15px;
+            .add-media,
+            .toggle-display-post {
+              display: flex;
+              align-items: center;
+              gap: 8px;
+              svg {
+                cursor: pointer;
+              }
+            }
+          }
+          .btn-wrapper {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+
+            gap: 8px;
+            button {
+              padding: 8px 16px;
+              height: 40px;
+            }
+            .primary-btn {
+              border: 1px solid transparent;
+            }
+            button:disabled {
+              opacity: 1;
+
+              border: 1px solid #e0e0e0;
+              background: #ededed;
+              box-shadow: none;
+              span {
+                color: #9e9e9e;
+              }
+            }
+          }
+        }
+      }
+      .grandora-dropzone {
+        margin-top: 20px;
+      }
+    }
+  }
+  .btn-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 16px;
+    padding: 0px 24px 12px 24px;
+
+    button {
+      padding: 8px 16px;
+      height: 40px;
+    }
+    .primary-btn {
+      border: 1px solid transparent;
+      max-width: 168px;
+      width: 100%;
+    }
+  }
+}

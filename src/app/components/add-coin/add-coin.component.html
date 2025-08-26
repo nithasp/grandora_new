@@ -1,0 +1,74 @@
+<div class="add-coin" #selectElem>
+  <div class="add-coin-header">
+    <h1>Add Coin</h1>
+    <div class="close-btn" (click)="handleClose()">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="29"
+        height="30"
+        viewBox="0 0 29 30"
+        fill="none"
+      >
+        <rect
+          x="6.48145"
+          y="8.51953"
+          width="2"
+          height="20"
+          rx="1"
+          transform="rotate(-45 6.48145 8.51953)"
+          fill="white"
+        />
+        <rect
+          x="20.625"
+          y="7.33984"
+          width="2"
+          height="20"
+          rx="1"
+          transform="rotate(45 20.625 7.33984)"
+          fill="white"
+        />
+      </svg>
+    </div>
+  </div>
+  <div class="wrapper">
+    <div class="add-coin-content">
+      <div class="currency">
+        <h3>Currency</h3>
+        <app-grandora-select
+          class="select-currency"
+          [optionItems]="currencyItem"
+          (changeTopic)="handleCurrency($event)"
+        ></app-grandora-select>
+      </div>
+      <div class="category">
+        <h3>Category</h3>
+        <div class="package">
+          <div
+            class="item"
+            *ngFor="let item of package"
+            (click)="handlePackage(item)"
+          >
+            <img [src]="item.url" alt="package-image" />
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="add-coin-footer">
+      <div class="point">
+        <div class="item item1">
+          <img src="/assets/images/package/Polygon 3.png" alt="" />
+          <span>245,888</span>
+        </div>
+        <div class="item item2">
+          <img src="/assets/images/package/image 2199.png" alt="" />
+          <span>4,888</span>
+        </div>
+      </div>
+      <div class="btn-wrapper">
+        <button class="linear-btn-grandora" (click)="handlePageChange()">
+          <span>Package</span>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,408 @@
+#games {
+  background: #f2e8f7;
+  img {
+    width: 100%;
+  }
+  .wrapper {
+    padding: 0 25px;
+  }
+  .games-section1 {
+    position: relative;
+    height: 167vh;
+    background: url("/assets/images/games/Group 26086705.png") no-repeat;
+    background-size: cover;
+    background-position: top;
+    .wrapper {
+      max-width: 1068px;
+      margin: 0 auto;
+      padding: 0;
+      .games-section1-1 {
+        padding-top: 150px;
+        h1.title {
+          color: #fff;
+          font-size: 48px;
+          margin-bottom: 16px;
+        }
+      }
+      .games-section1-2 {
+        margin-top: 5.208vw;
+        .item {
+          img {
+            cursor: pointer;
+          }
+        }
+        h1.title {
+          color: #fff;
+          font-size: 32px;
+          margin-bottom: 36px;
+        }
+      }
+    }
+    .main-slide {
+      position: relative;
+      cursor: pointer;
+      swiper-container {
+        border-radius: 16px;
+        overflow: hidden;
+        swiper-slide {
+          height: 550px;
+          border-radius: 16px;
+          overflow: hidden;
+          .item {
+            position: relative;
+            height: 100%;
+            .text {
+              position: absolute;
+              left: 32px;
+              bottom: 25px;
+              color: #fff;
+
+              .title {
+                font-size: 16px;
+              }
+              .liked {
+                display: flex;
+                gap: 4px;
+                margin-top: 8px;
+                span {
+                  font-size: 14px;
+                }
+              }
+            }
+
+            img {
+              width: auto;
+            }
+          }
+        }
+      }
+      .navigation-wrapper {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 1;
+        display: flex;
+        justify-content: space-between;
+        width: 104%;
+      }
+    }
+    .sub-slide {
+      position: relative;
+      swiper-container {
+        overflow: hidden;
+        swiper-slide {
+          width: 184px;
+        }
+        .item {
+          position: relative;
+          height: 100%;
+
+          .text {
+            color: #fff;
+            margin-top: 9px;
+            .title {
+              font-size: 16px;
+            }
+            .liked {
+              display: flex;
+              gap: 4px;
+              margin-top: 8px;
+              span {
+                font-size: 14px;
+              }
+            }
+          }
+          img {
+            width: 100%;
+            height: 200px;
+            border-radius: 6px;
+          }
+        }
+      }
+      .slidePrev-btn {
+        position: absolute;
+        top: 41%;
+        left: -2%;
+        transform: translateY(-50%);
+        z-index: 1;
+      }
+      .slideNext-btn {
+        position: absolute;
+        top: 41%;
+        right: -2%;
+        transform: translateY(-50%);
+        z-index: 1;
+      }
+    }
+  }
+  .games-section2 {
+    padding: 48px 0 64px 0;
+    background: url("/assets/images/games/Group 26086706.jpg") no-repeat;
+    background-size: cover;
+    background-position: center;
+    .wrapper {
+      max-width: 1068px;
+      margin: 0 auto;
+    }
+
+    .title {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 24px;
+      h3 {
+        color: #5460cb;
+        font-size: 32px;
+      }
+    }
+    .content {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 24px;
+      .item {
+        cursor: pointer;
+      }
+      img {
+        height: 160px;
+        border-radius: 16px;
+      }
+      .text {
+        padding: 12px 8px;
+        .game-title {
+          font-family: "Poppins-SemiBold";
+          color: #0a0a0a;
+          letter-spacing: -0.176px;
+        }
+        .liked {
+          display: flex;
+
+          gap: 8px;
+          margin-top: 8px;
+        }
+      }
+    }
+  }
+  .games-section3 {
+    padding: 38px 0 51px 0;
+    background: url("/assets/images/games/Group 26086707.jpg") no-repeat;
+    background-size: cover;
+    background-position: center;
+    .wrapper {
+      max-width: 1068px;
+      margin: 0 auto;
+    }
+    h3.title {
+      font-family: "Poppins-SemiBold";
+      color: #fff;
+      font-size: 32px;
+      margin-bottom: 24px;
+    }
+    img {
+      border-radius: 16px;
+    }
+    .content {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 22px;
+      .main-item {
+        cursor: pointer;
+        img {
+          height: 417px;
+        }
+      }
+      .sub-item {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        column-gap: 24px;
+        row-gap: 17px;
+        img {
+          height: 160px;
+        }
+        .item {
+          cursor: pointer;
+        }
+      }
+      .text {
+        padding: 12px 8px;
+        .game-title {
+          color: white;
+          letter-spacing: -0.176px;
+          margin-bottom: 3px;
+        }
+        .liked {
+          display: flex;
+
+          gap: 8px;
+          margin-top: 8px;
+          span {
+            color: white;
+          }
+        }
+      }
+    }
+  }
+  .games-section4 {
+    padding: 48px 0 64px 0;
+    background: url("/assets/images/games/Group 26086706.jpg") no-repeat;
+    background-size: cover;
+    background-position: center;
+    .wrapper {
+      max-width: 1068px;
+      margin: 0 auto;
+    }
+    .title {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 24px;
+      h3 {
+        color: #5460cb;
+        font-size: 32px;
+      }
+    }
+    .content {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 24px;
+      img {
+        height: 160px;
+        border-radius: 16px;
+      }
+      .text {
+        padding: 12px 8px;
+        .game-title {
+          font-family: "Poppins-SemiBold";
+          color: #0a0a0a;
+          letter-spacing: -0.176px;
+        }
+        .liked {
+          display: flex;
+
+          gap: 8px;
+          margin-top: 8px;
+        }
+      }
+      .item {
+        cursor: pointer;
+      }
+    }
+  }
+
+  @media (max-width: 1500px) {
+    .games-section1 {
+      height: 150vh;
+    }
+  }
+
+  @media (max-width: 1200px) {
+    .games-section1 {
+      .wrapper {
+        padding: 0 25px;
+      }
+    }
+
+    .games-section3 {
+      .content {
+        display: block;
+        .main-item {
+          img {
+            height: 400px !important;
+            width: 100%;
+          }
+        }
+        .sub-item {
+          grid-template-columns: repeat(4, 1fr);
+          img {
+            height: auto !important;
+          }
+        }
+      }
+    }
+
+    .games-section2,
+    .games-section4 {
+      .content {
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+      }
+    }
+  }
+
+  @media (max-width: 992px) {
+    .games-section2,
+    .games-section4 {
+      .content {
+        grid-template-columns: repeat(4, 1fr);
+        img {
+          height: auto;
+        }
+      }
+    }
+  }
+  @media (max-width: 768px) {
+    .games-section2,
+    .games-section4 {
+      .content {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+    .games-section3 {
+      .content {
+        .sub-item {
+          grid-template-columns: repeat(3, 1fr);
+        }
+      }
+    }
+  }
+  @media (max-width: 576px) {
+    .games-section1 {
+      .main-slide {
+        swiper-container {
+          swiper-slide {
+            height: 95.486vw;
+          }
+        }
+      }
+    }
+    .games-section2,
+    .games-section4 {
+      .content {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+    .games-section3 {
+      .content {
+        .main-item {
+          img {
+            height: auto !important;
+          }
+        }
+      }
+    }
+  }
+  @media (max-width: 450px) {
+    h1.title,
+    h3.title {
+      font-size: 25px !important;
+    }
+    .title {
+      h3 {
+        font-size: 25px !important;
+      }
+    }
+    .games-section2,
+    .games-section4 {
+      .content {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+    .games-section3 {
+      .content {
+        .sub-item {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+    }
+  }
+}

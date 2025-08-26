@@ -1,0 +1,186 @@
+.canceling-membership {
+  padding-bottom: 253px;
+  label {
+    margin-bottom: 0;
+  }
+  .inner {
+    max-width: 1060px;
+    margin: 0 auto;
+    padding: 0 22px;
+  }
+  .back-btn {
+    margin-bottom: 56px;
+    span {
+      font-family: "Poppins-SemiBold";
+      font-size: 32px;
+      letter-spacing: -0.704px;
+    }
+  }
+  .content {
+    background: white;
+    filter: drop-shadow(1px 2px 4px rgba(213, 224, 236, 0.7));
+    padding: 17px 34px 24px 34px;
+    border-radius: 16px;
+
+    .title {
+      color: #5460cb;
+      h3 {
+        font-family: "Poppins-SemiBold";
+        font-size: 20px;
+        letter-spacing: -0.34px;
+        margin-bottom: 22.4px;
+      }
+      p {
+        font-size: 16px;
+        line-height: 24px;
+        letter-spacing: -0.176px;
+        padding: 0px 18px 6.4px 18px;
+      }
+    }
+
+    .cancel {
+      h3.title {
+        font-family: "Poppins-Light";
+        color: #5460cb;
+        font-size: 20px;
+        line-height: 28px;
+        letter-spacing: -0.34px;
+        margin-bottom: 20px;
+      }
+      .cancel-wrapper {
+        .item {
+          display: flex;
+          align-items: center;
+          gap: 13px;
+          margin-bottom: 12px;
+          label {
+            color: #000;
+            font-size: 12px;
+            line-height: 16px;
+          }
+        }
+        .item:last-of-type {
+          margin-bottom: 0;
+        }
+      }
+    }
+
+    .reason {
+      margin-top: 16px;
+      label {
+        font-size: 14px;
+        letter-spacing: -0.084px;
+        margin-bottom: 8px;
+      }
+      textarea {
+        border-radius: 16px;
+        border: 1px solid #d5e0ec;
+        background: #fff;
+        box-shadow: 1px 2px 2px 0px rgba(0, 0, 0, 0.12) inset;
+        width: 100%;
+        height: 124px;
+        padding: 8px 12px;
+      }
+    }
+
+    .btn {
+      display: flex;
+      justify-content: flex-end;
+      .btn-wrapper {
+        display: flex;
+        gap: 16px;
+        button {
+          span {
+            box-shadow: none;
+          }
+        }
+        button.stay {
+          font-family: "Poppins-Regular";
+          border: none;
+          background: (
+            linear-gradient(118deg, #5460cb 29.93%, #cc90e6 107.01%)
+          );
+          span {
+            -webkit-text-fill-color: white;
+          }
+        }
+      }
+    }
+    .line {
+      background: #d5e0ec;
+      width: 100%;
+      height: 1px;
+    }
+    .line.line1 {
+      margin: 22.2px 0 12px 0;
+    }
+    .line.line2 {
+      margin: 20px 0 16px 0;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .content {
+      padding: 17px 22px 24px 22px;
+    }
+  }
+
+  @media (max-width: 576px) {
+    .content {
+      .title {
+        p {
+          padding: 0px 0 6.4px 0;
+        }
+      }
+      .btn {
+        display: block;
+        .btn-wrapper {
+          flex-direction: column;
+          button {
+            width: 100%;
+          }
+        }
+      }
+    }
+  }
+
+  @media (max-width: 450px) {
+    .inner {
+      padding: 0 25px;
+    }
+  }
+}
+
+input[type="radio"] {
+  position: relative;
+  -webkit-appearance: none;
+  width: 24px;
+  height: 28px;
+  border-radius: 50%;
+  outline: none;
+  border: 2px solid #fceab5;
+  background: #fff9ed;
+  box-shadow: none;
+  cursor: pointer;
+}
+
+input[type="radio"]:before {
+  content: "";
+  display: block;
+  width: 92%;
+  height: 92%;
+  border-radius: 50%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+input[type="radio"]:checked:before {
+  background: #f89f00;
+}
+
+input[type="radio"]:checked {
+  background: #fceab5;
+  border-color: #fceab5;
+}

@@ -1,0 +1,129 @@
+.creator {
+  .wrapper {
+    max-width: 1057px;
+    margin: 0 auto;
+  }
+  .content {
+    display: flex;
+    gap: 20px;
+    .profile {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      justify-content: space-between;
+      width: 100%;
+      img {
+        margin: 0 auto;
+      }
+
+      .info {
+        padding: 24px 20px 16px 20px;
+
+        .info1 {
+          display: flex;
+          align-items: center;
+          gap: 20px;
+
+          .profile-text {
+            .name {
+              font-size: 16px;
+              letter-spacing: -0.176px;
+            }
+            .social1 {
+              font-size: 12px;
+            }
+          }
+        }
+        .info2 {
+          position: relative;
+          display: flex;
+          justify-content: space-between;
+          margin-top: 34px;
+          border-radius: 10px;
+          background: #7ebfee;
+          box-shadow: 1px 2px 4px 0px rgba(213, 224, 236, 0.7);
+          padding: 12px 18px;
+          h3 {
+            font-family: "Poppins-Regular";
+            font-size: 12px;
+            margin-bottom: 8px;
+          }
+          .follower,
+          .following {
+            width: 50%;
+            text-align: center;
+          }
+          &::after {
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            width: 1px;
+            height: 80%;
+          }
+        }
+      }
+      .item {
+        background: #fff;
+        stroke-width: 1px;
+        stroke: #eef2f7;
+        filter: drop-shadow(1px 2px 4px rgba(213, 224, 236, 0.7));
+      }
+    }
+  }
+  .link {
+    .page-list {
+      background: white;
+      filter: drop-shadow(1px 2px 4px rgba(213, 224, 236, 0.7));
+      padding: 10px 6px;
+      font-size: 12px;
+      border-radius: 16px;
+      width: 160px;
+      .item {
+        position: relative;
+        border-bottom: 2px solid #d5e0ec;
+        cursor: pointer;
+        .item-wrapper {
+          display: grid;
+          grid-template-columns: 16px 1fr;
+          align-items: center;
+          justify-content: center;
+          gap: 25px;
+          padding: 9px 15px 13px 10px;
+        }
+        &::before {
+          content: "";
+          display: none;
+          position: absolute;
+          top: 1px;
+          left: 0;
+          width: 5px;
+          height: 90%;
+          background: #ffb900;
+        }
+      }
+      .item.active {
+        &::before {
+          display: block;
+        }
+      }
+      .item:last-of-type {
+        border-bottom: none;
+      }
+      .item-icon {
+        position: relative;
+        top: 2px;
+      }
+      .item-name {
+        position: relative;
+        top: 1px;
+        color: #5460cb;
+      }
+    }
+  }
+  .other-games {
+    margin-top: 45px;
+  }
+}

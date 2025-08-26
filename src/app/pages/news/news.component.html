@@ -1,0 +1,347 @@
+<section id="news">
+  <div class="inner">
+    <div class="news-section1">
+      <div class="content">
+        <h1>Trending News</h1>
+        <p>Convallis turpis erat tempus, viverra aliquet.</p>
+        <button>Read more</button>
+      </div>
+    </div>
+
+    <div class="news-section2">
+      <div class="wrapper">
+        <div class="recommended-list desktop">
+          <div class="title">
+            <h1>Recommended lists</h1>
+            <button>
+              <span>View more</span>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="20"
+                height="20"
+                viewBox="0 0 20 20"
+                fill="none"
+              >
+                <path
+                  d="M8.3335 6.66699L11.6668 10.0003L8.3335 13.3337"
+                  stroke="white"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+            </button>
+          </div>
+          <swiper-container init="false" class="recommended-lists-carousel">
+            <swiper-slide *ngFor="let item of recommendedLists">
+              <h1>{{ item?.name }}</h1>
+              <p>{{ item?.content }}</p>
+              <div class="item-footer">
+                {{ item?.footer }}
+              </div>
+            </swiper-slide>
+          </swiper-container>
+          <div class="pagination-wrapper">
+            <div class="slidePrev-btn">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="51"
+                height="51"
+                viewBox="0 0 51 51"
+                fill="none"
+              >
+                <path
+                  d="M39.525 23.7288V27.2704H18.275L28.0146 37.01L25.5 39.5246L11.475 25.4996L25.5 11.4746L28.0146 13.9892L18.275 23.7288H39.525Z"
+                  fill="#0E6FFF"
+                />
+              </svg>
+            </div>
+            <div class="slideNext-btn">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="51"
+                height="51"
+                viewBox="0 0 51 51"
+                fill="none"
+              >
+                <path
+                  d="M11.4749 23.7288V27.2704H32.7249L22.9853 37.01L25.4999 39.5246L39.5249 25.4996L25.4999 11.4746L22.9853 13.9892L32.7249 23.7288H11.4749Z"
+                  fill="#0E6FFF"
+                />
+              </svg>
+            </div>
+          </div>
+        </div>
+        <div class="recommended-list mobile">
+          <div class="title">
+            <h1>Recommended lists</h1>
+          </div>
+          <div class="list-wrapper">
+            <div class="item" *ngFor="let item of filterRecommendedLists">
+              <h1>{{ item?.name }}</h1>
+              <p>{{ item?.content }}</p>
+              <div class="item-footer">
+                {{ item?.footer }}
+              </div>
+            </div>
+          </div>
+          <div class="btn-wrapper">
+            <button
+              class="primary-btn-grandora"
+              (click)="addRecommendedLists()"
+              [disabled]="
+                filterRecommendedLists.length === recommendedLists.length
+              "
+            >
+              {{
+                filterRecommendedLists.length === recommendedLists.length
+                  ? "No more item"
+                  : " View more"
+              }}
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="news-section3">
+      <div class="wrapper">
+        <div class="title">
+          <h1>
+            The best design for your <br />
+            studio website
+          </h1>
+          <p>
+            Duis aute irure dolor in reprehenderit in voluptate velit esse
+            cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat.
+          </p>
+        </div>
+        <div class="tags">
+          <div class="tag-container responsive">
+            <div class="tag all" (click)="tabActive('All')">All</div>
+            <ng-container *ngFor="let tag of tags">
+              <div
+                class="tag"
+                (click)="tabActive(tag.name)"
+                *ngIf="tag?.name !== 'All'"
+              >
+                {{ tag?.name }}
+              </div>
+            </ng-container>
+          </div>
+
+          <swiper-container
+            init="false"
+            class="tags-carousel tag-container desktop"
+          >
+            <swiper-slide class="tag" (click)="tabActive('All')">
+              All
+            </swiper-slide>
+            <swiper-slide
+              *ngFor="let tag of tags"
+              class="tag"
+              (click)="tabActive(tag.name)"
+            >
+              {{ tag.name }}
+            </swiper-slide>
+          </swiper-container>
+          <div class="pagination-wrapper">
+            <div class="slidePrev-btn">
+              <img src="/assets/images/news/arrow-right-fade-bg.png" />
+            </div>
+            <div class="slideNext-btn">
+              <img src="/assets/images/news/arrow-right-fade-bg.png" />
+            </div>
+          </div>
+        </div>
+        <div class="blogs">
+          <div
+            class="main-blog"
+            [ngClass]="
+              filterBlogs.length === 1
+                ? 'one-item'
+                : filterBlogs.length === 2
+                ? 'two-items'
+                : filterBlogs.length >= 3
+                ? 'three-items'
+                : ''
+            "
+            *ngIf="isMainBlogDisplay"
+          >
+            <div
+              class="wrapper1"
+              [ngStyle]="{
+                'background-image': ' url(' + mainBlog[0]?.image + ')',
+                'background-size': 'cover'
+              }"
+              routerLink="./{{ mainBlog[0].id }}"
+            >
+              <div class="item">
+                <div class="tags-name">
+                  <div class="name" *ngFor="let tag of mainBlog[0]?.tags">
+                    {{ tag }}
+                  </div>
+                </div>
+                <h1 class="title">
+                  {{ mainBlog[0]?.title }} {{ mainBlog[0]?.id }}
+                </h1>
+                <div class="footer">
+                  <div class="date">
+                    <img src="/assets/images/news/time-icon.png" />
+                    <span>
+                      {{ getDateFormat(mainBlog[0]?.date, "mainBlog") }}</span
+                    >
+                  </div>
+                  <div class="author">
+                    <img src="/assets/images/news/person-icon.png" />
+                    <span>By {{ mainBlog[0]?.author }}</span>
+                  </div>
+                  <div class="comment">
+                    <img src="/assets/images/news/time-icon.png" />
+                    <span>{{ mainBlog[0]?.comment }}</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="wrapper2" *ngIf="filterBlogs.length > 1">
+              <div
+                class="item"
+                [ngStyle]="{
+                  'background-image': ' url(' + mainBlog[1]?.image + ')',
+                  'background-size': 'cover',
+                  'background-position': 'center'
+                }"
+                routerLink="./{{ mainBlog[1].id }}"
+              >
+                <div class="tags-name">
+                  <div class="name" *ngFor="let tag of mainBlog[1]?.tags">
+                    {{ tag }}
+                  </div>
+                </div>
+                <h1 class="title">
+                  {{ mainBlog[1]?.title }} {{ mainBlog[1]?.id }}
+                </h1>
+                <div class="footer">
+                  <div class="date">
+                    <img src="/assets/images/news/time-icon.png" />
+                    <span>
+                      {{ getDateFormat(mainBlog[1]?.date, "mainBlog") }}</span
+                    >
+                  </div>
+                  <div class="author">
+                    <img src="/assets/images/news/person-icon.png" />
+                    <span>By {{ mainBlog[1]?.author }}</span>
+                  </div>
+                  <div class="comment">
+                    <img src="/assets/images/news/time-icon.png" />
+                    <span>{{ mainBlog[1]?.comment }}</span>
+                  </div>
+                </div>
+              </div>
+              <div
+                class="item"
+                [ngStyle]="{
+                  'background-image': ' url(' + mainBlog[2]?.image + ')',
+                  'background-size': 'cover',
+                  'background-position': 'center'
+                }"
+                *ngIf="filterBlogs.length > 2"
+                routerLink="./{{ mainBlog[2].id }}"
+              >
+                <div class="tags-name">
+                  <div class="name" *ngFor="let tag of mainBlog[2]?.tags">
+                    {{ tag }}
+                  </div>
+                </div>
+                <h1 class="title">
+                  {{ mainBlog[2]?.title }} {{ mainBlog[2]?.id }}
+                </h1>
+                <div class="footer">
+                  <div class="date">
+                    <img src="/assets/images/news/time-icon.png" />
+                    <span>
+                      {{ getDateFormat(mainBlog[0]?.date, "mainBlog") }}</span
+                    >
+                  </div>
+                  <div class="author">
+                    <img src="/assets/images/news/person-icon.png" />
+                    <span>By {{ mainBlog[2]?.author }}</span>
+                  </div>
+                  <div class="comment">
+                    <img src="/assets/images/news/time-icon.png" />
+                    <span>{{ mainBlog[2]?.comment }}</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="sub-blog" *ngIf="filterBlogs.length > 3" #subBlogRef>
+            <div
+              class="item"
+              *ngFor="let item of subBlog"
+              routerLink="./{{ item.id }}"
+            >
+              <div class="blog-image">
+                <img [src]="item?.image" />
+              </div>
+
+              <div class="tags-name">
+                <div class="name" *ngFor="let tag of item?.tags">
+                  {{ tag }}
+                </div>
+              </div>
+
+              <div class="blog-title">{{ item?.title }} {{ item?.id }}</div>
+
+              <p class="blog-content">
+                {{ item?.content }}
+              </p>
+
+              <div class="blog-footer">
+                <div class="icon">
+                  <img src="/assets/images/news/game-icon.png" />
+                </div>
+                <div class="info">
+                  <div class="game-name">
+                    {{ item?.game }}
+                  </div>
+                  <div class="date">
+                    <span class="date-value">
+                      {{ getDateFormat(item?.date, "subBlog") }}</span
+                    >
+                    <span class="dot">·</span>
+                    <span class="avg-time"
+                      >{{ item?.avg_read_time }} min read</span
+                    >
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="btn-wrapper" *ngIf="filterBlogs.length > 3">
+          <div class="loading-blog-icon" *ngIf="isBlogLoading">
+            <span><lds-roller></lds-roller></span>
+          </div>
+          <button
+            class="primary-btn-grandora"
+            (click)="addBlogs()"
+            [disabled]="subBlog.length + 3 === filterBlogs.length"
+            *ngIf="!isBlogLoading"
+          >
+            {{
+              subBlog.length + 3 === filterBlogs.length
+                ? "No more item"
+                : "View more"
+            }}
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="community">
+      <app-community></app-community>
+    </div>
+     
+  </div>
+</section>

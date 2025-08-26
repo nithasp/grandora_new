@@ -1,0 +1,263 @@
+#community-page {
+  margin-top: -12px;
+
+  .community-page-section1 {
+    position: relative;
+    height: 140vh;
+    background: url("/assets/images/background/Group 26086600.png") no-repeat;
+    background-size: cover;
+    background-position: top;
+    background-color: #f1e9f8 !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .text {
+      text-align: center;
+      .sub-title {
+        color: #fff;
+        font-size: 26px;
+        letter-spacing: 2.86px;
+        text-transform: uppercase;
+        margin-bottom: 24px;
+      }
+      .title {
+        font-family: "Poppins-SemiBold";
+        color: #fff;
+        font-size: 84px;
+        letter-spacing: -3.78px;
+      }
+    }
+  }
+
+  .community-page-section2 {
+    padding: 95px 22px 183px 22px;
+    background: url("/assets/images/community-page/group1.jpg") no-repeat;
+    background-size: cover;
+    background-position: top;
+    .wrapper {
+      max-width: 1060px;
+      margin: 0 auto;
+      display: flex;
+      gap: 58px;
+      align-items: center;
+    }
+    .text {
+      .title {
+        display: flex;
+        align-items: center;
+        gap: 24px;
+        margin-bottom: 13px;
+        h1 {
+          font-family: "Poppins-Bold";
+          color: #5460cb;
+          font-size: 48px;
+          line-height: 110%;
+          letter-spacing: -2.16px;
+        }
+      }
+      p {
+        font-family: "Poppins-SemiBold";
+        color: #b4a9ee;
+        font-size: 24px;
+        line-height: 110%;
+        letter-spacing: -1.08px;
+        margin-bottom: 88px;
+      }
+    }
+  }
+
+  .community-page-section3 {
+    padding: 95px 22px 183px 22px;
+    background: url("/assets/images/community-page/Group\ 26086603.jpg")
+      no-repeat;
+    background-size: cover;
+    background-position: top;
+    .wrapper {
+      max-width: 1060px;
+      margin: 0 auto;
+      display: flex;
+      gap: 58px;
+      align-items: center;
+    }
+    .text {
+      .title {
+        display: flex;
+        align-items: center;
+        gap: 24px;
+        margin-bottom: 13px;
+        h1 {
+          font-family: "Poppins-Bold";
+          color: #c84819;
+          font-size: 48px;
+          line-height: 110%;
+          letter-spacing: -2.16px;
+        }
+      }
+      p {
+        font-family: "Poppins-SemiBold";
+        color: #fff;
+        font-size: 24px;
+        line-height: 110%;
+        letter-spacing: -1.08px;
+        margin-bottom: 88px;
+      }
+      button {
+        color: #c84819;
+      }
+    }
+  }
+
+  @media (max-width: 1024px) {
+    margin-top: -16px;
+    .community-page-section1 {
+      height: 93vh;
+      background: url("/assets/images/contact/bg-header-tablet.png") no-repeat;
+      background-size: cover !important;
+      background-position: center !important;
+      .text {
+        .sub-title {
+          font-size: 18px;
+          letter-spacing: 1.98px;
+        }
+        .title {
+          font-size: 44px;
+          letter-spacing: -1.98px;
+        }
+      }
+    }
+    .community-page-section2 {
+      .text {
+        .title {
+          h1 {
+            font-size: 44px;
+            letter-spacing: -1.98px;
+          }
+          img {
+            width: 90px;
+            height: 90px;
+          }
+        }
+        p {
+          font-size: 18px;
+          letter-spacing: -0.81px;
+        }
+      }
+    }
+    .community-page-section3 {
+      background-position: initial;
+      .text {
+        .title {
+          h1 {
+            font-size: 44px;
+            letter-spacing: -1.98px;
+          }
+          img {
+            width: 60px;
+            height: 60px;
+          }
+        }
+        p {
+          font-size: 18px;
+          letter-spacing: -0.81px;
+        }
+      }
+    }
+  }
+
+  @media (max-width: 768px) {
+    .community-page-section2 {
+      padding: 95px 22px;
+      .wrapper {
+        flex-direction: column-reverse;
+      }
+      .text {
+        p {
+          margin-bottom: 50px;
+        }
+      }
+    }
+    .community-page-section3 {
+      padding: 95px 22px;
+      .wrapper {
+        flex-direction: column;
+      }
+      .text {
+        p {
+          margin-bottom: 50px;
+        }
+      }
+    }
+    .btn-wrapper {
+      button {
+        margin: 0 auto;
+      }
+    }
+  }
+
+  @media (max-width: 450px) {
+    .community-page-section1 {
+      background: url("/assets/images/contact/bg-header-mobile.png") no-repeat;
+      height: 58.8vh;
+      .text {
+        .sub-title {
+          font-size: 14px;
+          letter-spacing: 1.54px;
+        }
+        .title {
+          font-size: 24px;
+          letter-spacing: -1.08px;
+        }
+      }
+    }
+    .community-page-section2 {
+      padding: 40px 25px;
+      background-position: right;
+      .wrapper {
+        gap: 32px;
+      }
+      .text {
+        .title {
+          margin-bottom: 20px;
+          h1 {
+            font-size: 36px;
+            letter-spacing: -1.98px;
+          }
+          img {
+            width: 80px;
+            height: 80px;
+          }
+        }
+        p {
+          font-size: 18px;
+          letter-spacing: -0.81px;
+          margin-bottom: 20px;
+        }
+      }
+    }
+    .community-page-section3 {
+      padding: 40px 25px;
+      .wrapper {
+        gap: 32px;
+      }
+      .text {
+        .title {
+          margin-bottom: 20px;
+          h1 {
+            font-size: 36px;
+            letter-spacing: -1.98px;
+          }
+          img {
+            width: 52px;
+            height: 52px;
+          }
+        }
+        p {
+          font-size: 18px;
+          letter-spacing: -0.81px;
+          margin-bottom: 20px;
+        }
+      }
+    }
+  }
+}

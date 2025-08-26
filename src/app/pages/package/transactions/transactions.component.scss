@@ -1,0 +1,116 @@
+.transaction {
+  padding: 20px 20px 10px 20px;
+  background: white;
+  margin-top: 14px;
+  filter: drop-shadow(1px 2px 4px rgba(213, 224, 236, 0.7));
+  border-radius: 16px;
+  .title {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 20px;
+    letter-spacing: -0.34px;
+    color: #5460cb;
+  }
+}
+.transaction.loginFalse {
+  height: 430px;
+  p {
+    margin-top: 16px;
+    color: #000;
+    font-size: 14px;
+    letter-spacing: -0.084px;
+  }
+}
+.transaction.loginTrue {
+  .title {
+    margin-bottom: 28px;
+  }
+  .item {
+    display: flex;
+    gap: 7px;
+    border-bottom: 1px solid #d5e0ec;
+    padding-bottom: 15px;
+    margin-top: 12px;
+    .info {
+      width: 100%;
+      color: #000;
+      font-size: 12px;
+      line-height: 16px;
+      .info1,
+      .info2 {
+        display: flex;
+        justify-content: space-between;
+        span:nth-of-type(2) {
+          color: #83bd96;
+        }
+      }
+
+      .info2 {
+        margin-top: 4px;
+        span:nth-of-type(1) {
+          color: #a4a4a4;
+        }
+      }
+      .info1 {
+        span:nth-of-type(2).hasNotCurrency {
+          color: black;
+        }
+      }
+    }
+  }
+  .item:first-of-type {
+    margin-top: 0;
+  }
+  .btn-wrapper {
+    margin-top: 8px;
+    button {
+      border: none;
+      span {
+        box-shadow: none;
+      }
+    }
+  }
+}
+
+.redeem {
+  margin-top: 14px;
+  padding: 20px;
+  background: white;
+  filter: drop-shadow(1px 2px 4px rgba(213, 224, 236, 0.7));
+  border-radius: 16px;
+  .title {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    margin-bottom: 6px;
+    h3 {
+      color: #5460cb;
+      font-size: 20px;
+      letter-spacing: -0.34px;
+    }
+  }
+  input {
+    box-shadow: none;
+    border-radius: 24px;
+    background: #f4eafa;
+    color: #5460cb;
+    font-size: 14px;
+    padding: 8px 25px;
+    &::placeholder {
+      color: #5460cb;
+    }
+  }
+  .btn-wrapper {
+    margin-top: 12px;
+    button {
+      max-width: 148px;
+      width: 100%;
+      background: linear-gradient(118deg, #5460cb 29.93%, #cc90e6 107.01%);
+      span {
+        -webkit-text-fill-color: unset;
+        color: white;
+      }
+    }
+  }
+}

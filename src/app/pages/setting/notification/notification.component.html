@@ -1,0 +1,42 @@
+<div class="notification">
+  <div class="wrapper">
+    <h1>Notification</h1>
+
+    <div class="conversation">
+      <p>Conversation</p>
+      <div class="item-wrapper">
+        <div class="item" *ngFor="let item of conversation">
+          <div
+            class="slide-toggle-grandora"
+            [ngClass]="item?.isToggle ? 'active' : ''"
+            (click)="item.isToggle = !item.isToggle"
+          ></div>
+          <span>{{ item?.title }}</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="news">
+      <p>News</p>
+      <div class="item-wrapper">
+        <div class="item" *ngFor="let item of news">
+          <div
+            class="slide-toggle-grandora"
+            [ngClass]="item?.isToggle ? 'active' : ''"
+            (click)="item.isToggle = !item.isToggle"
+          ></div>
+          <span>{{ item?.title }}</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="btn-wrapper">
+      <button class="secondary-btn" type="button">
+        <span>Cancel</span>
+      </button>
+      <button class="primary-btn" type="button">
+        <span>Save</span>
+      </button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,128 @@
+<div class="support-request">
+  <div class="inner">
+    <div class="back-btn">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="18"
+        height="24"
+        viewBox="0 0 18 24"
+        fill="none"
+        routerLink="../"
+      >
+        <path
+          d="M6 12.8L18 24L12 24L9.79135e-07 12.8L12 -5.24537e-07L18 0L6 12.8Z"
+          fill="#5460CB"
+        />
+      </svg>
+      <span>Report Bug</span>
+    </div>
+
+    <div class="content">
+      <h3 class="title">Support request</h3>
+
+      <form
+        class="support"
+        [formGroup]="supportForm"
+        (ngSubmit)="handleSignIn()"
+      >
+        <div class="wrapper">
+          <div class="form-section1">
+            <div class="form-group-grandora username">
+              <label for="username">Username</label>
+              <div
+                class="input-wrapper"
+                [ngClass]="
+                  username.invalid && username.touched ? 'invalid' : ''
+                "
+              >
+                <input
+                  type="text"
+                  id="username"
+                  placeholder="Your username"
+                  formControlName="username"
+                  readonly
+                />
+              </div>
+
+              <div
+                class="error-msg"
+                *ngIf="username.invalid && username.touched"
+              >
+                <small class="text-error" *ngIf="username.errors?.['required']"
+                  >The field is required.</small
+                >
+              </div>
+            </div>
+            <div class="form-group-grandora email">
+              <label for="">Email<span>*</span></label>
+              <div
+                class="input-wrapper"
+                [ngClass]="email.invalid && email.touched ? 'invalid' : ''"
+              >
+                <input
+                  type="text"
+                  placeholder="Enter email address"
+                  formControlName="email"
+                />
+              </div>
+
+              <div class="error-msg" *ngIf="email.invalid && email.touched">
+                <small class="text-error" *ngIf="email.errors?.['required']"
+                  >The field is required.</small
+                >
+                <small class="text-error" *ngIf="email.errors?.['pattern']"
+                  >An email should have a valid domain extension (.com, .org,
+                  .net, etc.) after the "@" symbol.</small
+                >
+              </div>
+            </div>
+            <div class="form-group-grandora description">
+              <label for="username">Share your problem</label>
+              <div
+                class="input-wrapper"
+                [ngClass]="
+                  username.invalid && username.touched ? 'invalid' : ''
+                "
+              >
+                <textarea
+                  type="text"
+                  id="description"
+                  placeholder="Your description"
+                  formControlName="description"
+                ></textarea>
+              </div>
+
+              <div
+                class="error-msg"
+                *ngIf="description.invalid && description.touched"
+              >
+                <small
+                  class="text-error"
+                  *ngIf="description.errors?.['required']"
+                  >The field is required.</small
+                >
+              </div>
+            </div>
+            <div class="form-group-grandora upload">
+              <app-grandora-dropzone type="support"></app-grandora-dropzone>
+            </div>
+          </div>
+          <div class="form-section2">
+            <div class="note">
+              Please check your email : Invalid argument, 'email': Invalid email
+              address.
+            </div>
+          </div>
+        </div>
+        <div class="btn-wrapper">
+          <button class="secondary-btn" type="button">
+            <span>Cancel</span>
+          </button>
+          <button class="primary-btn" type="button">
+            <span>Submit request</span>
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
