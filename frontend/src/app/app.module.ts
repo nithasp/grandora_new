@@ -1,4 +1,4 @@
-import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { APP_INITIALIZER, NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { BrowserModule } from '@angular/platform-browser';
@@ -7,16 +7,13 @@ import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CommunityModule } from './components/community/community.module';
 
-import { createApolloFactory } from './graphql.module';
-import {
-  APOLLO_NAMED_OPTIONS,
-  APOLLO_OPTIONS,
-  ApolloModule,
-  NamedOptions,
-} from 'apollo-angular';
-import { InMemoryCache } from '@apollo/client/core';
+import { createApolloClients } from './graphql.module';
+import { APOLLO_NAMED_OPTIONS, ApolloModule } from 'apollo-angular';
 import { HttpLink } from 'apollo-angular/http';
 import { AppRoutingModule } from './app-routing.module';
+import { AuthService } from './core/services/auth.service';
+import { SessionService } from './core/services/session.service';
+import { PackageCardModule } from './components/package-card/package-card.module';
 
 // Register swiper library
 import { register } from 'swiper/element/bundle';
@@ -98,34 +95,20 @@ import { LdsRollerModule } from './components/loading/lds-roller/lds-roller.modu
     NgbDatepickerModule,
 
     MatProgressSpinnerModule,
-    LdsRollerModule
+    LdsRollerModule,
+    PackageCardModule,
   ],
   providers: [
     {
       provide: APOLLO_NAMED_OPTIONS,
-      useFactory(httpLink: HttpLink): NamedOptions {
-        return {
-          default: {
-            cache: new InMemoryCache(),
-            link: httpLink.create({
-              uri: 'http://node52360-grandora-uat.th2.proen.cloud:11509/player-service/graph',
-            }),
-          },
-          grandoraEndPoint: {
-            cache: new InMemoryCache(),
-            link: httpLink.create({
-              uri: 'https://grandora.games/api/v1/graph',
-            }),
-          },
-          packageEndPoint: {
-            cache: new InMemoryCache(),
-            link: httpLink.create({
-              uri: 'http://43.133.96.178:9002',
-            }),
-          },
-        };
-      },
-      deps: [HttpLink],
+      useFactory: createApolloClients,
+      deps: [HttpLink, SessionService],
+    },
+    {
+      provide: APP_INITIALIZER,
+      useFactory: (auth: AuthService) => () => auth.initSession(),
+      deps: [AuthService],
+      multi: true,
     },
   ],
   bootstrap: [AppComponent],

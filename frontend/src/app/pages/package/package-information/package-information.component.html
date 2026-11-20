@@ -1406,8 +1406,8 @@
           </div>
           <div class="point">
             <div class="item" *ngFor="let item of currency">
-              <div class="name">{{item?.item_id}}</div>
-              <div class="number">{{item?.amount}}</div>
+              <div class="name">{{ item?.name || item?.item_id }}</div>
+              <div class="number">{{ item?.amount | number }}</div>
             </div>
           </div>
         </div>
@@ -1454,13 +1454,24 @@
                 *ngFor="let item of package"
                 (click)="handlePackage(item)"
               >
-                <picture>
-                  <source
-                    media="(max-width: 768px)"
-                    [srcset]="item.url_mobile"
-                  />
-                  <img [src]="item.url" alt="package-image " />
-                </picture>
+                <app-package-card [item]="item"></app-package-card>
+              </div>
+              <p class="empty" *ngIf="!package.length">
+                {{ packageError || 'Loading packages...' }}
+              </p>
+            </div>
+          </div>
+
+          <div class="package coins">
+            <h4 class="title">Top up MYGG Coins</h4>
+            <p class="rate">1 MYGG Coin = ฿1. Pay with card, PromptPay, TrueMoney and more, then spend the coins on any Grando package or in the Official Store.</p>
+            <div class="package-wrapper">
+              <div
+                class="item"
+                *ngFor="let item of coinPackages"
+                (click)="handlePackage(item)"
+              >
+                <app-package-card [item]="item"></app-package-card>
               </div>
             </div>
           </div>

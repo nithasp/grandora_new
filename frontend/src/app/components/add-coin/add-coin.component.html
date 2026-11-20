@@ -32,36 +32,50 @@
   </div>
   <div class="wrapper">
     <div class="add-coin-content">
-      <div class="currency">
-        <h3>Currency</h3>
-        <app-grandora-select
-          class="select-currency"
-          [optionItems]="currencyItem"
-          (changeTopic)="handleCurrency($event)"
-        ></app-grandora-select>
-      </div>
-      <div class="category">
-        <h3>Category</h3>
-        <div class="package">
-          <div
-            class="item"
-            *ngFor="let item of package"
-            (click)="handlePackage(item)"
-          >
-            <img [src]="item.url" alt="package-image" />
+      <ng-container *ngIf="isLogin; else signedOut">
+        <div class="currency">
+          <h3>Currency</h3>
+          <app-grandora-select
+            class="select-currency"
+            [optionItems]="currencyOptions"
+            optionPlaceholder="MYGG Coins"
+            (changeTopic)="handleCurrency($event)"
+          ></app-grandora-select>
+        </div>
+        <div class="category">
+          <h3>{{ kind === 'coins' ? 'Top up MYGG Coins' : 'Grando Package' }}</h3>
+          <div class="package">
+            <div
+              class="item"
+              *ngFor="let item of package"
+              (click)="handlePackage(item)"
+            >
+              <app-package-card [item]="item"></app-package-card>
+            </div>
+            <p class="empty" *ngIf="!package.length">
+              {{ loadError || 'Loading packages...' }}
+            </p>
           </div>
         </div>
-      </div>
+      </ng-container>
+      <ng-template #signedOut>
+        <div class="signed-out">
+          <p>Sign in to top up MYGG Coins and buy Grando packages.</p>
+          <button class="linear-btn-grandora" (click)="handleSignIn()">
+            <span>Sign In</span>
+          </button>
+        </div>
+      </ng-template>
     </div>
     <div class="add-coin-footer">
       <div class="point">
-        <div class="item item1">
-          <img src="/assets/images/package/Polygon 3.png" alt="" />
-          <span>245,888</span>
+        <div class="item item1" title="MYGG Coins">
+          <img src="/assets/images/package/Polygon 3.png" alt="MYGG Coins" />
+          <span>{{ balances?.myggCoins ?? 0 | number }}</span>
         </div>
-        <div class="item item2">
-          <img src="/assets/images/package/image 2199.png" alt="" />
-          <span>4,888</span>
+        <div class="item item2" title="Grando">
+          <img src="/assets/images/official-store/Group.png" alt="Grando" />
+          <span>{{ balances?.grando ?? 0 | number }}</span>
         </div>
       </div>
       <div class="btn-wrapper">

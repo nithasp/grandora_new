@@ -1,12 +1,13 @@
-import { Component } from '@angular/core';
-import { packageData } from 'src/data/mockup/package-data';
-import { PlayerService, PackageService } from 'src/app/core/services';
+import { Component, OnDestroy } from '@angular/core';
+import { Subscription } from 'rxjs';
+import { PlayerService, PackageService, AuthService } from 'src/app/core/services';
+import { PackageItem, PlayerItem } from 'src/app/core/models';
 @Component({
   selector: 'app-package-information',
   templateUrl: './package-information.component.html',
   styleUrls: ['./package-information.component.scss'],
 })
-export class PackageInformationComponent {
+export class PackageInformationComponent implements OnDestroy {
   subscription: any = [
     {
       package_name: 'Free Package',
@@ -44,27 +45,54 @@ export class PackageInformationComponent {
     },
   ];
 
-  package: any = [];
+  package: PackageItem[] = [];
+  coinPackages: PackageItem[] = [];
+  packageError = '';
 
-  currency: any = [];
+  currency: PlayerItem[] = [];
+
+  private subscriptions = new Subscription();
 
   constructor(
     private playerService: PlayerService,
-    private packageService: PackageService
+    private packageService: PackageService,
+    private authService: AuthService
   ) {}
 
   ngOnInit(): void {
-    this.package = packageData;
-    this.getCurrency();
+    this.subscriptions.add(
+      this.authService.getIsLogin().subscribe((isLogin) => {
+        if (!isLogin) return;
+        this.loadPackages();
+        this.getCurrency();
+      })
+    );
+    this.subscriptions.add(this.packageService.purchaseCompleted.subscribe(() => this.getCurrency()));
   }
-  handlePackage(item: any) {
+
+  ngOnDestroy(): void {
+    this.subscriptions.unsubscribe();
+  }
+
+  loadPackages() {
+    this.packageService.getPackages().subscribe({
+      next: (items) => {
+        this.package = items.filter((item) => item.kind === 'grando');
+        this.coinPackages = items.filter((item) => item.kind === 'coins');
+      },
+      error: () => (this.packageError = 'Packages could not be loaded. Please try again later.'),
+    });
+  }
+
+  handlePackage(item: PackageItem) {
     this.packageService.handlePackage(item);
   }
+
   getCurrency() {
-    this.playerService
-      .getCurrencyApi()
-      .subscribe(
-        (value) => (this.currency = value.data.GetSelf.inventory.currency)
-      );
+    if (!this.authService.getAccessToken()) return;
+    this.playerService.getCurrencyApi().subscribe({
+      next: (value) => (this.currency = value.data?.GetSelf?.inventory?.currency ?? []),
+      error: () => (this.currency = []),
+    });
   }
 }

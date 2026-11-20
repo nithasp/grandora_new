@@ -141,10 +141,16 @@
 
         <h3>Redeem</h3>
       </div>
-      <input type="text" placeholder="Redeem Code" />
+      <input
+        type="text"
+        placeholder="Redeem Code"
+        [(ngModel)]="redeemCode"
+        (keyup.enter)="redeem()"
+        maxlength="40"
+      />
       <div class="btn-wrapper">
-        <button class="linear-btn-grandora">
-          <span>Redeem</span>
+        <button class="linear-btn-grandora" (click)="redeem()" [disabled]="isRedeeming || !redeemCode.trim()">
+          <span>{{ isRedeeming ? 'Redeeming...' : 'Redeem' }}</span>
         </button>
       </div>
     </div>
@@ -252,6 +258,7 @@
         <span>Transactions</span>
       </h3>
       <div class="wrapper">
+        <p class="empty" *ngIf="!transactions.length">No transactions yet.</p>
         <div class="item" *ngFor="let item of transactions">
           <div class="icon">
             <svg

@@ -137,6 +137,7 @@
           <a routerLink="sign-in">Sign In</a>
         </div>
         <div class="profile-menu" *ngIf="isLogin">
+          <span class="demo-badge" *ngIf="isDemo" title="You are exploring the shared demo account">DEMO</span>
           <div class="profile-icon" (click)="isMenuDisplay = !isMenuDisplay">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -191,7 +192,11 @@
               </div>
               <div class="item-name">Setting</div>
             </div>
-            <div class="item">
+            <div
+              class="item"
+              routerLink="package"
+              (click)="isMenuDisplay = false"
+            >
               <div class="item-icon">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"

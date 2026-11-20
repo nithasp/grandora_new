@@ -90,6 +90,16 @@
             <ng-container *ngIf="!isLoading">Log In</ng-container>
           </button>
         </div>
+        <div class="btn-wrapper demo" *ngIf="demoEnabled">
+          <button
+            type="button"
+            class="demo-btn"
+            [disabled]="isDemoLoading || isLoading"
+            (click)="enterDemo()"
+          >
+            {{ isDemoLoading ? 'Opening the demo...' : 'Continue with the demo account' }}
+          </button>
+        </div>
         <div class="social-login">
           <h4>Or sign with</h4>
           <div class="social-icon">

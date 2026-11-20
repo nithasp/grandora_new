@@ -122,3 +122,15 @@
 .p12 {
   color: red;
 }
+
+.btn-wrapper.demo {
+  margin-top: 14px;
+  .demo-btn {
+    background: #fff !important;
+    color: #5460cb !important;
+    border: 2px solid #757fef !important;
+  }
+  .demo-btn:disabled {
+    opacity: 0.6;
+  }
+}

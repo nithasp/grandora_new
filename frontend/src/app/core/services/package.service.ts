@@ -1,20 +1,31 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Observable, Subject, catchError, map, shareReplay, throwError } from 'rxjs';
 import { Apollo, gql } from 'apollo-angular';
-import { HttpClient } from '@angular/common/http';
-import { AuthService } from './auth.service';
+import { AuthService, authHeaders } from './auth.service';
+import { PackageItem, PackageKind, StoreItem } from '../models';
 
 export const GET_PACKAGE = gql`
-  query {
-    items {
+  query ($kind: String) {
+    items(kind: $kind) {
       ok
       message
       data {
         id
+        code
         name
         description
         price
+        priceSatang
+        priceCoins
+        currency
+        kind
+        grantCurrency
+        grantAmount
+        bonusTickets
         image
+        badge
+        savePercent
+        theme
         game
         featured
       }
@@ -30,23 +41,40 @@ export class PackageService {
   isPackageContentDisplay = new BehaviorSubject<boolean>(false);
   packageInfo = new BehaviorSubject<any>(undefined);
 
+  purchaseCompleted = new Subject<void>();
+
   packageContainerTimeout: any;
+
+  private packages$?: Observable<PackageItem[]>;
 
   constructor(private apollo: Apollo, private authService: AuthService) {}
 
-  getPackage() {
+  getPackage(kind?: PackageKind) {
     return this.apollo.use('packageEndPoint').query<any>({
       query: GET_PACKAGE,
+      variables: { kind: kind ?? null },
       context: {
         headers: {
-          Authorization: this.authService.getAccessToken(),
+          ...authHeaders(this.authService.getAccessToken()),
           'Cache-Control': 'no-cache',
         },
       },
     });
   }
 
-  handlePackage(item: any) {
+  getPackages(): Observable<PackageItem[]> {
+    this.packages$ ??= this.getPackage().pipe(
+      map((res) => (res.data?.items?.data ?? []) as PackageItem[]),
+      catchError((err) => {
+        this.packages$ = undefined;
+        return throwError(() => err);
+      }),
+      shareReplay({ bufferSize: 1, refCount: false }),
+    );
+    return this.packages$;
+  }
+
+  handlePackage(item: PackageItem | StoreItem | any) {
     clearTimeout(this.packageContainerTimeout);
 
     this.packageInfo.next(item);

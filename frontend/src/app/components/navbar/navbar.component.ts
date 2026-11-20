@@ -14,6 +14,7 @@ export class NavbarComponent implements OnInit {
   isHamburgerMenuActive: boolean = false;
   isPurchaseMethodDisplay: boolean = false;
   isLogin: boolean = false;
+  isDemo: boolean = false;
 
   navbarMenu = [
     { name: 'Home', link: 'home' },
@@ -34,6 +35,9 @@ export class NavbarComponent implements OnInit {
   subscribeGlobalService() {
     this.authService.getIsLogin().subscribe((value) => {
       this.isLogin = value;
+    });
+    this.authService.isDemo.subscribe((value) => {
+      this.isDemo = value;
     });
   }
 

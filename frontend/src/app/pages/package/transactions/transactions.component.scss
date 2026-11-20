@@ -114,3 +114,14 @@
     }
   }
 }
+
+.transaction.loginTrue .empty {
+  color: #6f6f6f;
+  font-size: 13px;
+  padding-bottom: 12px;
+}
+
+.redeem .btn-wrapper button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}

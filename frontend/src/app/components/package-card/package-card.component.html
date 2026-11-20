@@ -1,0 +1,106 @@
+<svg
+  class="package-card desktop"
+  viewBox="0 0 612 480"
+  role="img"
+  [attr.aria-label]="item.name + ': ' + amountLabel + ' ' + unitLabel + ' for ' + priceLabel"
+>
+  <defs>
+    <filter [attr.id]="uid + '-shadow'" x="-10%" y="-10%" width="120%" height="125%">
+      <feDropShadow dx="1" dy="3" stdDeviation="6" flood-color="#D5E0EC" flood-opacity="0.9" />
+    </filter>
+    <filter [attr.id]="uid + '-text'" x="-10%" y="-20%" width="120%" height="150%">
+      <feDropShadow dx="0" dy="4" stdDeviation="4" flood-color="#000" flood-opacity="0.22" />
+    </filter>
+  </defs>
+
+  <rect x="24" y="24" width="564" height="432" rx="28" fill="#fff" [attr.filter]="'url(#' + uid + '-shadow)'" />
+  <rect x="24" y="24" width="564" height="312" rx="28" [attr.fill]="color" />
+
+  <image
+    [attr.href]="art"
+    x="56"
+    [attr.y]="badge ? 84 : 44"
+    width="230"
+    [attr.height]="badge ? 128 : 168"
+    preserveAspectRatio="xMidYMid meet"
+  />
+
+  <g *ngIf="badge as b">
+    <path d="M24 52 Q24 24 52 24 H326 L304 52 L326 80 H24 Z" [attr.fill]="b.fill" />
+    <text x="44" y="64" class="badge" [attr.fill]="b.text">{{ b.label }}</text>
+  </g>
+
+  <text x="62" y="254" class="amount">{{ amountLabel }}</text>
+  <text x="62" y="296" class="unit">{{ unitLabel }}</text>
+
+  <rect x="338" y="56" width="232" height="244" rx="18" fill="none" stroke="#fff" stroke-width="5" />
+  <text *ngIf="item.savePercent" x="454" y="124" text-anchor="middle" class="save">
+    SAVE {{ item.savePercent }}%
+  </text>
+  <text
+    x="454"
+    [attr.y]="item.savePercent ? 232 : 205"
+    text-anchor="middle"
+    class="price"
+    [attr.font-size]="priceSize(92, 210)"
+    [attr.filter]="'url(#' + uid + '-text)'"
+  >
+    {{ priceLabel }}
+  </text>
+
+  <rect x="60" y="312" width="154" height="122" rx="18" fill="#fff" [attr.filter]="'url(#' + uid + '-shadow)'" />
+  <image [attr.href]="tileImage" x="76" y="328" width="122" height="90" preserveAspectRatio="xMidYMid meet" />
+  <text x="552" y="414" text-anchor="end" class="bonus">{{ bonusLabel }}</text>
+</svg>
+
+<svg
+  class="package-card mobile"
+  viewBox="0 0 296 160"
+  role="img"
+  [attr.aria-label]="item.name + ': ' + amountLabel + ' ' + unitLabel + ' for ' + priceLabel"
+>
+  <defs>
+    <!-- Its own copy: a filter inside the hidden desktop SVG does not render in every browser -->
+    <filter [attr.id]="uid + '-m-shadow'" x="-10%" y="-10%" width="120%" height="125%">
+      <feDropShadow dx="1" dy="2" stdDeviation="3" flood-color="#D5E0EC" flood-opacity="0.9" />
+    </filter>
+  </defs>
+
+  <rect x="3" y="3" width="290" height="154" rx="12" fill="#fff" [attr.filter]="'url(#' + uid + '-m-shadow)'" />
+  <rect x="3" y="3" width="290" height="106" rx="12" [attr.fill]="color" />
+
+  <image
+    [attr.href]="art"
+    x="10"
+    [attr.y]="badge ? 30 : 14"
+    width="84"
+    [attr.height]="badge ? 70 : 84"
+    preserveAspectRatio="xMidYMid meet"
+  />
+
+  <g *ngIf="badge as b">
+    <path d="M3 15 Q3 3 15 3 H124 L114 14.5 L124 26 H3 Z" [attr.fill]="b.fill" />
+    <text x="10" y="19.5" class="badge small" [attr.fill]="b.text">{{ b.label }}</text>
+  </g>
+
+  <text x="144" y="62" text-anchor="middle" class="amount" font-size="19">{{ amountLabel }}</text>
+  <text x="144" y="82" text-anchor="middle" class="unit" font-size="14">{{ unitLabel }}</text>
+
+  <rect x="194" y="12" width="90" height="88" rx="8" fill="none" stroke="#fff" stroke-width="2.5" />
+  <text *ngIf="item.savePercent" x="239" y="36" text-anchor="middle" class="save" font-size="11">
+    SAVE {{ item.savePercent }}%
+  </text>
+  <text
+    x="239"
+    [attr.y]="item.savePercent ? 76 : 66"
+    text-anchor="middle"
+    class="price"
+    [attr.font-size]="priceSize(34, 82)"
+  >
+    {{ priceLabel }}
+  </text>
+
+  <rect x="12" y="104" width="62" height="46" rx="8" fill="#fff" [attr.filter]="'url(#' + uid + '-m-shadow)'" />
+  <image [attr.href]="tileImage" x="18" y="109" width="50" height="36" preserveAspectRatio="xMidYMid meet" />
+  <text x="282" y="140" text-anchor="end" class="bonus" font-size="17">{{ bonusLabel }}</text>
+</svg>

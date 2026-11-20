@@ -348,3 +348,21 @@ app-add-coin.active {
     transform: translateY(-0.7rem) rotate(-45deg);
   }
 }
+
+.profile-menu {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  .demo-badge {
+    padding: 2px 10px;
+    border-radius: 12px;
+    background: #ffb900;
+    color: #1e232c;
+    font-family: "Poppins-SemiBold";
+    font-size: 12px;
+    letter-spacing: 0.5px;
+  }
+  .menu-list {
+    top: 100%;
+  }
+}

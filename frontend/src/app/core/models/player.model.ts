@@ -3,6 +3,7 @@ export interface PlayerItem {
   item_id: string;
   category: string;
   amount: number;
+  name: string;
 }
 
 export interface Inventory {
@@ -23,4 +24,10 @@ export interface PlayerServiceInterface {
   data: Data;
   loading: boolean;
   networkStatus: number;
+}
+
+export interface Balances {
+  myggCoins: number;
+  grando: number;
+  tickets: number;
 }

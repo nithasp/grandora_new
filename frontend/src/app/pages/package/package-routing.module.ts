@@ -5,6 +5,7 @@ import { TransactionsComponent } from './transactions/transactions.component';
 import { CancelingMembershipComponent } from './canceling-membership/canceling-membership.component';
 import { PackageInformationComponent } from './package-information/package-information.component';
 import { TransactionDetailComponent } from './transaction-detail/transaction-detail.component';
+import { PaymentResultComponent } from './payment-result/payment-result.component';
 
 const routes: Routes = [
   {
@@ -27,6 +28,10 @@ const routes: Routes = [
       {
         path: 'canceling-membership',
         component: CancelingMembershipComponent,
+      },
+      {
+        path: 'payment-result',
+        component: PaymentResultComponent,
       },
     ],
   },

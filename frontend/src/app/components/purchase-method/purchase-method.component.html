@@ -1,205 +1,190 @@
 <div class="purchase-method" *ngIf="isPackageContainerDisplay">
   <div class="inner" [ngClass]="isPackageContentDisplay ? 'display' : ''">
-    <div class="method step1" *ngIf="step === 1">
+    <div class="method step1" *ngIf="step === 'choose'">
       <div class="header">
         <span>Complete Purchase</span>
         <div class="close-btn" (click)="handleClose()">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="20"
-            height="20"
-            viewBox="0 0 20 20"
-            fill="none"
-          >
-            <g clip-path="url(#clip0_3158_82224)">
-              <rect
-                x="2.48145"
-                y="3.51953"
-                width="2"
-                height="20"
-                rx="1"
-                transform="rotate(-45 2.48145 3.51953)"
-                fill="white"
-              />
-              <rect
-                x="16.6255"
-                y="2.33984"
-                width="2"
-                height="20"
-                rx="1"
-                transform="rotate(45 16.6255 2.33984)"
-                fill="white"
-              />
-            </g>
-            <defs>
-              <clipPath id="clip0_3158_82224">
-                <rect width="20" height="20" fill="white" />
-              </clipPath>
-            </defs>
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+            <rect x="2.48145" y="3.51953" width="2" height="20" rx="1" transform="rotate(-45 2.48145 3.51953)" fill="white" />
+            <rect x="16.6255" y="2.33984" width="2" height="20" rx="1" transform="rotate(45 16.6255 2.33984)" fill="white" />
           </svg>
         </div>
       </div>
-      <div class="content">
+
+      <div class="content" *ngIf="item; else unavailable">
         <div class="purchase-summary">
           <h4 class="title">Purchase Summary</h4>
           <ul>
-            <li>
-              {{ packageInfo?.name }} ({{ packageInfo?.point | number }} Grando
-              & {{ packageInfo?.ticket | number }} ticket)
-            </li>
+            <li>{{ item.name }} ({{ grantLabel }})</li>
           </ul>
-          <div class="time">One-time charge on Dec 1, 2023.</div>
+          <div class="time">One-time charge on {{ today | date: 'MMM d, y' }}.</div>
           <div class="vat">
             <span>Total including VAT </span>
-            <span>THB 115.00</span>
+            <span>{{ priceLabel }}</span>
           </div>
         </div>
-        <!-- <div class="method1">
+
+        <div class="method1">
           <h4 class="title">Pay with</h4>
           <div class="wrapper">
-            <div class="method paypal">
-              <div class="name">PayPal</div>
-              <div class="icon">
-                <img
-                  class="paypal-icon"
-                  src="/assets/images/purchase-summary/paypal.png"
-                  alt="paypal"
-                />
-              </div>
-            </div>
-            <div class="method visa">
-              <div class="name">Visa</div>
-              <div class="icon">
-                <img
-                  class="visa-icon"
-                  src="/assets/images/purchase-summary/visa.png"
-                  alt="visa"
-                />
-              </div>
-            </div>
-            <div class="method mastercard">
-              <div class="name">Mastercard</div>
-              <div class="icon">
-                <img
-                  class="mastercard-icon"
-                  src="/assets/images/purchase-summary/mastercard.png"
-                  alt="mastercard"
-                />
-              </div>
-            </div>
-            <div class="method other">
-              <div class="name">Payment Methods</div>
-              <div class="icon">See more</div>
-            </div>
+            <button
+              type="button"
+              class="method-option"
+              *ngFor="let method of methods"
+              [ngClass]="{ active: method.type === selected }"
+              [disabled]="!isAvailable(method)"
+              (click)="select(method)"
+            >
+              <span class="name">{{ method.label }}</span>
+              <span class="hint">{{ methodHint(method) }}</span>
+            </button>
           </div>
+          <p class="notice" *ngIf="config && !config.enabled">
+            Card, PromptPay, TrueMoney and the other online methods switch on once Omise keys are set on the server.
+          </p>
+          <p class="notice" *ngIf="onlineBlockedForDemo">
+            The shared demo account cannot pay real money. Sign up for your own account to top up.
+          </p>
         </div>
-        <div class="method2">
-          <h4 class="title">Pay with Payment Card</h4>
 
+        <div class="method2" *ngIf="selected === 'card'">
+          <h4 class="title">Pay with Payment Card</h4>
+          <p class="test-hint" *ngIf="config?.testMode">
+            Test mode: use card <b>4242 4242 4242 4242</b>, any future expiry date and any CVV. No money is charged.
+          </p>
           <form [formGroup]="cardForm" (ngSubmit)="handleSubmit()">
-            <div class="info1">
-              <div class="group">
-                <div class="error-msg">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="16"
-                    height="16"
-                    viewBox="0 0 16 16"
-                    fill="none"
-                  >
-                    <path
-                      d="M8 1C4.15 1 1 4.15 1 8C1 11.85 4.15 15 8 15C11.85 15 15 11.85 15 8C15 4.15 11.85 1 8 1ZM7.45 4H8.55V9.5H7.45V4ZM8 12.5C7.6 12.5 7.25 12.15 7.25 11.75C7.25 11.35 7.6 11 8 11C8.4 11 8.75 11.35 8.75 11.75C8.75 12.15 8.4 12.5 8 12.5Z"
-                      fill="#FA5353"
-                    />
-                  </svg>
-                  <span
-                    >Please enter valid credentials in the highlighted areas and
-                    try again.</span
-                  >
-                </div>
-                <div class="wrapper">
-                  <div class="form-group-grandora firstname">
-                    <label for="">First Name</label>
-                    <div class="input-wrapper">
-                      <input type="text" formControlName="firstname" />
-                    </div>
-                  </div>
-                  <div class="form-group-grandora lastname">
-                    <label for="">Last Name </label>
-                    <div class="input-wrapper">
-                      <input type="text" formControlName="lastname" />
-                    </div>
-                  </div>
-                  <div class="form-group-grandora country">
-                    <label for="">Country</label>
-                    <div class="input-wrapper">
-                      <input type="text" formControlName="country" />
-                    </div>
-                  </div>
-                  <div class="form-group-grandora firstname">
-                    <label for="">First Name</label>
-                    <div class="input-wrapper">
-                      <input type="text" formControlName="firstname" />
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="card-placeholder-image">
-                <img
-                  class="card-placeholder-icon"
-                  src="/assets/images/purchase-summary/card-placeholder.png"
-                  alt="card-placeholder"
-                />
-              </div>
-            </div>
             <div class="info2">
-              <h4 class="title">Card Information</h4>
-              <div class="group">
-                <div class="form-group-grandora card-number">
-                  <label for="">Card Number</label>
+              <div class="group card-group">
+                <div class="form-group-grandora name">
+                  <label for="card-name">Name on Card</label>
                   <div class="input-wrapper">
-                    <input type="text" formControlName="card_number" />
+                    <input id="card-name" type="text" formControlName="name" autocomplete="cc-name" />
+                  </div>
+                </div>
+                <div class="form-group-grandora card-number">
+                  <label for="card-number">Card Number</label>
+                  <div class="input-wrapper">
+                    <input
+                      id="card-number"
+                      type="text"
+                      inputmode="numeric"
+                      formControlName="card_number"
+                      autocomplete="cc-number"
+                      placeholder="4242 4242 4242 4242"
+                    />
                   </div>
                 </div>
                 <div class="form-group-grandora expiry-date">
-                  <label for="">Expiry Date </label>
+                  <label for="card-expiry">Expiry Date</label>
                   <div class="input-wrapper">
-                    <input type="text" formControlName="expiry_date" />
-                  </div>
-                </div>
-                <div class="form-group-grandora year">
-                  <label for="">Year</label>
-                  <div class="input-wrapper">
-                    <input type="text" formControlName="year" />
+                    <input id="card-expiry" type="text" formControlName="expiry_date" autocomplete="cc-exp" placeholder="MM/YY" />
                   </div>
                 </div>
                 <div class="form-group-grandora cvv">
-                  <label for="">CVV </label>
+                  <label for="card-cvv">CVV</label>
                   <div class="input-wrapper">
-                    <input type="text" formControlName="cvv" />
+                    <input id="card-cvv" type="password" inputmode="numeric" formControlName="cvv" autocomplete="cc-csc" />
                   </div>
                 </div>
               </div>
             </div>
-
           </form>
-        </div> -->
+          <p class="secure-note">Card details go straight to Omise; they never reach our servers.</p>
+        </div>
+
+        <div class="method2" *ngIf="selectedMethod?.requiresPhone">
+          <h4 class="title">TrueMoney Wallet</h4>
+          <div class="form-group-grandora phone">
+            <label for="wallet-phone">Wallet phone number</label>
+            <div class="input-wrapper">
+              <input id="wallet-phone" type="tel" [(ngModel)]="phoneNumber" placeholder="0812345678" />
+            </div>
+          </div>
+        </div>
+
+        <div class="error-msg" *ngIf="errorMessage">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
+            <path
+              d="M8 1C4.15 1 1 4.15 1 8C1 11.85 4.15 15 8 15C11.85 15 15 11.85 15 8C15 4.15 11.85 1 8 1ZM7.45 4H8.55V9.5H7.45V4ZM8 12.5C7.6 12.5 7.25 12.15 7.25 11.75C7.25 11.35 7.6 11 8 11C8.4 11 8.75 11.35 8.75 11.75C8.75 12.15 8.4 12.5 8 12.5Z"
+              fill="#FA5353"
+            />
+          </svg>
+          <span>{{ errorMessage }}</span>
+        </div>
       </div>
+
+      <ng-template #unavailable>
+        <div class="content">
+          <p class="notice">This item cannot be bought here.</p>
+        </div>
+      </ng-template>
+
       <div class="footer">
         <div class="btn-wrapper">
           <button
             class="linear-btn-grandora"
-            type="submit"
-            (click)="step = step + 1"
+            type="button"
+            [disabled]="!item || !selected || isProcessing"
+            (click)="handleSubmit()"
           >
-            <span>Purchase</span>
+            <span *ngIf="!isProcessing">Purchase · {{ priceLabel }}</span>
+            <span *ngIf="isProcessing">Processing...</span>
           </button>
         </div>
       </div>
     </div>
 
-    <div class="step2" *ngIf="step === 2" (click)="handleClose()">
-      <img src="/assets/images/mockup/purchase/mockup-completed-purchase.png" />
+    <div class="method qr-step" *ngIf="step === 'qr'">
+      <div class="header">
+        <span>{{ methodLabel }}</span>
+        <div class="close-btn" (click)="handleClose()">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+            <rect x="2.48145" y="3.51953" width="2" height="20" rx="1" transform="rotate(-45 2.48145 3.51953)" fill="white" />
+            <rect x="16.6255" y="2.33984" width="2" height="20" rx="1" transform="rotate(45 16.6255 2.33984)" fill="white" />
+          </svg>
+        </div>
+      </div>
+      <div class="content qr">
+        <img *ngIf="qrCodeUri" class="qr-code" [src]="qrCodeUri" alt="Payment QR code" />
+        <p class="amount">Pay {{ paidLabel }}</p>
+        <p>Scan the QR code with your banking or wallet app. This window updates by itself once the payment arrives.</p>
+        <div class="waiting">
+          <span class="spinner"></span>
+          <span>Waiting for payment...</span>
+        </div>
+        <div class="test-actions" *ngIf="config?.testMode">
+          <p class="test-hint">Test mode: nobody can scan a test QR code, so simulate the bank's answer.</p>
+          <button type="button" class="secondary-btn" (click)="simulate('paid')"><span>Simulate payment</span></button>
+          <button type="button" class="secondary-btn" (click)="simulate('failed')"><span>Simulate failure</span></button>
+        </div>
+        <div class="error-msg" *ngIf="errorMessage">
+          <span>{{ errorMessage }}</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="method result-step" *ngIf="step === 'result' && order">
+      <div class="content result">
+        <ng-container *ngIf="order.status === 'paid'; else failed">
+          <img class="result-icon" src="/assets/images/icon/success-icon.png" alt="" />
+          <h3 class="title success">SUCCESS</h3>
+          <p class="message">Thank you! {{ grantLabel || (order.grantAmount | number) }} has been added to your account.</p>
+        </ng-container>
+        <ng-template #failed>
+          <img class="result-icon" src="/assets/images/icon/error-icon.png" alt="" />
+          <h3 class="title error">{{ order.status === 'expired' ? 'PAYMENT EXPIRED' : 'PAYMENT FAILED' }}</h3>
+          <p class="message">{{ order.failureMessage || 'The payment was not completed. No money was taken.' }}</p>
+        </ng-template>
+        <div class="details">
+          <div><span>Order ID</span><span>{{ order.id | slice: 0 : 8 }}</span></div>
+          <div><span>Package</span><span>{{ order.packageName }}</span></div>
+          <div><span>Paid with</span><span>{{ methodLabel }}</span></div>
+          <div><span>Total</span><span>{{ paidLabel }}</span></div>
+        </div>
+        <div class="btn-wrapper">
+          <button class="linear-btn-grandora" type="button" (click)="handleClose()"><span>Confirm</span></button>
+        </div>
+      </div>
     </div>
   </div>
 </div>

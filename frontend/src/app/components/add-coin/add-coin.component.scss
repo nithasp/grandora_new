@@ -35,15 +35,36 @@
     .package {
       display: grid;
       grid-template-columns: 1fr 1fr;
+      max-height: min(52vh, 470px);
+      overflow-y: auto;
       .item {
         cursor: pointer;
+        transition: transform 0.15s;
         img {
           width: 100%;
         }
+        &:hover {
+          transform: translateY(-2px);
+        }
+      }
+      .empty {
+        grid-column: 1 / -1;
+        color: #6f6f6f;
+        font-size: 14px;
+        padding: 12px 0;
       }
     }
     .category {
       margin-top: 20px;
+    }
+    .signed-out {
+      text-align: center;
+      padding: 12px 0;
+      p {
+        color: #2b2b2b;
+        font-size: 14px;
+        margin-bottom: 16px;
+      }
     }
   }
   .add-coin-footer {
@@ -73,9 +94,11 @@
         }
       }
       .item2 {
+        gap: 8px;
         img {
-          width: 36px;
-          height: 36px;
+          width: 28px;
+          height: 28px;
+          object-fit: contain;
         }
       }
     }
@@ -94,10 +117,7 @@
         height: calc(40vh - 60px);
         overflow: auto;
         grid-template-columns: 1fr;
-
-        .item {
-          height: 144px;
-        }
+        gap: 8px;
       }
     }
     .add-coin-footer {

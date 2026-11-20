@@ -52,10 +52,7 @@ export class SupportRequestComponent {
       this.authService.signIn(body).subscribe(
         (res) => {
           if (res.data?.LoginEmail) {
-            localStorage.setItem('accessToken', res.data?.LoginEmail.token);
-            this.authService.userInfo.next(res.data?.LoginEmail);
-            this.authService.isLogin.next(true);
-            this.router.navigate(['/setting']);
+            this.authService.completeSignIn(res.data.LoginEmail);
           } else if (
             errorConditions.some((item) =>
               res.errors![0].message.includes(item)

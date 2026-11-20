@@ -3,30 +3,35 @@
     <div class="title">
       <h1>Official Store</h1>
       <div class="coin">
-        <div class="coin1">
-          <img src="assets/images/official-store/Group 28458.png" />
-          <span>6,580</span>
+        <div class="coin1" title="MYGG Coins">
+          <img src="assets/images/package/Polygon 3.png" alt="MYGG Coins" />
+          <span>{{ balances?.myggCoins ?? 0 | number }}</span>
         </div>
-        <div class="coin2">
-          <img src="assets/images/official-store/Group.png" />
-          <span>0</span>
+        <div class="coin2" title="Grando">
+          <img src="assets/images/official-store/Group.png" alt="Grando" />
+          <span>{{ balances?.grando ?? 0 | number }}</span>
         </div>
       </div>
     </div>
     <div class="tab">
       <div class="types">
-        <div class="type active" type="all">All Products</div>
-        <div class="type" type="avatars">Avatars</div>
-        <div class="type" type="accessories">Accessories</div>
-        <div class="type" type="equipments">Equipments</div>
+        <div
+          *ngFor="let tab of types"
+          class="type"
+          [ngClass]="{ active: type === tab.key }"
+          (click)="selectType(tab.key)"
+        >
+          {{ tab.label }}
+        </div>
         <!-- <div class="type" type="products">Products</div> -->
       </div>
     </div>
     <div class="content">
-      <div class="promote" *ngIf="type === 'all'">
+      <p class="store-message" *ngIf="!products.length">{{ loadError || 'Loading the store...' }}</p>
+      <div class="promote" *ngIf="type === 'all' && products.length">
         <div class="promote-title">
           <h1>Promote</h1>
-          <span (click)="handleAvatarType()">See All ></span>
+          <span (click)="handleAvatarType('avatars')">See All ></span>
         </div>
         <div class="promote-item">
           <div class="promote-main-item">
@@ -44,10 +49,10 @@
                   fill="#5460CB"
                 />
               </svg>
-              <img src="/assets/images/official-store/avatar/1.png" />
+              <img [src]="mainItem?.image" [alt]="mainItem?.name" />
             </div>
             <div class="item-info">
-              <div class="name">Avatar name</div>
+              <div class="name">{{ mainItem?.name }}</div>
               <div class="coin">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -97,17 +102,18 @@
                   </defs>
                 </svg>
                 <div class="currency">
-                  <span>24 Danegeld</span>&nbsp;
-                  <span>(12 Grando / 8 MYGG)</span>
+                  <span>{{ mainItem?.priceGrando | number }} Grando</span>&nbsp;
+                  <span>({{ mainItem?.priceMygg | number }} MYGG)</span>
                 </div>
               </div>
               <div class="btn-wrapper">
                 <button
                   class="secondary-btn"
                   type="button"
-                  (click)="handlePackage('mockupItem')"
+                  [disabled]="!mainItem || mainItem.owned || buyingId === mainItem.id"
+                  (click)="handlePackage(mainItem)"
                 >
-                  <span>Buy</span>
+                  <span>{{ mainItem?.owned ? 'Owned' : buyingId === mainItem?.id ? 'Buying...' : 'Buy' }}</span>
                 </button>
                 <!-- <button class="secondary-btn" type="button">
                   <span>Add to Favourite</span>
@@ -116,7 +122,7 @@
             </div>
           </div>
           <div class="promote-sub-item">
-            <div class="item" *ngFor="let item of products | slice : 1 : 7">
+            <div class="item" *ngFor="let item of promoteSub">
               <div class="item-image">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -131,7 +137,7 @@
                     fill="#5460CB"
                   />
                 </svg>
-                <img src="{{ item?.image }}" />
+                <img [src]="item?.image" [alt]="item?.name" />
               </div>
               <div class="item-info">
                 <div class="name">{{ item?.name }}</div>
@@ -184,20 +190,18 @@
                     </defs>
                   </svg>
                   <div class="currency">
-                    <p>{{ item.coin.danegeld }} Danegeld</p>
-                    <p>
-                      ({{ item.coin.grando }} Grando /
-                      {{ item.coin.mygg }} MYGG)
-                    </p>
+                    <p>{{ item.priceGrando | number }} Grando</p>
+                    <p>({{ item.priceMygg | number }} MYGG)</p>
                   </div>
                 </div>
                 <div class="btn-wrapper">
                   <button
                     class="secondary-btn"
                     type="button"
-                    (click)="handlePackage('mockupItem')"
+                    [disabled]="item.owned || buyingId === item.id"
+                    (click)="handlePackage(item)"
                   >
-                    <span>Buy</span>
+                    <span>{{ item.owned ? 'Owned' : buyingId === item.id ? 'Buying...' : 'Buy' }}</span>
                   </button>
                   <!-- <button class="secondary-btn" type="button">
                     <span>Add to Favourite</span>
@@ -212,18 +216,14 @@
       <div class="avatars" *ngIf="type === 'all' || type === 'avatars'">
         <div class="avatar-title">
           <h1>Avatars</h1>
-          <span (click)="handleAvatarType()" *ngIf="type === 'all'"
+          <span (click)="handleAvatarType('avatars')" *ngIf="type === 'all'"
             >See All ></span
           >
         </div>
         <div class="avatar-item">
           <div
             class="item"
-            *ngFor="
-              let item of type === 'all'
-                ? (products | slice : 1 : 7)
-                : (products | slice : 1)
-            "
+            *ngFor="let item of section('avatars')"
           >
             <div class="item-image">
               <svg
@@ -239,7 +239,7 @@
                   fill="#5460CB"
                 />
               </svg>
-              <img src="{{ item?.image }}" />
+              <img [src]="item?.image" [alt]="item?.name" />
             </div>
             <div class="item-info">
               <div class="name">{{ item?.name }}</div>
@@ -292,19 +292,18 @@
                   </defs>
                 </svg>
                 <div class="currency">
-                  <p>{{ item.coin.danegeld }} Danegeld</p>
-                  <p>
-                    ({{ item.coin.grando }} Grando / {{ item.coin.mygg }} MYGG)
-                  </p>
+                  <p>{{ item.priceGrando | number }} Grando</p>
+                    <p>({{ item.priceMygg | number }} MYGG)</p>
                 </div>
               </div>
               <div class="btn-wrapper">
                 <button
                   class="secondary-btn"
                   type="button"
-                  (click)="handlePackage('mockupItem')"
-                >
-                  <span>Buy</span>
+                  [disabled]="item.owned || buyingId === item.id"
+                    (click)="handlePackage(item)"
+                  >
+                    <span>{{ item.owned ? 'Owned' : buyingId === item.id ? 'Buying...' : 'Buy' }}</span>
                 </button>
                 <!-- <button class="secondary-btn" type="button">
                   <span>Add to Favourite</span>
@@ -318,10 +317,10 @@
       <div class="accessories" *ngIf="type === 'all' || type === 'accessories'">
         <div class="accessories-title">
           <h1>Accessories</h1>
-          <span (click)="handleAvatarType()">See All ></span>
+          <span (click)="handleAvatarType('accessories')" *ngIf="type === 'all'">See All ></span>
         </div>
         <div class="accessories-item">
-          <div class="item" *ngFor="let item of products | slice : 1 : 7">
+          <div class="item" *ngFor="let item of section('accessories')">
             <div class="item-image">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -336,7 +335,7 @@
                   fill="#5460CB"
                 />
               </svg>
-              <img src="{{ item?.image }}" />
+              <img [src]="item?.image" [alt]="item?.name" />
             </div>
             <div class="item-info">
               <div class="name">{{ item?.name }}</div>
@@ -389,19 +388,18 @@
                   </defs>
                 </svg>
                 <div class="currency">
-                  <p>{{ item.coin.danegeld }} Danegeld</p>
-                  <p>
-                    ({{ item.coin.grando }} Grando / {{ item.coin.mygg }} MYGG)
-                  </p>
+                  <p>{{ item.priceGrando | number }} Grando</p>
+                    <p>({{ item.priceMygg | number }} MYGG)</p>
                 </div>
               </div>
               <div class="btn-wrapper">
                 <button
                   class="secondary-btn"
                   type="button"
-                  (click)="handlePackage('mockupItem')"
-                >
-                  <span>Buy</span>
+                  [disabled]="item.owned || buyingId === item.id"
+                    (click)="handlePackage(item)"
+                  >
+                    <span>{{ item.owned ? 'Owned' : buyingId === item.id ? 'Buying...' : 'Buy' }}</span>
                 </button>
                 <!-- <button class="secondary-btn" type="button">
                   <span>Add to Favourite</span>
@@ -415,10 +413,10 @@
       <div class="equipments" *ngIf="type === 'all' || type === 'equipments'">
         <div class="equipments-title">
           <h1>Equipments</h1>
-          <span (click)="handleAvatarType()">See All ></span>
+          <span (click)="handleAvatarType('equipments')" *ngIf="type === 'all'">See All ></span>
         </div>
         <div class="equipments-item">
-          <div class="item" *ngFor="let item of products | slice : 1 : 7">
+          <div class="item" *ngFor="let item of section('equipments')">
             <div class="item-image">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -433,7 +431,7 @@
                   fill="#5460CB"
                 />
               </svg>
-              <img src="{{ item?.image }}" />
+              <img [src]="item?.image" [alt]="item?.name" />
             </div>
             <div class="item-info">
               <div class="name">{{ item?.name }}</div>
@@ -486,19 +484,18 @@
                   </defs>
                 </svg>
                 <div class="currency">
-                  <p>{{ item.coin.danegeld }} Danegeld</p>
-                  <p>
-                    ({{ item.coin.grando }} Grando / {{ item.coin.mygg }} MYGG)
-                  </p>
+                  <p>{{ item.priceGrando | number }} Grando</p>
+                    <p>({{ item.priceMygg | number }} MYGG)</p>
                 </div>
               </div>
               <div class="btn-wrapper">
                 <button
                   class="secondary-btn"
                   type="button"
-                  (click)="handlePackage('mockupItem')"
-                >
-                  <span>Buy</span>
+                  [disabled]="item.owned || buyingId === item.id"
+                    (click)="handlePackage(item)"
+                  >
+                    <span>{{ item.owned ? 'Owned' : buyingId === item.id ? 'Buying...' : 'Buy' }}</span>
                 </button>
                 <!-- <button class="secondary-btn" type="button">
                   <span>Add to Favourite</span>

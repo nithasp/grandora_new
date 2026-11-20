@@ -292,4 +292,225 @@
       }
     }
   }
+
+  .method.step1 .content {
+    max-height: calc(100vh - 220px);
+  }
+
+  .method-option {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 2px;
+    width: 100%;
+    min-height: 58px;
+    padding: 8px 12px;
+    border: 1px solid #d5e0ec;
+    border-radius: 16px;
+    background: #fff;
+    text-align: left;
+    cursor: pointer;
+    transition: border-color 0.15s, box-shadow 0.15s;
+    .name {
+      color: #2b2b2b;
+      font-family: "Poppins-Medium";
+      font-size: 14px;
+      line-height: 18px;
+    }
+    .hint {
+      color: #8a8fa3;
+      font-size: 11px;
+      line-height: 14px;
+    }
+    &.active {
+      border-color: #5460cb;
+      box-shadow: 0 0 0 2px rgba(84, 96, 203, 0.25);
+    }
+    &:disabled {
+      cursor: not-allowed;
+      opacity: 0.45;
+    }
+  }
+
+  .notice,
+  .test-hint,
+  .secure-note {
+    margin-top: 11px;
+    font-size: 13px;
+    line-height: 18px;
+    color: #6f6f6f;
+  }
+
+  .test-hint {
+    padding: 8px 12px;
+    border-radius: 12px;
+    background: #f1f3ff;
+    color: #3d4699;
+  }
+
+  .card-group {
+    grid-template-columns: 2fr 2fr 1fr 1fr !important;
+  }
+
+  .error-msg {
+    display: flex;
+    align-items: center;
+    gap: 11px;
+    margin-top: 16px;
+    span {
+      color: #fa5353;
+      font-size: 14px;
+    }
+  }
+
+  .qr-step,
+  .result-step {
+    background: #fff;
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: #5460cb;
+      padding: 16px 24px;
+      span {
+        color: #fff;
+        font-size: 16px;
+      }
+      .close-btn {
+        display: flex;
+        cursor: pointer;
+      }
+    }
+  }
+
+  .content.qr,
+  .content.result {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    padding: 28px 24px;
+    text-align: center;
+    max-height: calc(100vh - 120px);
+    overflow: auto;
+    p {
+      color: #2b2b2b;
+      font-size: 14px;
+      max-width: 460px;
+    }
+    .amount {
+      font-family: "Poppins-Bold";
+      font-size: 20px;
+    }
+  }
+
+  .qr-code {
+    width: 240px;
+    height: 240px;
+    object-fit: contain;
+    border: 1px solid #d5e0ec;
+    border-radius: 16px;
+    padding: 8px;
+    background: #fff;
+  }
+
+  .waiting {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #5460cb;
+    font-size: 14px;
+    .spinner {
+      width: 18px;
+      height: 18px;
+      border: 3px solid #d5e0ec;
+      border-top-color: #5460cb;
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+    }
+  }
+
+  .test-actions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    .test-hint {
+      flex-basis: 100%;
+    }
+    button {
+      height: 40px;
+      padding: 8px 16px;
+    }
+  }
+
+  .result-icon {
+    width: 72px;
+    height: 72px;
+  }
+
+  .title.success,
+  .title.error {
+    font-family: "Poppins-Bold";
+    font-size: 26px;
+    letter-spacing: 0.5px;
+  }
+  .title.success {
+    color: #24a85c;
+  }
+  .title.error {
+    color: #e5484d;
+  }
+
+  .details {
+    width: 100%;
+    max-width: 460px;
+    margin-top: 8px;
+    padding-top: 14px;
+    border-top: 1px dashed #c9d3e2;
+    div {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 6px 0;
+      font-size: 14px;
+      span:first-child {
+        color: #6f6f6f;
+      }
+      span:last-child {
+        color: #2b2b2b;
+        font-family: "Poppins-Medium";
+        text-align: right;
+      }
+    }
+  }
+
+  .result .btn-wrapper {
+    margin-top: 12px;
+    button {
+      min-width: 200px;
+      border: none;
+      background: linear-gradient(118deg, #5460cb 29.93%, #cc90e6 107.01%);
+      span {
+        -webkit-text-fill-color: white;
+      }
+    }
+  }
+
+  .footer .btn-wrapper button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+
+  @media (max-width: 768px) {
+    .card-group {
+      grid-template-columns: 1fr 1fr !important;
+    }
+  }
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
 }

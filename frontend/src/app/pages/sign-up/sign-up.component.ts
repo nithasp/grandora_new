@@ -69,7 +69,7 @@ export class SignUpComponent implements OnInit {
     },
     {
       value: '12',
-      name: 'January',
+      name: 'December',
     },
   ];
   years: any = [];
@@ -160,18 +160,23 @@ export class SignUpComponent implements OnInit {
       email: this.signUpForm.value['email']?.replace(/\s/g, ''),
       password: this.signUpForm.value['password']?.replace(/\s/g, ''),
     };
+    const genders: Record<string, string> = { '0': 'male', '1': 'female', '2': 'unspecified' };
+    const [day, month, year] = String(this.signUpForm.value['date_of_birth'] ?? '').split('-');
 
     if (this.signUpForm.valid) {
       this.isLoading = true;
-      this.authService.signUp(body).subscribe(
+      this.authService
+        .signUp({
+          ...body,
+          gender: genders[this.signUpForm.value['gender']] ?? null,
+          dateOfBirth: day && month && year ? `${year}-${month}-${day}` : null,
+        })
+        .subscribe(
         (res) => {
           if (res.data?.RegisterEmail) {
             this.authService.signIn(body).subscribe((res) => {
               if (res.data?.LoginEmail) {
-                localStorage.setItem('accessToken', res.data?.LoginEmail.token);
-                this.authService.userInfo.next(res.data?.LoginEmail);
-                this.authService.isLogin.next(true);
-                this.router.navigate(['/setting']);
+                this.authService.completeSignIn(res.data.LoginEmail);
               } else {
                 console.log(res);
                 Swal.fire({
@@ -185,17 +190,15 @@ export class SignUpComponent implements OnInit {
               }
             });
           } else {
-            console.log(res);
             Swal.fire({
               icon: 'error',
               title: 'Error',
-              text: 'Something went wrong. Please try again.',
+              text: res.errors?.[0]?.message || 'Something went wrong. Please try again.',
               confirmButtonText: 'Done',
               confirmButtonColor: '#AC2028',
             });
             this.isLoading = false;
           }
-          console.log(res);
         },
         (err) => {
           console.log(err);

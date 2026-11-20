@@ -1,21 +1,42 @@
 <div class="profile-setting">
   <div class="inner">
-    <form action="">
+    <form [formGroup]="profileForm" (ngSubmit)="handleSave()">
       <div class="profile-picture">
         <div class="picture">
-          <img
-            src="/assets/images/mockup/setting/Screenshot 2022-12-30 at 18.50 1.jpg"
-          />
+          <img [src]="profile?.coverUrl || defaultCover" alt="Profile cover" />
         </div>
         <div class="btn-wrapper">
-          <button class="secondary-btn" type="button">
-            <span>Edit cover</span>
+          <input
+            #coverInput
+            type="file"
+            accept="image/png,image/jpeg,image/webp,image/gif"
+            hidden
+            (change)="handleImage('cover', $event)"
+          />
+          <button
+            class="secondary-btn"
+            type="button"
+            *ngIf="profile?.coverUrl"
+            [disabled]="uploading"
+            (click)="removeImage('cover')"
+          >
+            <span>Remove cover</span>
+          </button>
+          <button class="secondary-btn" type="button" [disabled]="uploading" (click)="coverInput.click()">
+            <span>{{ uploading === 'cover' ? 'Uploading...' : 'Edit cover' }}</span>
           </button>
         </div>
       </div>
       <div class="form-section1">
         <div class="profile-icon">
+          <img
+            *ngIf="profile?.avatarUrl"
+            class="avatar"
+            [src]="profile?.avatarUrl"
+            alt="Profile picture"
+          />
           <svg
+            *ngIf="!profile?.avatarUrl"
             xmlns="http://www.w3.org/2000/svg"
             width="141"
             height="141"
@@ -83,25 +104,41 @@
               </filter>
             </defs>
           </svg>
-          <button class="secondary-btn" type="button">
-            <span>Edit image</span>
+          <input
+            #avatarInput
+            type="file"
+            accept="image/png,image/jpeg,image/webp,image/gif"
+            hidden
+            (change)="handleImage('avatar', $event)"
+          />
+          <button class="secondary-btn" type="button" [disabled]="uploading" (click)="avatarInput.click()">
+            <span>{{ uploading === 'avatar' ? 'Uploading...' : 'Edit image' }}</span>
+          </button>
+          <button
+            class="link-btn"
+            type="button"
+            *ngIf="profile?.avatarUrl"
+            [disabled]="uploading"
+            (click)="removeImage('avatar')"
+          >
+            Remove image
           </button>
         </div>
         <div class="info">
           <div class="group group1">
             <div class="form-group-grandora">
               <label for="">Username</label>
-              <input type="text" placeholder="Your name in Grandora" />
+              <input type="text" formControlName="username" placeholder="Your name in Grandora" />
             </div>
           </div>
           <div class="group group2">
             <div class="form-group-grandora">
               <label for="">First name</label>
-              <input type="text" placeholder="Your first name" />
+              <input type="text" formControlName="firstName" placeholder="Your first name" />
             </div>
             <div class="form-group-grandora">
               <label for="">Last name</label>
-              <input type="text" placeholder="Your last name" />
+              <input type="text" formControlName="lastName" placeholder="Your last name" />
             </div>
           </div>
           <div class="group group3">
@@ -109,12 +146,18 @@
               <label for="">Country</label>
               <app-grandora-select
                 [optionItems]="country"
+                [optionPlaceholder]="profileForm.value.country || 'Select'"
+                [filled]="!!profileForm.value.country"
+                (changeTopic)="handleCountry($event)"
               ></app-grandora-select>
             </div>
             <div class="form-group-grandora">
               <label for="">City</label>
               <app-grandora-select
-                [optionItems]="country"
+                [optionItems]="cities"
+                [optionPlaceholder]="profileForm.value.city || 'Select'"
+                [filled]="!!profileForm.value.city"
+                (changeTopic)="handleCity($event)"
               ></app-grandora-select>
             </div>
           </div>
@@ -125,21 +168,24 @@
                 <div class="select days">
                   <app-grandora-select
                     [optionItems]="days"
-                    optionPlaceholder="Day"
+                    [optionPlaceholder]="day || 'Day'"
+                    [filled]="!!day"
                     (changeTopic)="selectDate($event, 'day')"
                   ></app-grandora-select>
                 </div>
                 <div class="select months">
                   <app-grandora-select
                     [optionItems]="months"
-                    optionPlaceholder="Month"
+                    [optionPlaceholder]="monthName || 'Month'"
+                    [filled]="!!month"
                     (changeTopic)="selectDate($event, 'month')"
                   ></app-grandora-select>
                 </div>
                 <div class="select years">
                   <app-grandora-select
                     [optionItems]="years"
-                    optionPlaceholder="Year"
+                    [optionPlaceholder]="year || 'Year'"
+                    [filled]="!!year"
                     (changeTopic)="selectDate($event, 'year')"
                   ></app-grandora-select>
                 </div>
@@ -151,7 +197,7 @@
                 type="text"
                 placeholder=""
                 readonly
-                [value]="age ? age : ''"
+                [value]="age ?? ''"
               />
             </div>
           </div>
@@ -176,24 +222,24 @@
         <div class="info">
           <div class="form-group-grandora">
             <label for="">Facebook</label>
-            <input type="text" placeholder="Your Facebook username" />
+            <input type="text" formControlName="facebook" placeholder="Your Facebook username" />
           </div>
           <div class="form-group-grandora">
             <label for="">Twitter</label>
-            <input type="text" placeholder="Your Twitter username" />
+            <input type="text" formControlName="twitter" placeholder="Your Twitter username" />
           </div>
           <div class="form-group-grandora">
             <label for="">Instagram</label>
-            <input type="text" placeholder="Your Instagram username" />
+            <input type="text" formControlName="instagram" placeholder="Your Instagram username" />
           </div>
         </div>
       </div>
       <div class="btn-wrapper">
-        <button class="secondary-btn" type="button">
+        <button class="secondary-btn" type="button" (click)="handleCancel()">
           <span>Cancel</span>
         </button>
-        <button class="primary-btn" type="button">
-          <span>Save</span>
+        <button class="primary-btn" type="submit" [disabled]="isSaving || isLoading">
+          <span>{{ isSaving ? 'Saving...' : 'Save' }}</span>
         </button>
       </div>
     </form>

@@ -7,7 +7,7 @@ import { PasswordAndPrivacyComponent } from './password-and-privacy/password-and
 import { GrandoraSelectModule } from 'src/app/components/grandora-select/grandora-select.module';
 import { NotificationComponent } from './notification/notification.component';
 import { ChatModule } from 'src/app/components/chat/chat.module';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -21,7 +21,8 @@ import { FormsModule } from '@angular/forms';
     SettingRoutingModule,
     GrandoraSelectModule,
     ChatModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule,
   ],
 })
 export class SettingModule {}

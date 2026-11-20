@@ -491,3 +491,18 @@ button {
     transform: translate(16px, -50%);
   }
 }
+
+.swal2-container .swal2-actions.choice-actions {
+  gap: 8px;
+  margin-top: 24px;
+  .swal2-confirm,
+  .swal2-deny,
+  .swal2-cancel {
+    width: auto;
+    max-width: none;
+    height: 44px;
+    margin: 0;
+    padding: 8px 20px;
+    border-radius: 8px;
+  }
+}

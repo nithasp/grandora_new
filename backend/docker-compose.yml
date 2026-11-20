@@ -1,0 +1,34 @@
+name: grandora
+
+services:
+  postgres:
+    image: postgres:17-alpine
+    container_name: grandora-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: grandora_user
+      POSTGRES_PASSWORD: grandora_pass
+      POSTGRES_DB: grandora_dev
+    ports:
+      # Published to this machine only, so the database is not reachable from the local network
+      - '127.0.0.1:5432:5432'
+    volumes:
+      - grandora_pg_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ['CMD-SHELL', 'pg_isready -U grandora_user -d grandora_dev']
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  adminer:
+    image: adminer
+    container_name: grandora-adminer
+    restart: unless-stopped
+    ports:
+      - '127.0.0.1:8080:8080'
+    depends_on:
+      postgres:
+        condition: service_healthy
+
+volumes:
+  grandora_pg_data:

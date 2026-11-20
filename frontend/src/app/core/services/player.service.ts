@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Apollo, gql } from 'apollo-angular';
-import { AuthService } from './auth.service';
+import { AuthService, authHeaders } from './auth.service';
 import { BehaviorSubject } from 'rxjs';
-import { PlayerItem } from '../models';
+import { Balances, PlayerItem } from '../models';
 
 export const GET_FIRST_LOGIN_PLAYERS = gql`
   query {
@@ -12,7 +12,13 @@ export const GET_FIRST_LOGIN_PLAYERS = gql`
           item_id
           category
           amount
+          name
         }
+      }
+      balances {
+        myggCoins
+        grando
+        tickets
       }
     }
   }
@@ -25,34 +31,44 @@ export class PlayerService {
   constructor(private apollo: Apollo, private authService: AuthService) {}
 
   currencyItem = new BehaviorSubject<any>([]);
+  balances = new BehaviorSubject<Balances | null>(null);
 
   getCurrencyItem() {
     return this.currencyItem.asObservable();
   }
 
+  getBalances() {
+    return this.balances.asObservable();
+  }
+
   getCurrencyApi() {
     return this.apollo.query<any>({
       query: GET_FIRST_LOGIN_PLAYERS,
+      // Balances change with every purchase, so they are always read from the server
+      fetchPolicy: 'network-only',
       context: {
-        headers: {
-          Authorization: this.authService.getAccessToken(),
-        },
+        headers: authHeaders(this.authService.getAccessToken()),
       },
     });
   }
 
   getCurrencyData() {
     if (this.authService.getAccessToken()) {
-      this.getCurrencyApi().subscribe((value) => {
-        const currencyItemData = value.data?.GetSelf.inventory.currency.map(
-          (item: PlayerItem) => {
+      this.getCurrencyApi().subscribe({
+        next: (value) => {
+          const self = value.data?.GetSelf;
+          if (!self) return;
+          const currencyItemData = self.inventory.currency.map((item: PlayerItem) => {
             return {
-              name: item.item_id,
+              name: item.name ?? item.item_id,
               value: item.amount,
+              id: item.item_id,
             };
-          }
-        );
-        this.currencyItem.next(currencyItemData);
+          });
+          this.currencyItem.next(currencyItemData);
+          this.balances.next(self.balances);
+        },
+        error: () => undefined,
       });
     }
     return;

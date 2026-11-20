@@ -1,0 +1,45 @@
+<div class="payment-result">
+  <div class="card">
+    <ng-container *ngIf="order && order.status !== 'pending'; else waiting">
+      <ng-container *ngIf="order.status === 'paid'; else failed">
+        <img class="result-icon" src="/assets/images/icon/success-icon.png" alt="" />
+        <h1 class="title success">SUCCESS</h1>
+        <p class="message">Thank you! {{ grantLabel }} has been added to your account.</p>
+      </ng-container>
+      <ng-template #failed>
+        <img class="result-icon" src="/assets/images/icon/error-icon.png" alt="" />
+        <h1 class="title error">{{ order.status === 'expired' ? 'PAYMENT EXPIRED' : 'PAYMENT NOT COMPLETED' }}</h1>
+        <p class="message">{{ order.failureMessage || 'The payment was not completed. No money was taken.' }}</p>
+      </ng-template>
+      <div class="details">
+        <div><span>Order ID</span><span>{{ order.id | slice: 0 : 8 }}</span></div>
+        <div><span>Package</span><span>{{ order.packageName }}</span></div>
+        <div><span>Total</span><span>{{ paidLabel }}</span></div>
+        <div><span>Status</span><span class="status">{{ order.status }}</span></div>
+      </div>
+    </ng-container>
+
+    <ng-template #waiting>
+      <ng-container *ngIf="!errorMessage; else problem">
+        <span class="spinner"></span>
+        <h1 class="title">Confirming your payment</h1>
+        <p class="message" *ngIf="!timedOut">
+          We are checking the payment with Omise. This usually takes a few seconds.
+        </p>
+        <p class="message" *ngIf="timedOut">
+          The payment is still being processed. Your coins are added automatically as soon as it completes.
+        </p>
+      </ng-container>
+      <ng-template #problem>
+        <img class="result-icon" src="/assets/images/icon/error-icon.png" alt="" />
+        <p class="message">{{ errorMessage }}</p>
+      </ng-template>
+    </ng-template>
+
+    <div class="btn-wrapper">
+      <button class="linear-btn-grandora" routerLink="/package/package-information">
+        <span>Back to Package</span>
+      </button>
+    </div>
+  </div>
+</div>

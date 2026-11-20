@@ -23,6 +23,10 @@ export class GrandoraSelectComponent implements OnInit {
 
   @Input() status: string = '';
 
+  @Input() set filled(value: boolean) {
+    if (value) this.isOptionDirty = true;
+  }
+
   @Output() changeTopic = new EventEmitter<string>();
 
   isOptionsContainerActive: boolean = false;

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import { transactions } from 'src/data/mockup/transactions';
 import { BreakpointObserver, BreakpointState } from '@angular/cdk/layout';
+import { Transaction } from 'src/app/core/models';
+import { ShopService } from 'src/app/core/services';
 
 @Component({
   selector: 'app-transaction-detail',
@@ -10,13 +11,24 @@ import { BreakpointObserver, BreakpointState } from '@angular/cdk/layout';
 export class TransactionDetailComponent {
   page = 1;
   pageSize = 12;
-  collectionSize = 1;
+  collectionSize = 0;
   maxSize = 3;
 
-  transactions: any = [];
-  filterTransactions: any = [];
+  types = [
+    { key: 'all', label: 'All', className: 'all' },
+    { key: 'subscription', label: 'Subscription History', className: 'subscription-history' },
+    { key: 'package', label: 'Package History', className: 'package-history' },
+    { key: 'redeem', label: 'Redeem History', className: 'redeem-history' },
+  ];
+  activeType = 'all';
+  isLoading = false;
 
-  constructor(private breakpointObserver: BreakpointObserver) {
+  filterTransactions: Transaction[] = [];
+
+  constructor(
+    private breakpointObserver: BreakpointObserver,
+    private shopService: ShopService
+  ) {
     // detect screen size changes
     this.breakpointObserver
       .observe(['(max-width: 450px)'])
@@ -32,29 +44,29 @@ export class TransactionDetailComponent {
   }
 
   ngOnInit(): void {
-    this.transactions = transactions;
-    this.collectionSize = transactions.length;
     this.refreshFilterTransactions();
   }
 
-  ngAfterViewInit(): void {
-    this.typeActive();
-  }
-
-  typeActive() {
-    const types = document.querySelectorAll('.type');
-    types.forEach((type) => {
-      type.addEventListener('click', () => {
-        types.forEach((allType) => allType.classList.remove('active'));
-        type.classList.add('active');
-      });
-    });
+  selectType(key: string) {
+    if (key === this.activeType) return;
+    this.activeType = key;
+    this.page = 1;
+    this.refreshFilterTransactions();
   }
 
   refreshFilterTransactions() {
-    this.filterTransactions = this.transactions.slice(
-      (this.page - 1) * this.pageSize,
-      (this.page - 1) * this.pageSize + this.pageSize
-    );
+    this.isLoading = true;
+    this.shopService.transactions(this.activeType, this.page, this.pageSize).subscribe({
+      next: (page) => {
+        this.filterTransactions = page.items;
+        this.collectionSize = page.total;
+        this.isLoading = false;
+      },
+      error: () => {
+        this.filterTransactions = [];
+        this.collectionSize = 0;
+        this.isLoading = false;
+      },
+    });
   }
 }

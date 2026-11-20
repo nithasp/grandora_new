@@ -477,3 +477,21 @@
     cursor: pointer;
   }
 }
+
+.store-message {
+  padding: 24px 0;
+  color: #6f6f6f;
+  font-size: 15px;
+}
+
+.secondary-btn:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.official-store .title .coin .coin1 img,
+.official-store .title .coin .coin2 img {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+}

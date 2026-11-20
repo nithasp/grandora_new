@@ -1,0 +1,66 @@
+:host {
+  display: block;
+  width: 100%;
+}
+
+.package-card {
+  display: block;
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+
+.package-card.mobile {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .package-card.desktop {
+    display: none;
+  }
+  .package-card.mobile {
+    display: block;
+  }
+}
+
+text {
+  user-select: none;
+}
+
+.badge {
+  font-family: 'Poppins-Medium';
+  font-size: 31px;
+}
+
+.badge.small {
+  font-size: 11.5px;
+}
+
+.amount {
+  font-family: 'Poppins-SemiBold';
+  font-size: 42px;
+  fill: #fff;
+}
+
+.unit {
+  font-family: 'Poppins-Medium';
+  font-size: 36px;
+  fill: #fff;
+}
+
+.save {
+  font-family: 'Poppins-Medium';
+  font-size: 32px;
+  fill: #fff;
+}
+
+.price {
+  font-family: 'Poppins-Bold';
+  fill: #fff;
+}
+
+.bonus {
+  font-family: 'Poppins-Medium';
+  font-size: 44px;
+  fill: #212121;
+}

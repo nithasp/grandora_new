@@ -1,17 +1,11 @@
-// This file can be replaced during build by using the `fileReplacements` array.
-// `ng build --prod` replaces `environment.ts` with `environment.prod.ts`.
-// The list of file replacements can be found in `angular.json`.
+const apiUrl = 'http://localhost:3000';
 
 export const environment = {
   production: false,
-  graphqlURL: "http://node52360-grandora-uat.th2.proen.cloud:11509/player-service/graph",
+  apiUrl,
+  graphqlURL: `${apiUrl}/api/v1/graph`,
+  // Every new browser tab signs a visitor in to the shared demo account and opens afterLoginRoute,
+  // so the site can be explored without registering. Signing out brings back the normal forms.
+  autoDemoLogin: true,
+  afterLoginRoute: '/setting',
 };
-
-/*
- * For easier debugging in development mode, you can import the following file
- * to ignore zone related error stack frames such as `zone.run`, `zoneDelegate.invokeTask`.
- *
- * This import should be commented out in production mode because it will have a negative impact
- * on performance if an error is thrown.
- */
-// import 'zone.js/plugins/zone-error';  // Included with Angular CLI.

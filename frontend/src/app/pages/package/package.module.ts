@@ -7,8 +7,10 @@ import { TransactionsComponent } from './transactions/transactions.component';
 import { CancelingMembershipComponent } from './canceling-membership/canceling-membership.component';
 import { PackageInformationComponent } from './package-information/package-information.component';
 import { TransactionDetailComponent } from './transaction-detail/transaction-detail.component';
+import { PaymentResultComponent } from './payment-result/payment-result.component';
 
 import { CommunityModule } from 'src/app/components/community/community.module';
+import { PackageCardModule } from 'src/app/components/package-card/package-card.module';
 import { NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
 @NgModule({
   declarations: [
@@ -16,7 +18,7 @@ import { NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
     CancelingMembershipComponent,
     PackageInformationComponent,
     TransactionDetailComponent,
-     
+    PaymentResultComponent,
   ],
   imports: [
     CommonModule,
@@ -24,7 +26,8 @@ import { NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
     ReactiveFormsModule,
     PackageRoutingModule,
     NgbPaginationModule,
-    CommunityModule
+    CommunityModule,
+    PackageCardModule,
   ],
 })
 export class PackageModule {}

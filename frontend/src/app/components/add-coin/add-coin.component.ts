@@ -4,60 +4,84 @@ import {
   Output,
   EventEmitter,
   ElementRef,
+  OnDestroy,
 } from '@angular/core';
-import { packageData } from 'src/data/mockup/package-data';
 import { Router } from '@angular/router';
-import { PackageService, PlayerService } from 'src/app/core/services';
-import { PlayerItem } from 'src/app/core/models';
+import { Subscription } from 'rxjs';
+import { AuthService, PackageService, PlayerService } from 'src/app/core/services';
+import { Balances, PackageItem, PackageKind } from 'src/app/core/models';
 
 @Component({
   selector: 'app-add-coin',
   templateUrl: './add-coin.component.html',
   styleUrls: ['./add-coin.component.scss'],
 })
-export class AddCoinComponent {
+export class AddCoinComponent implements OnDestroy {
   @ViewChild('selectElem') selectElem!: ElementRef;
   @Output() closeAddCoin = new EventEmitter<boolean>();
 
   constructor(
     private router: Router,
+    private authService: AuthService,
     private packageService: PackageService,
     private playerService: PlayerService
   ) {}
 
   currencyItem: any = [];
-  currencyMockup: any = [
-    {
-      name: 'Grando',
-      value: 'grando',
-    },
-    {
-      name: 'Grando2',
-      value: 'grando2',
-    },
-    {
-      name: 'Grando3',
-      value: 'grando3',
-    },
+  currencyOptions = [
+    { name: 'MYGG Coins', value: 'coins' },
+    { name: 'Grando', value: 'grando' },
   ];
 
-  package: any = [];
+  kind: PackageKind = 'coins';
+  allPackages: PackageItem[] = [];
+  balances: Balances | null = null;
+  isLogin = false;
+  loadError = '';
+
+  private subscriptions = new Subscription();
+
+  get package(): PackageItem[] {
+    return this.allPackages.filter((item) => item.kind === this.kind);
+  }
 
   ngOnInit(): void {
     this.subscribeGlobalVariables();
     this.playerService.getCurrencyData();
     this.handleCloseSearchInit();
-    this.package = packageData;
+  }
+
+  ngOnDestroy(): void {
+    this.subscriptions.unsubscribe();
   }
 
   subscribeGlobalVariables() {
-    this.playerService
-      .getCurrencyItem()
-      .subscribe((value) => (this.currencyItem = value));
+    this.subscriptions.add(
+      this.playerService
+        .getCurrencyItem()
+        .subscribe((value) => (this.currencyItem = value))
+    );
+    this.subscriptions.add(
+      this.playerService.getBalances().subscribe((value) => (this.balances = value))
+    );
+    this.subscriptions.add(
+      this.authService.getIsLogin().subscribe((isLogin) => {
+        this.isLogin = isLogin;
+        if (isLogin) this.loadPackages();
+      })
+    );
+  }
+
+  loadPackages() {
+    this.loadError = '';
+    this.packageService.getPackages().subscribe({
+      next: (items) => (this.allPackages = items),
+      error: () => (this.loadError = 'Packages could not be loaded. Please try again later.'),
+    });
   }
 
   handleCurrency(value: string) {
-    console.log(value);
+    this.kind = value === 'grando' ? 'grando' : 'coins';
   }
 
   handleClose() {
@@ -67,7 +91,9 @@ export class AddCoinComponent {
   handleCloseSearchInit() {
     document.addEventListener('mousedown', (event: any) => {
       const elem = this.selectElem?.nativeElement;
-      if (elem && !elem.contains(event.target)) {
+      // Clicks inside the checkout dialog that this panel opened must not close anything
+      const inDialog = event.target?.closest?.('.purchase-method, .swal2-container');
+      if (elem && !elem.contains(event.target) && !inDialog) {
         this.handleClose();
       }
     });
@@ -78,7 +104,12 @@ export class AddCoinComponent {
     this.handleClose();
   }
 
-  handlePackage(item: any) {
+  handleSignIn() {
+    this.router.navigate(['sign-in']);
+    this.handleClose();
+  }
+
+  handlePackage(item: PackageItem) {
     this.packageService.handlePackage(item);
     this.handleClose();
   }

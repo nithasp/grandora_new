@@ -3,3 +3,7 @@ export * from './package.service';
 export * from './player.service';
 export * from './chat.service';
 export * from './social.service';
+export * from './session.service';
+export * from './payment.service';
+export * from './shop.service';
+export * from './profile.service';

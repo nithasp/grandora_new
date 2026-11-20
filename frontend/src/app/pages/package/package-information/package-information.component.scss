@@ -162,13 +162,28 @@
           .package-wrapper {
             display: grid;
             grid-template-columns: 1fr 1fr 1fr;
+            gap: 4px;
             .item {
               cursor: pointer;
-              img {
+              transition: transform 0.15s;
+              app-package-card {
                 max-width: 200px;
-                max-height: 144px;
+              }
+              &:hover {
+                transform: translateY(-2px);
               }
             }
+            .empty {
+              grid-column: 1 / -1;
+              color: #6f6f6f;
+              font-size: 14px;
+            }
+          }
+          .rate {
+            margin: -8px 0 12px;
+            color: #6f6f6f;
+            font-size: 13px;
+            line-height: 18px;
           }
         }
       }
@@ -225,6 +240,9 @@
         gap: 12px;
         img {
           width: 100%;
+        }
+        .item app-package-card {
+          max-width: 360px;
         }
       }
     }

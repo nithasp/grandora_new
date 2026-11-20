@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService, PlayerService } from 'src/app/core/services';
 import Swal from 'sweetalert2';
+import { environment } from 'src/app/environments/environment';
 
 @Component({
   selector: 'app-sign-in',
@@ -11,6 +12,8 @@ import Swal from 'sweetalert2';
 })
 export class SignInComponent implements OnInit {
   isLoading: boolean = false;
+  isDemoLoading: boolean = false;
+  readonly demoEnabled = environment.autoDemoLogin;
   signInForm!: FormGroup;
 
   constructor(
@@ -52,11 +55,7 @@ export class SignInComponent implements OnInit {
       this.authService.signIn(body).subscribe(
         (res) => {
           if (res.data?.LoginEmail) {
-            localStorage.setItem('accessToken', res.data?.LoginEmail.token);
-            this.authService.userInfo.next(res.data?.LoginEmail);
-            this.authService.isLogin.next(true);
-            this.router.navigate(['/setting']);
-
+            this.authService.completeSignIn(res.data.LoginEmail);
             this.playerService.getCurrencyData();
           } else if (
             errorConditions.some((item) =>
@@ -98,6 +97,24 @@ export class SignInComponent implements OnInit {
       );
     }
     this.signInForm.markAllAsTouched();
+  }
+
+  enterDemo() {
+    if (this.isLoading || this.isDemoLoading) return;
+    this.isDemoLoading = true;
+    this.authService
+      .enterDemo()
+      .then(() => this.playerService.getCurrencyData())
+      .catch(() => {
+        Swal.fire({
+          icon: 'error',
+          title: 'Error',
+          text: 'The demo is unavailable right now. Please try again later.',
+          confirmButtonText: 'Done',
+          confirmButtonColor: '#AC2028',
+        });
+      })
+      .finally(() => (this.isDemoLoading = false));
   }
 
   get email() {

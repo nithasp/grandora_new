@@ -20,12 +20,19 @@
     <div class="content">
       <div class="title">Transactions</div>
       <div class="types">
-        <div class="type all active">All</div>
-        <div class="type subscription-history">Subscription History</div>
-        <div class="type package-history">Package History</div>
-        <div class="type redeem-history">Redeem History</div>
+        <div
+          *ngFor="let type of types"
+          class="type"
+          [ngClass]="[type.className, type.key === activeType ? 'active' : '']"
+          (click)="selectType(type.key)"
+        >
+          {{ type.label }}
+        </div>
       </div>
       <div class="detail">
+        <p class="empty" *ngIf="!isLoading && !filterTransactions.length">
+          {{ activeType === 'subscription' ? 'You have no subscription history yet.' : 'No transactions yet.' }}
+        </p>
         <div class="item" *ngFor="let item of filterTransactions">
           <div class="icon">
             <svg
@@ -78,7 +85,7 @@
           </div>
           <div class="info">
             <div class="info1">
-              <span>{{ item?.title }} {{ item?.id }}</span>
+              <span>{{ item?.title }}<ng-container *ngIf="item?.description"> · {{ item?.description }}</ng-container></span>
               <span [ngClass]="!item?.currency ? 'hasNotCurrency' : ''">{{
                 item?.point
               }}</span>
